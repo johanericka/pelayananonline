@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 require 'config.php';
-include 'assets/myfunc.php';
+require 'assets/myfunc.php';
 ?>
 
 <head>
@@ -13,7 +13,7 @@ include 'assets/myfunc.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,7 +24,7 @@ include 'assets/myfunc.php';
 
 </head>
 
-<body class="bg-gradient-success">
+<body class="bg-gradient-warning">
 
     <div class="container">
 
@@ -33,7 +33,7 @@ include 'assets/myfunc.php';
                 <div class="col-lg-5 d-none d-lg-block"></div>
                 <div class="p-5">
                     <div class="text-center">
-                        <img src="img/fitk.png"></img>
+                        <img src="img/kop.jpg" width="300px"></img>
                         <h1 class="h4 text-gray-900 mb-4">Daftar Akun Pengguna</h1>
                     </div>
                     <?php
@@ -57,11 +57,11 @@ include 'assets/myfunc.php';
                     <form class="user" action="daftar-simpan.php" method="POST">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" class="form-control form-control-user" name="nama" id="nama" placeholder="Nama" required>
+                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" required>
                         </div>
                         <div class="form-group">
                             <label>NIM / NIP / NIDT</label>
-                            <input type="number" class="form-control form-control-user" name="nim" id="nim" placeholder="NIM / NIP / NIDT" required>
+                            <input type="number" class="form-control" name="nim" id="nim" placeholder="NIM / NIP / NIDT" required>
                         </div>
                         <div class="row no-gutters align-items-center">
                             <label>Program Studi</label>
@@ -80,25 +80,25 @@ include 'assets/myfunc.php';
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>No. HP Aktif</label>
-                                <input type="number" class="form-control form-control-user" name="nohp" id="nohp" placeholder="No. HP Aktif" required>
+                                <input type="number" class="form-control" name="nohp" id="nohp" placeholder="No. HP Aktif" required>
                             </div>
                             <div class="col-sm-6">
                                 <label>E-Mail</label>
-                                <input type="email" class="form-control form-control-user" name="email" id="email" placeholder="Email Address" required>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>User ID</label>
-                            <input type="text" class="form-control form-control-user" name="userid" id="userid" placeholder="User ID untuk masuk ke sistem ini" required>
+                            <input type="text" class="form-control" name="userid" id="userid" placeholder="User ID untuk masuk ke sistem ini" required>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Password</label>
-                                <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password" required>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                             </div>
                             <div class="col-sm-6">
                                 <label>Ulangi Password</label>
-                                <input type="password" class="form-control form-control-user" name="password2" id="password2" placeholder="Ulangi Password" required>
+                                <input type="password" class="form-control" name="password2" id="password2" placeholder="Ulangi Password" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -108,17 +108,18 @@ include 'assets/myfunc.php';
                             $kunci = $angka1 + $angka2;
                             ?>
                             <label>Berapakah hasil dari <b><?= huruf($angka1); ?> ditambah <?= huruf($angka2); ?></b> (angka) ?</label>
-                            <input type="number" class="form-control form-control-user" name="hasil" id="hasil" required>
+                            <input type="number" class="form-control" name="hasil" id="hasil" required>
                         </div>
-                        <br />
-                        <input type="hidden" name="kunci" value="<?= $kunci; ?>">
-                        <button type="submit" class="btn btn-success btn-user btn-block"> <b>DAFTAR </b></button>
                         <hr>
+                        <input type="hidden" name="kunci" value="<?= $kunci; ?>">
+                        <button type="submit" class="btn btn-primary btn-block"> <b>DAFTAR </b></button>
                     </form>
                     <hr>
+                    <!--
                     <div class="text-center">
                         <a class="small" href="forgot-password.html">Lupa Password?</a>
                     </div>
+                    -->
                     <div class="text-center">
                         <a class="small" href="index.php">Login Disini</a>
                     </div>

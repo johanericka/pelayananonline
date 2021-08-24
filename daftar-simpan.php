@@ -14,18 +14,9 @@ $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
 $passmd5 = md5($password);
 $prodi = $_POST['prodi'];
 
-/*
-echo $nama . "<br/>";
-echo $nim . "<br/>";
-echo $nohp . "<br/>";
-echo $email . "<br/>";
-echo $userid . "<br/>";
-echo $password . "<br/>";
-echo $password2 . "<br/>";
-echo $prodi . "<br/>";
-*/
+
 if ($kunci == $hasil) {
-	$quser = mysqli_query($conn, "SELECT * FROM pengguna WHERE user='$user'");
+	$quser = mysqli_query($conn, "SELECT * FROM pengguna WHERE nim='$nim'");
 	$nuser = mysqli_num_rows($quser);
 	if ($nuser > 0) {
 		header('location: index.php?pesan=exist');
@@ -49,35 +40,15 @@ if ($kunci == $hasil) {
 									<br/>
 									Terdapat pendaftar baru atas nama " . $nama . ".
 									<br/>
-									Silahkan akses sistem Persuratan <a href='https://fitk.uin-malang.ac.id/persuratan' target='_blank'><b>di sini</b></a> untuk melakukan aktivasi user.
+									Silahkan akses sistem Persuratan <a href='https://humaniora.uin-malang.ac.id/pelayananonline' target='_blank'><b>di sini</b></a> untuk melakukan aktivasi user.
 									<br/>
 									Wassalamualaikum Wr. Wb.
 									";
 				sendmail($emailfak, $namaadmin, $subject, $pesan);
 			}
 
-			//cari email admin prodi
-			$qadminprodi = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminprodi' AND prodi='$prodi'");
-			while ($dadminprodi = mysqli_fetch_array($qadminprodi)) {
-				$emailprodi = $dadminprodi['email'];
-				$namaadminprodi = $dadminprodi['nama'];
-
-				$subject = "Notifikasi Pendaftaran Pengguna Baru";
-				$pesan = "Yth. " . $namaadminprodi . "
-									<br/>
-									Assalamualaikum Wr. Wb.
-									<br/>
-									Terdapat pendaftar baru atas nama " . $nama . ".
-									<br/>
-									Silahkan akses sistem Persuratan <a href='https://fitk.uin-malang.ac.id/persuratan' target='_blank'><b>di sini</b></a> untuk melakukan aktivasi user.
-									<br/>
-									Wassalamualaikum Wr. Wb.
-									";
-				sendmail($emailprodi, $namaadminprodi, $subject, $pesan);
-			}
-
 			//kirim email user
-			$subject = "Pendaftaran Sistem Persuratan FITK";
+			$subject = "Pendaftaran Sistem Pelayanan Online Fakultas Humaniora UIN Malang";
 			$pesan = "Yth. " . $nama . "
 									<br/>
 									Assalamualaikum Wr. Wb.

@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-require('../config.php');
 session_start();
+require('../config.php');
+
 $userid = $_SESSION['userid'];
 $nama = $_SESSION['nama'];
 $email = $_SESSION['email'];
 $prodi = $_SESSION['prodi'];
 global $userid;
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -18,7 +20,7 @@ global $userid;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -85,14 +87,14 @@ global $userid;
                                         </div>
                                         <div class="form-group">
                                             <label>Nama Pejabat (beserta gelar)</label>
-                                            <input type="text" class="form-control form-user" name="pejabat" id="pejabat" required>
+                                            <input type="text" class="form-control form-user" name="nama" id="nama" required>
                                         </div>
                                         <div class="form-group">
                                             <label>NIP</label>
                                             <input type="number" class="form-control form-user" name="nip" id="nip" required>
                                         </div>
                                         <br />
-                                        <button type="submit" class="btn btn-success btn-user btn-block"> <i class="fas fa-save"></i><b> Simpan Perubahan Data</b></button>
+                                        <button type="submit" class="btn btn-primary btn-block"> <i class="fas fa-save"></i><b> Simpan Perubahan Data</b></button>
                                         <hr>
                                     </form>
                                     <br />
@@ -109,10 +111,11 @@ global $userid;
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No.</th>
-                                                    <th width="25%">Jabatan</th>
-                                                    <th width="25%">Pejabat</th>
+                                                    <th>Jabatan</th>
+                                                    <th>Pejabat</th>
                                                     <th>NIP</th>
                                                     <th>Tanda Tangan</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -136,9 +139,12 @@ global $userid;
                                                             if (empty($ttd)) {
                                                             ?>
                                                                 <div class="form-group">
-                                                                    <label>Upload File Tanda Tangan</label>
-                                                                    <input type="file" class="form-control form-user" name="ttd" id="ttd">
-                                                                    <input type="submit" class="btn btn-primary btn-user btn-block btn-sm" name="submit" value="Upload" />
+                                                                    <form action="pejabat-uploadttd.php" method="post" enctype="multipart/form-data">
+                                                                        <label>Upload File Tanda Tangan</label>
+                                                                        <input type="hidden" name="nomer" value="<?= $nodata; ?>">
+                                                                        <input type="file" class="form-control" name="fileToUpload">
+                                                                        <input type="submit" class="btn btn-primary btn-block btn-sm" name="upload" value="Upload" />
+                                                                    </form>
                                                                 </div>
                                                             <?php
                                                             } else {
@@ -147,7 +153,13 @@ global $userid;
                                                             <?php
                                                             };
                                                             ?>
-
+                                                        </td>
+                                                        <td>
+                                                            <form action="pejabat-hapus.php" method="POST">
+                                                                <input type="hidden" name="nomer" value="<?= $nodata; ?>">
+                                                                <input type="hidden" name="ttd" value="<?= $ttd; ?>">
+                                                                <input type="submit" class="btn btn-danger btn-block btn-sm" name="delete" value="Hapus" onclick="return confirm('Apakah anda yakin akan menghapus data ini ?');" />
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 <?php

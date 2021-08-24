@@ -1,8 +1,8 @@
 <?php
 $dbhost = 'localhost'; #'10.10.7.91:3306';
-$dbuser = 'persuratan2021';
-$dbpass = 'Ses!6p69';
-$dbname = 'persuratan2021';
+$dbuser = 'johanericka';
+$dbpass = 'rahasia';
+$dbname = 'pelayananonline';
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 if (!$conn) {

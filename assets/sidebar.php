@@ -3,7 +3,7 @@
 require('../config.php');
 $role = $_SESSION['role'];
 ?>
-<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
@@ -11,7 +11,7 @@ $role = $_SESSION['role'];
             <!--<i class="fas fa-solar-panel"></i>-->
             <img src="../img/uinlogo.png" width="50px"></img>
         </div>
-        <div class="sidebar-brand-text mx-3">F. Tarbiyah</div>
+        <div class="sidebar-brand-text mx-3">Fakultas Humaniora</div>
 
     </a>
     <!-- Divider -->

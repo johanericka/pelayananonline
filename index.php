@@ -21,15 +21,11 @@
     ?>
 </head>
 
-<body class="bg-gradient-success">
-
+<body class="bg-gradient-warning">
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
-
             <div class="col-xl-10 col-lg-12 col-md-9">
-
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -37,8 +33,8 @@
                             <div class="col-lg-3 d-none d-lg-block"></div>
                             <div class="p-5">
                                 <div class="text-center">
-                                    <img src="img/fitk.png"></img>
-                                    <h1 class="h4 text-gray-900 mb-4">Sistem Persuratan Online</h1>
+                                    <img src="img/kop.jpg" width="300px"></img>
+                                    <h1 class="h4 text-gray-900 mb-4">Pelayanan Online</h1>
                                 </div>
                                 <?php
                                 if (isset($_GET['pesan'])) {
@@ -104,11 +100,11 @@
                                 <form class="user" method="POST" action="auth.php">
                                     <div class="form-group">
                                         <label>User ID</label>
-                                        <input type="text" class="form-control form-control-user" name="userid" id="userid" required>
+                                        <input type="text" class="form-control" name="userid" id="userid" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" class="form-control form-control-user" name="password" id="password" required>
+                                        <input type="password" class="form-control" name="password" id="password" required>
                                     </div>
                                     <div class="form-group">
                                         <?php
@@ -117,11 +113,11 @@
                                         $kunci = $angka1 + $angka2;
                                         ?>
                                         <label>Berapakah <b><u><?= ($angka1); ?> + <?= ($angka2); ?></u></b> ?</label>
-                                        <input type="number" class="form-control form-control-user" name="hasil" id="hasil" required>
+                                        <input type="number" class="form-control" name="hasil" id="hasil" required>
                                     </div>
                                     <hr />
                                     <input type="hidden" name="kunci" value="<?= $kunci; ?>">
-                                    <button type="submit" class="btn btn-success btn-user btn-block"> <b>MASUK</b></button>
+                                    <button type="submit" class="btn btn-primary btn-block"> <b>MASUK</b></button>
                                 </form>
                                 <hr>
                                 <div class="text-center">

@@ -64,6 +64,7 @@ $role = $_SESSION['role'];
                     <h6 class="collapse-header">System Admin Menu</h6>
                     <a class="collapse-item" href="verifikatorsurat-isi.php">Verifikator Surat</a>
                     <a class="collapse-item" href="pejabat-isi.php">Pejabat Fakultas</a>
+                    <a class="collapse-item" href="prodi-isi.php">Program Studi</a>
                 </div>
             </div>
         </li>
@@ -87,7 +88,7 @@ $role = $_SESSION['role'];
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Menu Pengguna</h6>
-                    <a class="collapse-item" href="user-tampil.php">Aktivasi User</a>
+                    <a class="collapse-item" href="user-tampil.php">Aktivasi Pengguna</a>
                 </div>
             </div>
         </li>

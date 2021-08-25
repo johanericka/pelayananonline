@@ -103,8 +103,8 @@ require 'assets/myfunc.php';
                         </div>
                         <div class="form-group">
                             <?php
-                            $angka1 = rand(0, 9);
-                            $angka2 = rand(0, 9);
+                            $angka1 = rand(1, 9);
+                            $angka2 = rand(1, 9);
                             $kunci = $angka1 + $angka2;
                             ?>
                             <label>Berapakah hasil dari <b><?= huruf($angka1); ?> ditambah <?= huruf($angka2); ?></b> (angka) ?</label>

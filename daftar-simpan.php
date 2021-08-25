@@ -13,6 +13,7 @@ $password = mysqli_real_escape_string($conn, $_POST['password']);
 $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
 $passmd5 = md5($password);
 $prodi = $_POST['prodi'];
+$token = md5(microtime());
 
 
 if ($kunci == $hasil) {
@@ -22,8 +23,8 @@ if ($kunci == $hasil) {
 		header('location: index.php?pesan=exist');
 	} else {
 		if ($password == $password2) {
-			$qsimpan = mysqli_query($conn, "INSERT INTO pengguna (nama,nim,nohp,email,prodi,user,pass,plaintext)
-													VALUES ('$nama','$nim','$nohp','$email','$prodi','$userid','$passmd5','$password')");
+			$qsimpan = mysqli_query($conn, "INSERT INTO pengguna (nama,nim,nohp,email,prodi,user,pass,plaintext,token)
+													VALUES ('$nama','$nim','$nohp','$email','$prodi','$userid','$passmd5','$password','$token')");
 
 			//kirim email notifikasi			
 
@@ -40,7 +41,9 @@ if ($kunci == $hasil) {
 									<br/>
 									Terdapat pendaftar baru atas nama " . $nama . ".
 									<br/>
-									Silahkan akses sistem Persuratan <a href='https://humaniora.uin-malang.ac.id/pelayananonline' target='_blank'><b>di sini</b></a> untuk melakukan aktivasi user.
+									Silahkan klik tombol berikut ini untuk melakukan aktivasi pengguna.
+									<br/>
+									<a href='https://humaniora.uin-malang.ac.id/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
 									<br/>
 									Wassalamualaikum Wr. Wb.
 									";

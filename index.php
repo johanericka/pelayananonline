@@ -91,9 +91,14 @@
                                                 <strong>GAGAL!!</strong> NIM / eMail tidak ditemukan / salah!!
                                             </div>
                                         <?php
-                                        }
+                                        } elseif ($pesan == 'updatepassok') {
                                         ?>
+                                            <div class="alert alert-success alert-dismissible">
+                                                <strong>Perubahan Password berhasil</strong> <br />
+                                                Silahkan login dengan password baru anda
+                                            </div>
                                 <?php
+                                        }
                                     }
                                 }
                                 ?>
@@ -112,7 +117,7 @@
                                         $angka2 = rand(1, 5);
                                         $kunci = $angka1 + $angka2;
                                         ?>
-                                        <label>Berapakah <b><u><?= ($angka1); ?> + <?= ($angka2); ?></u></b> ?</label>
+                                        <label>Berapakah <b><u><?= huruf($angka1); ?> + <?= huruf($angka2); ?></u></b> (angka) ?</label>
                                         <input type="number" class="form-control" name="hasil" id="hasil" required>
                                     </div>
                                     <hr />
@@ -126,7 +131,7 @@
                                     </a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.php">Lupa Password?</a>
+                                    <a class="small" href="password-lupa.php">Lupa Password?</a>
                                 </div>
                             </div>
                         </div>

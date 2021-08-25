@@ -168,12 +168,11 @@ if ($role != 'adminfakultas') {
                             </select>
                         </div>
                         <input type="hidden" name="nodata" value="<?= $nodata; ?>" />
-                        <br />
+                        <hr>
                         <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-primary btn-block"> <b>Update Data </b></button>
                         <hr>
                     </form>
-                    <a href="dashboard.php" class="form-control"> <b>Kembali </b></a>
-                    <hr>
+                    <a href="dashboard.php"> <b>Kembali </b></a>
                 </div>
             </div>
         </div>

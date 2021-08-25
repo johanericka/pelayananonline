@@ -88,7 +88,7 @@ $role = $_SESSION['role'];
             <div class="modal-body">Klik tombol <b>KELUAR</b> untuk keluar dari sistem ini. </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-success" href="../deauth.php">KELUAR</a>
+                <a class="btn btn-primary" href="../deauth.php">KELUAR</a>
             </div>
         </div>
     </div>

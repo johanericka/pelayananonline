@@ -14,17 +14,6 @@ $prodi = $_POST['prodi'];
 $role = $_POST['role'];
 $status = $_POST['status'];
 
-/*
-echo $nama . "<br/>";
-echo $nohp . "<br/>";
-echo $email . "<br/>";
-echo $userid . "<br/>";
-echo $password . "<br/>";
-echo $password2 . "<br/>";
-echo $prodi . "<br/>";
-echo $role . "<br/>";
-echo $status . "<br/>";
-*/
 if ($password == $password2) {
 	$qsimpan = mysqli_query($conn, "UPDATE pengguna 
 									SET nama = '$nama',
@@ -46,10 +35,13 @@ if ($password == $password2) {
 							<br/>
 							Assalamualaikum Wr. Wb.
 							<br/>
-							Akun anda di sistem persuratan FITK telah di aktifkan.
+							Akun anda di sistem Pelayanan Online Fakultas Humaniora UIN Maulana Malik Ibrahim Malang telah di aktifkan.
 							<br/>
-							Silahkan akses sistem persuratan FITK <a href='https://fitk.uin-malang.ac.id/persuratan' target='_blank'><b>di sini</b></a> untuk melakukan pengajuan surat. 
+							Silahkan klik tombol berikut ini untuk melakukan pengajuan surat. 
 							<br/>
+							<a href='https://humaniora.uin-malang.ac.id/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+							<br/>
+							atau klik https://humaniora.uin-malang.ac.id/pelayananonline/
 							Wassalamualaiakum Wr. Wb.
 							";
 		sendmail($email, $nama, $subject, $pesan);

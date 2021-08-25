@@ -17,7 +17,7 @@ $token = md5(microtime());
 
 
 if ($kunci == $hasil) {
-	$quser = mysqli_query($conn, "SELECT * FROM pengguna WHERE nim='$nim'");
+	$quser = mysqli_query($conn, "SELECT * FROM pengguna WHERE nim='$nim' or email='$email'");
 	$nuser = mysqli_num_rows($quser);
 	if ($nuser > 0) {
 		header('location: index.php?pesan=exist');

@@ -1,5 +1,5 @@
 <?php
-//tanggal indonesia
+
 function tgl_indo($tanggal)
 {
     $bulan = array(
@@ -13,6 +13,14 @@ function huruf($angka)
 {
     $huruf = array("nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan");
     return $huruf[$angka];
+}
+
+function carinama($conn, $nim)
+{
+    $sql = mysqli_query($conn, "SELECT * FROM pengguna WHERE nim='$nim'");
+    $dsql = mysqli_fetch_array($sql);
+    $nama = $dsql['nama'];
+    return $nama;
 }
 
 function hp($nohp)

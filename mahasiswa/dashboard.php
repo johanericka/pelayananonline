@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
 $userid = $_SESSION['userid'];
@@ -9,17 +7,21 @@ if ($role != 'mahasiswa') {
     header("location:../deauth.php");
 }
 global $userid;
+require('../config.php');
+require('../assets/myfunc.php');
 ?>
 
-<head>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,10 +80,10 @@ global $userid;
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
-                                                    <th width="45%">Surat Ijin</th>
-                                                    <th>Status</th>
-                                                    <th width="10%">Aksi</th>
+                                                    <th width="5%" class="text-center">No</th>
+                                                    <th width="45%" class="text-center">Surat Ijin</th>
+                                                    <th class="text-center">Status</th>
+                                                    <th width="5%" class="text-center">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -411,6 +413,53 @@ global $userid;
                                                             if ($verifikasi == 2) {
                                                             ?>
                                                                 <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Permohonan Transkrip Nilai Sementara ?')" href="transkripnilai-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                                    $no++;
+                                                }
+                                                ?>
+                                                <!-- /Transkrip Nilai-->
+
+                                                <!-- Surat Keterangan-->
+                                                <?php
+                                                $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nim='$nim'");
+                                                while ($dsuket = mysqli_fetch_array($qsuket)) {
+                                                    $nodata = $dsuket['nodata'];
+                                                    $validasi = $dsuket['validasi'];
+                                                    $validator = $dsuket['validator'];
+                                                    $keterangan = $dsuket['keterangan'];
+                                                    $jenissurat = $dsuket['jenissurat'];
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $no; ?></td>
+                                                        <td>Surat Keterangan <?= $jenissurat; ?></td>
+                                                        <td><?php
+                                                            if ($validasi == 0) {
+                                                                echo "Menunggu persetujuan " . carinama($conn, $validator);
+                                                            } elseif ($validasi == 1) {
+                                                                echo "Telah disetujui oleh " . carinama($conn, $validator);
+                                                            } else {
+                                                                echo "Ditolak oleh " . carinama($conn, $validator) . " dengan alasan <b>" . $keterangan . "</b>";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($validasi == 1) {
+                                                            ?>
+                                                                <a class="btn btn-primary btn-sm" href="suket-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                    <i class="fas fa-print"></i>
+                                                                </a>
+                                                            <?php
+                                                            } elseif ($validasi == 2 or $validasi == 0) {
+                                                            ?>
+                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus Permohonan Surat Keterangan ?')" href="suket-hapus.php?nodata=<?= $nodata; ?>">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </a>
                                                             <?php

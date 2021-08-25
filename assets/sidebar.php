@@ -110,6 +110,17 @@ $role = $_SESSION['role'];
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Pengajuan Surat Mahasiswa</h6>
                     <?php
+                    /*
+                    $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nim='$userid' AND verifikasi=0");
+                    $jsuket = mysqli_num_rows($qsuket);
+                    if ($jsuket == 0) {
+                    */
+                    ?>
+                    <a class="collapse-item" href="suket-isi.php">Surat Keterangan</a>
+                    <?php
+                    //};
+                    ?>
+                    <?php
                     $qobservasi = mysqli_query($conn, "SELECT * FROM observasi WHERE nim='$userid' AND verifikasi=0");
                     $jobservasi = mysqli_num_rows($qobservasi);
                     if ($jobservasi == 0) {
@@ -154,15 +165,7 @@ $role = $_SESSION['role'];
                     <?php
                     }
                     ?>
-                    <?php
-                    //$qpenelitian = mysqli_query($conn, "SELECT * FROM validasi WHERE nim='$userid' AND verifikasi=0");
-                    //$jpenelitian = mysqli_num_rows($qpenelitian);
-                    //if ($jpenelitian == 0) {
-                    ?>
                     <a class="collapse-item" href="validator-isi.php">Permohonan Validator</a>
-                    <?php
-                    //}
-                    ?>
                     <?php
                     $qtranskrip = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE nim='$userid' AND verifikasi=0");
                     $jtranskrip = mysqli_num_rows($qtranskrip);

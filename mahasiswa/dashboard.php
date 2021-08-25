@@ -431,8 +431,8 @@ require('../assets/myfunc.php');
                                                 $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nim='$nim'");
                                                 while ($dsuket = mysqli_fetch_array($qsuket)) {
                                                     $nodata = $dsuket['nodata'];
-                                                    $validasi = $dsuket['validasi'];
-                                                    $validator = $dsuket['validator'];
+                                                    $verifikasi = $dsuket['verifikasi'];
+                                                    $verifikator = $dsuket['verifikator'];
                                                     $keterangan = $dsuket['keterangan'];
                                                     $jenissurat = $dsuket['jenissurat'];
                                                 ?>
@@ -440,24 +440,24 @@ require('../assets/myfunc.php');
                                                         <td><?= $no; ?></td>
                                                         <td>Surat Keterangan <?= $jenissurat; ?></td>
                                                         <td><?php
-                                                            if ($validasi == 0) {
-                                                                echo "Menunggu persetujuan " . carinama($conn, $validator);
-                                                            } elseif ($validasi == 1) {
-                                                                echo "Telah disetujui oleh " . carinama($conn, $validator);
+                                                            if ($verifikasi == 0) {
+                                                                echo "Menunggu persetujuan " . carinama($conn, $verifikator);
+                                                            } elseif ($verifikasi == 1) {
+                                                                echo "Telah disetujui oleh " . carinama($conn, $verifikator);
                                                             } else {
-                                                                echo "Ditolak oleh " . carinama($conn, $validator) . " dengan alasan <b>" . $keterangan . "</b>";
+                                                                echo "Ditolak oleh " . carinama($conn, $verifikator) . " dengan alasan <b>" . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>
                                                         <td>
                                                             <?php
-                                                            if ($validasi == 1) {
+                                                            if ($verifikasi == 1) {
                                                             ?>
                                                                 <a class="btn btn-primary btn-sm" href="suket-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
                                                                     <i class="fas fa-print"></i>
                                                                 </a>
                                                             <?php
-                                                            } elseif ($validasi == 2 or $validasi == 0) {
+                                                            } elseif ($verifikasi == 2 or $verifikasi == 0) {
                                                             ?>
                                                                 <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus Permohonan Surat Keterangan ?')" href="suket-hapus.php?nodata=<?= $nodata; ?>">
                                                                     <i class="fas fa-trash-alt"></i>

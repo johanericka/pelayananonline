@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
 $userid = $_SESSION['userid'];
@@ -13,6 +11,9 @@ if ($role != 'adminprodi') {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -21,7 +22,7 @@ if ($role != 'adminprodi') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

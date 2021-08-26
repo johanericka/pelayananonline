@@ -10,12 +10,7 @@ $userid = mysqli_real_escape_string($conn, $_POST['userid']);
 $password = mysqli_real_escape_string($conn, strtolower($_POST['password']));
 $kunci = mysqli_real_escape_string($conn, strtolower($_POST['kunci']));
 $hasil = mysqli_real_escape_string($conn, strtolower($_POST['hasil']));
-//echo $userid;
-//echo $password;
-//echo $kunci;
-//echo $hasil;
 
-//localdb
 if ($kunci == $hasil) {
     echo "hitung benar";
     $sql = mysqli_query($conn, "SELECT * FROM pengguna WHERE user='$userid' AND plaintext='$password'");
@@ -35,7 +30,6 @@ if ($kunci == $hasil) {
         if ($status == 0) {
             header('location:index.php?pesan=notactive');
         } else {
-            //set sessions
             session_start();
             $_SESSION['userid'] = $userid;
             $_SESSION['nim'] = $nim;

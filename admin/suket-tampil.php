@@ -73,6 +73,8 @@ $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
                             $duser = mysqli_fetch_array($quser);
                             $nim = $duser['nim'];
                             $nama = $duser['nama'];
+                            $notelepon = $duser['notelepon'];
+                            $email = $duser['email'];
                             $prodi = $duser['prodi'];
                             $jenissurat = $duser['jenissurat'];
                             $keperluan = $duser['keperluan'];
@@ -109,7 +111,15 @@ $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
                                     </div>
                                     <div class="form-group">
                                         <label>Program Studi</label>
-                                        <input type="text" class="form-control" name="prodi" id="prodi" value="<?= $prodi; ?>" readonly>
+                                        <input type="text" class="form-control" name="prodi" value="<?= $prodi; ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>No. Telepon</label>
+                                        <input type="text" class="form-control" name="notelepon" value="<?= $notelepon; ?>" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" name="email" value="<?= $email; ?>" readonly>
                                     </div>
                                     <div class="form-group">
                                         <label>Surat Keterangan</label>
@@ -119,8 +129,16 @@ $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
                                         <label>Keperluan</label>
                                         <input type="text" class="form-control" name="keperluan" value="<?= $keperluan; ?>" readonly>
                                     </div>
-                                    <hr>
                                     <form class="user" action="suket-setujui.php" method="POST">
+                                        <div class="form-group">
+                                            <label>Tgl. Lulus</label>
+                                            <input type="date" class="form-control" name="tgllulus" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>No. SK Yudisium</label>
+                                            <input type="text" class="form-control" name="skyudisium">
+                                        </div>
+                                        <hr>
                                         <input type="hidden" name="nodata" value="<?= $nodata; ?>">
                                         <div class="form-group row">
                                             <div class="col-sm-6">

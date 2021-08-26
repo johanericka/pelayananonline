@@ -107,13 +107,21 @@ if ($role != 'mahasiswa') {
                                         </div>
                                         <div class="form-group">
                                             <label>Program Studi</label>
-                                            <input type="text" class="form-control" name="prodi" id="prodi" value="<?= $prodi; ?>" readonly>
+                                            <input type="text" class="form-control" name="prodi" value="<?= $prodi; ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>No. Telepon</label>
+                                            <input type="text" class="form-control" name="notelepon" value="<?= $nohp; ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" name="email" value="<?= $email; ?>" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>Surat Keterangan</label>
                                             <select class="browser-default custom-select" name="jenissurat">
                                                 <option value="Kelakuan Baik" selected>Kelakuan Baik</option>
-                                                <option value="Aktif Kuliah">Aktif Kuliah</option>
+                                                <option value="Aktif">Aktif Kuliah</option>
                                                 <option value="Lulus">Lulus</option>
                                             </select>
                                         </div>

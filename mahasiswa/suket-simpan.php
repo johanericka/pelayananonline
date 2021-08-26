@@ -1,12 +1,14 @@
 <?php
-require "../config.php";
-include '../assets/phpmailer/sendmail.php';
+require('../config.php');
+require('../assets/phpmailer/sendmail.php');
 
 date_default_timezone_set("Asia/Jakarta");
-$tglpengajuan = date('Y-m-d H:i:s');
+$tanggal = date('Y-m-d H:i:s');
 $nama = mysqli_real_escape_string($conn, "$_POST[nama]");
 $nim = mysqli_real_escape_string($conn, "$_POST[nim]");
 $prodi = mysqli_real_escape_string($conn, "$_POST[prodi]");
+$notelepon = mysqli_real_escape_string($conn, "$_POST[notelepon]");
+$email = mysqli_real_escape_string($conn, "$_POST[email]");
 $jenissurat = mysqli_real_escape_string($conn, "$_POST[jenissurat]");
 $keperluan = mysqli_real_escape_string($conn, "$_POST[keperluan]");
 
@@ -19,17 +21,18 @@ $qverifikator = mysqli_query($conn, "SELECT * FROM pejabat WHERE jabatan='$pejab
 $dverifikator = mysqli_fetch_array($qverifikator);
 $verifikator = $dverifikator['nip'];
 
-$qsimpan = mysqli_query($conn, "INSERT INTO suket (tglpengajuan,nim,nama,prodi,jenissurat,keperluan,verifikator,statussurat)
-								VALUES ('$tglpengajuan','$nim','$nama','$prodi','$jenissurat','$keperluan','$verifikator',0)");
+$qsimpan = mysqli_query($conn, "INSERT INTO suket (tanggal,prodi,nim,nama,notelepon,email,jenissurat,keperluan,verifikator,verifikasi,statussurat)
+								VALUES ('$tanggal','$prodi','$nim','$nama','$notelepon','$email','$jenissurat','$keperluan','$verifikator','0','0')");
+if ($qsimpan) {
+	echo "ok";
+	//cari email admin fakultas
+	$qadminfak = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminfakultas'");
+	while ($dadminfak = mysqli_fetch_array($qadminfak)) {
+		$emailfak = $dadminfak['email'];
+		$namaadmin = $dadminfak['nama'];
 
-//cari email admin fakultas
-$qadminfak = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminfakultas'");
-while ($dadminfak = mysqli_fetch_array($qadminfak)) {
-    $emailfak = $dadminfak['email'];
-    $namaadmin = $dadminfak['nama'];
-
-    $subject = "Notifikasi Pengajuan Surat Keterangan";
-    $pesan = "Yth. " . $namaadmin . "
+		$subject = "Notifikasi Pengajuan Surat Keterangan";
+		$pesan = "Yth. " . $namaadmin . "
 						<br/>
 						Assalamualaikum Wr. Wb.
 						<br/>
@@ -41,7 +44,11 @@ while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 						<br/>
 						Wassalamualaikum Wr. Wb.
 						";
-    sendmail($emailfak, $namaadmin, $subject, $pesan);
-}
+		sendmail($emailfak, $namaadmin, $subject, $pesan);
+	}
 
-header("location:dashboard.php");
+	header("location:dashboard.php");
+} else {
+	echo "not ok";
+	echo mysqli_error($qsimpan);
+}

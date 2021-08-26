@@ -4,6 +4,8 @@ include '../assets/phpmailer/sendmail.php';
 
 date_default_timezone_set("Asia/Jakarta");
 $nodata = mysqli_real_escape_string($conn, $_POST['nodata']);
+$tgllulus = $_POST['tgllulus'];
+$skyudisium = $_POST['skyudisium'];
 $tglverifikasi = date("Y-m-d H:i:s");
 $nosurat = "/FHm/KM.01.3/";
 $bulan = date("m");
@@ -14,6 +16,8 @@ $keterangan = "B-" . $nodata . $nosurat . $bulan . "/" . $tahun;
 $qupdate = mysqli_query($conn, "UPDATE suket
                                 SET verifikasi=1,
                                     tglverifikasi='$tglverifikasi',
+                                    tgllulus='$tgllulus',
+                                    skyudisium='$skyudisium',
                                     keterangan='$keterangan',
                                     statussurat=1
                                 WHERE nodata='$nodata'");

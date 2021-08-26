@@ -441,11 +441,11 @@ require('../assets/myfunc.php');
                                                         <td>Surat Keterangan <?= $jenissurat; ?></td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan " . carinama($conn, $verifikator);
+                                                                echo "Menunggu persetujuan Dekan " . caripejabat($conn, $verifikator);
                                                             } elseif ($verifikasi == 1) {
-                                                                echo "Telah disetujui oleh " . carinama($conn, $verifikator);
+                                                                echo "Telah disetujui oleh Dekan " . caripejabat($conn, $verifikator);
                                                             } else {
-                                                                echo "Ditolak oleh " . carinama($conn, $verifikator) . " dengan alasan <b>" . $keterangan . "</b>";
+                                                                echo "Ditolak oleh Dekan " . caripejabat($conn, $verifikator) . " dengan alasan <b>" . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>

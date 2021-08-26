@@ -1,58 +1,109 @@
 <?php
-
 function tgl_indo($tanggal)
 {
-    $bulan = array(
-        1 =>   'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-    );
-    $pecahkan = explode('-', $tanggal);
-    return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+    if (isset($tanggal)) {
+        $bulan = array(
+            1 =>   'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        );
+        $pecahkan = explode('-', substr($tanggal, 0, 10));
+        return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+    }
+}
+
+function tgljam_indo($tanggal)
+{
+    if (isset($tanggal)) {
+        $bulan = array(
+            1 =>   'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        );
+        $pecahkan = explode('-', substr($tanggal, 0, 10));
+        return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0] . ' pukul ' . (substr($tanggal, 11, 8)) . ' WIB';
+    }
 }
 
 function huruf($angka)
 {
-    $huruf = array("nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan");
-    return $huruf[$angka];
+    $hur = array(
+        0 =>   'Nol', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan', 'Sembilan'
+    );
+    return $hur[$angka];
 }
 
-function carinama($conn, $nim)
+function namadosen($conn, $nip)
 {
-    $sql = mysqli_query($conn, "SELECT * FROM pengguna WHERE nim='$nim'");
-    $dsql = mysqli_fetch_array($sql);
-    $nama = $dsql['nama'];
+    require('../config.php');
+    $qdosen = mysqli_query($conn, "SELECT * FROM pengguna WHERE nip='$nip'");
+    $ddosen = mysqli_fetch_array($qdosen);
+    $nama = $ddosen['nama'];
     return $nama;
 }
 
-function hp($nohp)
+function caripejabat($conn, $nip)
 {
-    // kadang ada penulisan no hp 0811 239 345
-    $nohp = str_replace(" ", "", $nohp);
-    // kadang ada penulisan no hp (0274) 778787
-    $nohp = str_replace("(", "", $nohp);
-    // kadang ada penulisan no hp (0274) 778787
-    $nohp = str_replace(")", "", $nohp);
-    // kadang ada penulisan no hp 0811.239.345
-    $nohp = str_replace(".", "", $nohp);
-
-    // cek apakah no hp mengandung karakter + dan 0-9
-    if (!preg_match('/[^+0-9]/', trim($nohp))) {
-        // cek apakah no hp karakter 1-3 adalah +62
-        if (substr(trim($nohp), 0, 3) == '62') {
-            $hp = trim($nohp);
-        }
-        // cek apakah no hp karakter 1 adalah 0
-        elseif (substr(trim($nohp), 0, 1) == '0') {
-            $hp = '62' . substr(trim($nohp), 1);
-        }
-    }
-    return $hp;
+    require('../config.php');
+    $qdosen = mysqli_query($conn, "SELECT * FROM pejabat WHERE nip='$nip'");
+    $ddosen = mysqli_fetch_array($qdosen);
+    $nama = $ddosen['nama'];
+    return $nama;
 }
-?>
 
+function nipdosen($conn, $iduser)
+{
+    require('../config.php');
+    $qdosen = mysqli_query($conn, "SELECT * FROM pengguna WHERE user='$iduser'");
+    $ddosen = mysqli_fetch_array($qdosen);
+    $nip = $ddosen['nip'];
+    return $nip;
+}
+
+function semester($tanggal)
+{
+    $pecahkan = explode('-', $tanggal);
+    if ($pecahkan[1] < 7) {
+        return "Genap Tahun Akademik " . $pecahkan[0] . "/" . $pecahkan[0];
+    } else {
+        return "Ganjil Tahun Akademik " . $pecahkan[0] . "/" . $pecahkan[0];
+    }
+}
+
+function multibaris($pesan)
+{
+    str_replace(["\r\n", "\r", "\n"], "<br/>", $pesan);
+    return $pesan;
+}
+
+?>
 <script>
     window.setTimeout(function() {
         $(".alert").fadeTo(500, 0).slideUp(500, function() {
             $(this).remove();
         });
     }, 2000);
+</script>
+
+<!-- cari dosen -->
+<script src="../system/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.search-box input[type="text"]').on("keyup input", function() {
+            /* Get input value on change */
+            var inputVal = $(this).val();
+            var resultDropdown = $(this).siblings(".result");
+            if (inputVal.length) {
+                $.get("cari-proses.php", {
+                    term: inputVal
+                }).done(function(data) {
+                    // Display the returned data in browser
+                    resultDropdown.html(data);
+                });
+            } else {
+                resultDropdown.empty();
+            }
+        });
+        // Set search input value on click of result item
+        $(document).on("click", ".result p", function() {
+            $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+            $(this).parent(".result").empty();
+        });
+    });
 </script>

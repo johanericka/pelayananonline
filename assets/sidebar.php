@@ -146,29 +146,11 @@ $role = $_SESSION['role'];
                     }
                     ?>
                     <?php
-                    $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE nim='$userid' AND verifikasi=0");
+                    $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE nim='$userid' AND verifikasi=0");
                     $jpenelitian = mysqli_num_rows($qpenelitian);
                     if ($jpenelitian == 0) {
                     ?>
-                        <a class="collapse-item" href="penelitiansurvey-isi.php">Izin Penelitian Survey</a>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE nim='$userid' AND verifikasi=0");
-                    $jpenelitian = mysqli_num_rows($qpenelitian);
-                    if ($jpenelitian == 0) {
-                    ?>
-                        <a class="collapse-item" href="penelitianinstansi-isi.php">Izin Penelitian Instansi</a>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE nim='$userid' AND verifikasi=0");
-                    $jpenelitian = mysqli_num_rows($qpenelitian);
-                    if ($jpenelitian == 0) {
-                    ?>
-                        <a class="collapse-item" href="penelitiandinas-isi.php">Izin Penelitian Dinas</a>
+                        <a class="collapse-item" href="penelitian-isi.php">Izin Penelitian</a>
                     <?php
                     }
                     ?>

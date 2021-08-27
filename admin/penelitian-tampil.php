@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+session_start();
 require '../config.php';
 include '../assets/myfunc.php';
-
-session_start();
 $userid = $_SESSION['userid'];
 $nosurat = mysqli_real_escape_string($conn, $_GET['nodata']);
 global $userid;
@@ -24,7 +23,7 @@ if ($role != 'adminprodi') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,7 +62,7 @@ if ($role != 'adminprodi') {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Pengajuan Surat Ijin Penelitian Instansi</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Formulir Pengajuan Surat Izin Penelitian</h1>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
@@ -71,18 +70,13 @@ if ($role != 'adminprodi') {
                         <div class="col-lg-12 mb-4">
                             <!-- ambil data -->
                             <?php
-
-                            $qsurat = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE no='$nosurat'");
+                            $qsurat = mysqli_query($conn, "SELECT * FROM penelitian WHERE nodata='$nosurat'");
                             $dsurat = mysqli_fetch_array($qsurat);
                             $nama = $dsurat['nama'];
                             $nim = $dsurat['nim'];
                             $prodi = $dsurat['prodi'];
-                            $jenjang = $dsurat['jenjang'];
                             $nohp = $dsurat['nohp'];
                             $email = $dsurat['email'];
-                            $semester = $dsurat['semester'];
-                            $tahunakademik = $dsurat['tahunakademik'];
-                            $keperluan = $dsurat['keperluan'];
                             $judulpenelitian = $dsurat['judul'];
                             $tujuansurat = $dsurat['namainstansi'];
                             $alamatsurat = $dsurat['alamatinstansi'];
@@ -97,94 +91,65 @@ if ($role != 'adminprodi') {
                                     <h6 class="m-0 font-weight-bold text-primary">Isi Formulir</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form class="user" action="penelitianinstansi-setujui.php" method="POST">
+                                    <?php
+                                    if (isset($_GET['pesan'])) {
+                                        $pesan = $_GET['pesan'];
+                                        if (isset($pesan)) {
+                                            if ($pesan == 'keterangan') {
+                                    ?>
+                                                <div class="alert alert-danger alert-dismissible">
+                                                    <strong>ERROR!</strong> Keterangan penolakan belum di isi
+                                                </div>
+                                    <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    <form class="user" action="penelitian-setujui.php" method="POST">
                                         <div class="form-group">
                                             <label>Nama</label>
-                                            <input type="text" class="form-control form-control-user" name="nama" id="nama" value="<?= $nama; ?>" readonly>
+                                            <input type="text" class="form-control " name="nama" id="nama" value="<?= $nama; ?>" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>NIM</label>
-                                            <input type="text" class="form-control form-control-user" name="nim" id="nim" value="<?= $nim; ?>" readonly>
+                                            <input type="text" class="form-control " name="nim" id="nim" value="<?= $nim; ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Program Studi</label>
+                                            <input type="text" class="form-control " name="prodi" id="prodi" value="<?= $prodi; ?>" readonly>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Jurusan</label>
-                                                <input type="text" class="form-control form-control-user" name="prodi" id="prodi" value="<?= $prodi; ?>" readonly>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label>Jenjang</label>
-                                                <input type="text" class="form-control form-control-user" name="jenjang" id="jenjang" value="<?= $jenjang; ?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>No. HP Aktif</label>
-                                                <input type="number" class="form-control form-control-user" name="nohp" id="nohp" value="<?= $nohp; ?>" readonly>
+                                                <label>No. Telepon</label>
+                                                <input type="number" class="form-control " name="nohp" id="nohp" value="<?= $nohp; ?>" readonly>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>E-Mail</label>
-                                                <input type="email" class="form-control form-control-user" name="email" id="email" value="<?= $email; ?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Semester</label>
-                                                <?php
-                                                if (date('m') > 7) {
-                                                ?>
-                                                    <select class="browser-default custom-select" name="semester" id="semester">
-                                                        <option value="Ganjil" selected>Ganjil</option>
-                                                        <option value="Genap">Genap</option>
-                                                    </select>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <select class="browser-default custom-select" name="semester" id="semester">
-                                                        <option value="Ganjil">Ganjil</option>
-                                                        <option value="Genap" selected>Genap</option>
-                                                    </select>
-                                                <?php
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <?php
-                                                $tahunini = date('Y');
-                                                $tahunlalu = date('Y', strtotime("-1 years"));
-                                                $tahundepan = date('Y', strtotime("+1 years"));
-                                                ?>
-                                                <label>Tahun Akademik</label>
-                                                <select class="browser-default custom-select" name="tahunakademik" id="tahunakademik">
-                                                    <option value="<?= $tahunini . '/' . $tahundepan; ?>"><?= $tahunini . '/' . $tahundepan; ?></option>
-                                                    <option value="<?= $tahunlalu . '/' . $tahunini; ?>" selected><?= $tahunlalu . '/' . $tahunini; ?></option>
-                                                </select>
+                                                <input type="email" class="form-control " name="email" id="email" value="<?= $email; ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Keperluan Surat</label>
-                                            <input type="text" class="form-control form-control-user" name="keperluan" id="keperluan" value="<?= $keperluan; ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Judul</label>
-                                            <input type="text" class="form-control form-control-user" name="judulpenelitian" id="judulpenelitian" value="<?= $judulpenelitian; ?>">
+                                            <label>Judul Skripsi / Penelitian</label>
+                                            <input type="text" class="form-control " name="judulpenelitian" id="judulpenelitian" value="<?= $judulpenelitian; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Tujuan Surat</label>
-                                            <input type="text" class="form-control form-control-user" name="tujuansurat" id="tujuansurat" value="<?= $tujuansurat; ?>">
+                                            <input type="text" class="form-control " name="tujuansurat" id="tujuansurat" value="<?= $tujuansurat; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat Tujuan</label>
-                                            <textarea class="form-control form-control-user" name="alamatsurat" id="alamatsurat" rows="4"><?= $alamatsurat; ?></textarea>
+                                            <input type="text" class="form-control " name="alamatsurat" id="alamatsurat" value="<?= $alamatsurat; ?>">
                                         </div>
-                                        <label>Lama Penelitian <small style="color:blue"><i>(maksimal 3 bulan) </i></small></label>
+                                        <label>Lama Penelitian</label>
+                                        <!--<small style="color:blue"><i>(maksimal 1 bulan) </i></small>-->
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Tanggal Mulai Penelitian</label>
-                                                <input type="date" class="form-control form-control-user" name="penelitianmulai" id="penelitianmulai" value="<?= $tglmulai; ?>">
+                                                <input type="date" class="form-control " name="penelitianmulai" id="penelitianmulai" value="<?= $tglmulai; ?>">
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Tanggal Selesai Penelitian</label>
-                                                <input type="date" class="form-control form-control-user" name="penelitianselesai" id="penelitianselesai" value="<?= $tglselesai; ?>">
+                                                <input type="date" class="form-control " name="penelitianselesai" id="penelitianselesai" value="<?= $tglselesai; ?>">
                                             </div>
                                         </div>
                                         <?php
@@ -192,40 +157,28 @@ if ($role != 'adminprodi') {
                                         ?>
                                             <div class="form-group">
                                                 <label>Alasan Penolakan</label>
-                                                <textarea class="form-control form-control-user" name="tolak" id="tolak" rows="4"><?= $keterangan; ?>
+                                                <textarea class="form-control " name="tolak" id="tolak" rows="4"><?= $keterangan; ?>
                                             </textarea>
                                             </div>
                                         <?php
                                         }
                                         ?>
                                         <hr />
-                                        <input type="hidden" name="jenissurat" value="Izin Penelitian Instansi">
+                                        <input type="hidden" name="jenissurat" value="Izin Penelitian">
                                         <input type="hidden" name="nosurat" value="<?= $nosurat; ?>">
                                         <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-primary btn-user btn-block">
+                                            <div class="col-sm-6">
+                                                <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-primary btn-block">
                                                     <i class="fas fa-thumbs-up"></i><b> SETUJUI</b>
                                                 </button>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <a href="#" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#tolakModal">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#tolakModal">
                                                     <i class="fas fa-times-circle"></i><b> TOLAK</b>
                                                 </a>
                                             </div>
-                                            <?php
-                                            $nowa = hp($nohp);
-                                            ?>
-                                            <div class="col-sm-3">
-                                                <a href="https://api.whatsapp.com/send?phone=<?= $nowa; ?>" class="btn btn-success btn-user btn-block">
-                                                    <i class="fas fa-paper-plane"></i><b> Kirim WhatsAp</b>
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <a href="mailto:<?= $email; ?>" class="btn btn-info btn-user btn-block">
-                                                    <i class="fas fa-envelope"></i><b> Kirim eMail</b>
-                                                </a>
-                                            </div>
                                         </div>
+                                        <hr>
                                     </form>
                                 </div>
                             </div>
@@ -281,10 +234,10 @@ if ($role != 'adminprodi') {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="penelitianinstansi-tolak.php" method="POST">
+                <form action="penelitian-tolak.php" method="POST">
                     <div class="modal-body">
                         Tuliskan Alasan penolakan disini : <br />
-                        <textarea class="form-control form-control-user" name="keterangan" id="keterangan" rows="4"></textarea>
+                        <textarea class="form-control " name="keterangan" id="keterangan" rows="4"></textarea>
                         <input type="hidden" name="nosurat" value="<?= $nosurat; ?>">
                     </div>
                     <div class="modal-footer">

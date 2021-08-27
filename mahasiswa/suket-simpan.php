@@ -40,7 +40,9 @@ if ($qsimpan) {
 						<br/>
 						Silahkan klik tombol dibawah ini untuk melakukan verifikasi surat.
 						<br/>
+						<br/>
                         <a href='https://humaniora.uin-malang.ac.id/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+						<br/>
 						<br/>
 						Wassalamualaikum Wr. Wb.
 						";

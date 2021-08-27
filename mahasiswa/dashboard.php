@@ -186,24 +186,25 @@ require('../assets/myfunc.php');
                                                 ?>
                                                 <!-- /observasi kelompok-->
 
-                                                <!-- penelitian survey -->
+                                                <!-- penelitian -->
                                                 <?php
-                                                $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE nim='$nim'");
+                                                $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE nim='$nim'");
                                                 while ($dpenelitian = mysqli_fetch_array($qpenelitian)) {
-                                                    $nodata = $dpenelitian['no'];
+                                                    $nodata = $dpenelitian['nodata'];
                                                     $verifikasi = $dpenelitian['verifikasi'];
+                                                    $verifikator = $dpenelitian['verifikator'];
                                                     $keterangan = $dpenelitian['keterangan'];
                                                 ?>
                                                     <tr>
                                                         <td><?= $no; ?></td>
-                                                        <td>Surat Izin Penelitian Survey</td>
+                                                        <td>Surat Izin Penelitian</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan program studi";
+                                                                echo "Menunggu persetujuan Dekan " . caripejabat($conn, $verifikator);
                                                             } elseif ($verifikasi == 1) {
-                                                                echo "Telah di verifikasi program studi";
+                                                                echo "Telah disetujui oleh Dekan " . caripejabat($conn, $verifikator);
                                                             } else {
-                                                                echo "Ditolak oleh Program Studi dengan alasan <b>" . $keterangan . "</b>";
+                                                                echo "Ditolak oleh Dekan " . caripejabat($conn, $verifikator) . " dengan alasan <b>" . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>
@@ -218,9 +219,9 @@ require('../assets/myfunc.php');
                                                             }
                                                             ?>
                                                             <?php
-                                                            if ($verifikasi == 2) {
+                                                            if ($verifikasi == 2 or $verifikasi == 0) {
                                                             ?>
-                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Surat Izin Penelitian Survey ?')" href="penelitiansurvey-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
+                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Surat Izin Penelitian  ?')" href="penelitian-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </a>
                                                             <?php
@@ -233,102 +234,6 @@ require('../assets/myfunc.php');
                                                 }
                                                 ?>
                                                 <!-- /penelitian -->
-
-                                                <!-- penelitian instansi-->
-                                                <?php
-                                                $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE nim='$nim'");
-                                                while ($dpenelitian = mysqli_fetch_array($qpenelitian)) {
-                                                    $nodata = $dpenelitian['no'];
-                                                    $verifikasi = $dpenelitian['verifikasi'];
-                                                    $keterangan = $dpenelitian['keterangan'];
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $no; ?></td>
-                                                        <td>Surat Izin Penelitian Instansi</td>
-                                                        <td><?php
-                                                            if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan program studi";
-                                                            } elseif ($verifikasi == 1) {
-                                                                echo "Telah di verifikasi program studi";
-                                                            } else {
-                                                                echo "Ditolak oleh Program Studi dengan alasan <b>" . $keterangan . "</b>";
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                            if ($verifikasi == 1) {
-                                                            ?>
-                                                                <a class="btn btn-success btn-sm" href="penelitianinstansi-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
-                                                                    <i class="fas fa-print"></i>
-                                                                </a>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <?php
-                                                            if ($verifikasi == 2) {
-                                                            ?>
-                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Surat Izin Penelitian Instansi?')" href="penelitianinstansi-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </a>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                                    $no++;
-                                                }
-                                                ?>
-                                                <!-- /penelitian instansi-->
-
-                                                <!-- penelitian dinas-->
-                                                <?php
-                                                $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE nim='$nim'");
-                                                while ($dpenelitian = mysqli_fetch_array($qpenelitian)) {
-                                                    $nodata = $dpenelitian['no'];
-                                                    $verifikasi = $dpenelitian['verifikasi'];
-                                                    $keterangan = $dpenelitian['keterangan'];
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $no; ?></td>
-                                                        <td>Surat Izin Penelitian Dinas</td>
-                                                        <td><?php
-                                                            if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan program studi";
-                                                            } elseif ($verifikasi == 1) {
-                                                                echo "Telah di verifikasi program studi";
-                                                            } else {
-                                                                echo "Ditolak oleh Program Studi dengan alasan <b>" . $keterangan . "</b>";
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                            if ($verifikasi == 1) {
-                                                            ?>
-                                                                <a class="btn btn-success btn-sm" href="penelitiandinas-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
-                                                                    <i class="fas fa-print"></i>
-                                                                </a>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <?php
-                                                            if ($verifikasi == 2) {
-                                                            ?>
-                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Surat Izin Penelitian Instansi?')" href="penelitiandinas-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </a>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                                    $no++;
-                                                }
-                                                ?>
-                                                <!-- /penelitian dinas-->
 
                                                 <!-- validasi-->
                                                 <?php

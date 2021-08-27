@@ -110,15 +110,22 @@ $role = $_SESSION['role'];
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Pengajuan Surat Mahasiswa</h6>
                     <?php
-                    /*
-                    $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nim='$userid' AND verifikasi=0");
+                    $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nim='$userid' AND statussurat=0");
                     $jsuket = mysqli_num_rows($qsuket);
                     if ($jsuket == 0) {
-                    */
                     ?>
-                    <a class="collapse-item" href="suket-isi.php">Surat Keterangan</a>
+                        <a class="collapse-item" href="suket-isi.php">Surat Keterangan</a>
                     <?php
-                    //};
+                    };
+                    ?>
+                    <?php
+                    $qsuket = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE nim='$userid' AND statussurat=0");
+                    $jsuket = mysqli_num_rows($qsuket);
+                    if ($jsuket == 0) {
+                    ?>
+                        <a class="collapse-item" href="rekomendasi-isi.php">Surat Rekomendasi</a>
+                    <?php
+                    };
                     ?>
                     <?php
                     $qobservasi = mysqli_query($conn, "SELECT * FROM observasi WHERE nim='$userid' AND verifikasi=0");

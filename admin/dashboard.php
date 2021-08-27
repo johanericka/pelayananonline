@@ -86,7 +86,9 @@ if ($role != 'adminprodi') {
                             $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket");
                             $jsuket = mysqli_num_rows($qsuket);
-                            $totalsuratdiajukan = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket;
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratdiajukan = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid'");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
@@ -104,7 +106,9 @@ if ($role != 'adminprodi') {
                             $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid'");
                             $jsuket = mysqli_num_rows($qsuket);
-                            $totalsuratdiajukan = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket;
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid'");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratdiajukan = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -143,7 +147,9 @@ if ($role != 'adminprodi') {
                             $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=0");
                             $jsuket = mysqli_num_rows($qsuket);
-                            $totalsuratmenunggu = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket;
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=0");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratmenunggu = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=0");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
@@ -161,7 +167,9 @@ if ($role != 'adminprodi') {
                             $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=0");
                             $jsuket = mysqli_num_rows($qvalidasi);
-                            $totalsuratmenunggu = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=0");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratmenunggu = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jrekomendasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -200,7 +208,9 @@ if ($role != 'adminprodi') {
                             $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=1");
                             $jsuket = mysqli_num_rows($qsuket);
-                            $totalsuratdisetujui = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket;
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=1");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratdisetujui = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=1");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
@@ -218,7 +228,9 @@ if ($role != 'adminprodi') {
                             $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=1");
                             $jsuket = mysqli_num_rows($qsuket);
-                            $totalsuratdisetujui = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket;
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=1");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratdisetujui = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -261,7 +273,9 @@ if ($role != 'adminprodi') {
                             $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=2");
                             $jsuket = mysqli_num_rows($qsuket);
-                            $totalsuratditolak = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket;
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=2");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratditolak = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=2");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
@@ -279,7 +293,9 @@ if ($role != 'adminprodi') {
                             $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=2");
                             $jsuket = mysqli_num_rows($qsuket);
-                            $totalsuratditolak = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket;
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=2");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratditolak = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -582,6 +598,39 @@ if ($role != 'adminprodi') {
                                                         <td>Surat Keterangan <?= $jenissurat; ?></td>
                                                         <td>
                                                             <a class="btn btn-primary btn-sm" href="suket-tampil.php?nodata=<?= $nodata; ?>">
+                                                                <i class="far fa-eye"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+
+                                                <?php
+                                                    $no++;
+                                                }
+                                                ?>
+
+                                                <!-- Surat Rekomendasi-->
+                                                <?php
+                                                if ($role == 'adminfakultas') {
+                                                    $query = "SELECT * FROM rekomendasi WHERE verifikasi=0 ORDER BY prodi";
+                                                } elseif ($role == 'adminprodi') {
+                                                    $query = "SELECT * FROM rekomendasi WHERE verifikator = '$userid' AND verifikasi=0 ORDER BY prodi";
+                                                }
+                                                $qsuket = mysqli_query($conn, $query);
+                                                while ($dsuket = mysqli_fetch_array($qsuket)) {
+                                                    $nodata = $dsuket['nodata'];
+                                                    $prodi = $dsuket['prodi'];
+                                                    $nama = $dsuket['nama'];
+                                                    $nim = $dsuket['nim'];
+                                                    $keterangan = $dsuket['keterangan'];
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $no; ?></td>
+                                                        <td><?= $prodi; ?></td>
+                                                        <td><?= $nama; ?></td>
+                                                        <td><?= $nim; ?></td>
+                                                        <td>Surat Keterangan Rekomendasi</td>
+                                                        <td>
+                                                            <a class="btn btn-primary btn-sm" href="rekomendasi-tampil.php?nodata=<?= $nodata; ?>">
                                                                 <i class="far fa-eye"></i>
                                                             </a>
                                                         </td>

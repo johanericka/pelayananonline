@@ -471,7 +471,53 @@ require('../assets/myfunc.php');
                                                     $no++;
                                                 }
                                                 ?>
-                                                <!-- /Transkrip Nilai-->
+                                                <!-- /Surat Keterangan-->
+
+                                                <!-- Surat Rekomendasi-->
+                                                <?php
+                                                $qsuket = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE nim='$nim'");
+                                                while ($dsuket = mysqli_fetch_array($qsuket)) {
+                                                    $nodata = $dsuket['nodata'];
+                                                    $verifikasi = $dsuket['verifikasi'];
+                                                    $verifikator = $dsuket['verifikator'];
+                                                    $keterangan = $dsuket['keterangan'];
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $no; ?></td>
+                                                        <td>Surat Keterangan Rekomendasi</td>
+                                                        <td><?php
+                                                            if ($verifikasi == 0) {
+                                                                echo "Menunggu persetujuan Dekan " . caripejabat($conn, $verifikator);
+                                                            } elseif ($verifikasi == 1) {
+                                                                echo "Telah disetujui oleh Dekan " . caripejabat($conn, $verifikator);
+                                                            } else {
+                                                                echo "Ditolak oleh Dekan " . caripejabat($conn, $verifikator) . " dengan alasan <b>" . $keterangan . "</b>";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($verifikasi == 1) {
+                                                            ?>
+                                                                <a class="btn btn-primary btn-sm" href="rekomendasi-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                    <i class="fas fa-print"></i>
+                                                                </a>
+                                                            <?php
+                                                            } elseif ($verifikasi == 2 or $verifikasi == 0) {
+                                                            ?>
+                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus Permohonan Surat Rekomendasi ?')" href="rekomendasi-hapus.php?nodata=<?= $nodata; ?>">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                                    $no++;
+                                                }
+                                                ?>
+                                                <!-- /Surat Rekomendasi-->
                                             </tbody>
                                         </table>
                                     </div>

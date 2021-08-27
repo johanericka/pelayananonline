@@ -16,7 +16,7 @@ require('../assets/myfunc.php');
 <?php
 //get data observasi
 $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
-$qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nodata='$nodata'");
+$qsuket = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE nodata='$nodata'");
 $rowsurat = mysqli_fetch_array($qsuket);
 $keterangan = $rowsurat['keterangan'];
 $nim = $rowsurat['nim'];
@@ -24,13 +24,11 @@ $nama = $rowsurat['nama'];
 $notelepon = $rowsurat['notelepon'];
 $email = $rowsurat['email'];
 $prodi = $rowsurat['prodi'];
-$jenissurat = $rowsurat['jenissurat'];
+$jenissurat = 'Surat Rekomendasi';
 $keperluan = $rowsurat['keperluan'];
 $verifikator = $rowsurat['verifikator'];
 $verifikasi = $rowsurat['verifikasi'];
 $tglverifikasi = $rowsurat['tglverifikasi'];
-$tgllulus = $rowsurat['tgllulus'];
-$skyudisium = $rowsurat['skyudisium'];
 
 $tgl = date('Ymd');
 $jam = date('His');
@@ -39,7 +37,7 @@ include "../assets/phpqrcode/qrlib.php";
 $actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 //echo $actual_link;
 $codeContents = $actual_link;
-$namafile = $nim . "-" . "suket" . "-" . $nodata;
+$namafile = $nim . "-" . "rekomendasi" . "-" . $nodata;
 QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
 ?>
 
@@ -64,7 +62,7 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
         </tr>
         <tr>
             <td colspan="6" align="center">
-                <h3><u>SURAT KETERANGAN <?= strtoupper($jenissurat); ?></u></h3>
+                <h3><u>SURAT KETERANGAN REKOMENDASI</u></h3>
             </td>
         </tr>
         <tr>
@@ -104,46 +102,11 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
             <td>Program Studi</td>
             <td colspan="4">: <?= $prodi; ?></td>
         </tr>
-        <?php
-        if ($jenissurat == 'Aktif') {
-        ?>
-            <tr>
-                <td colspan="6" style="text-align:justify">yang bersangkutan benar - benar tercatat sebagai mahasiswa aktif di Program Studi <?= $prodi; ?> Fakultas Humaniora Universitas Islam Negeri Maulana Malik Ibrahim Malang.</td>
-            </tr>
-        <?php
-        } elseif ($jenissurat == 'Kelakuan Baik') {
-        ?>
-            <tr>
-                <td colspan="6" style="text-align:justify">yang bersangkutan benar - benar tercatat aktif dan berkelakuan baik selama menjadi mahasiswa Program Studi <?= $prodi; ?> Fakultas Humaniora Universitas Islam Negeri Maulana Malik Ibrahim Malang.</td>
-            </tr>
-        <?php
-        } elseif ($jenissurat == 'Lulus') {
-        ?>
-            <tr>
-                <td colspan="6" style="text-align:justify">yang bersangkutan benar - benar telah dinyatakan lulus dari Program Studi <?= $prodi; ?> Fakultas Humaniora Universitas Islam Negeri Maulana Malik Ibrahim Malang pada tanggal <?= tgl_indo($tgllulus); ?>
-                    <?php
-                    if ($skyudisium <> '') {
-                    ?>
-                        , dengan nomor SK Yudisium <?= $skyudisium; ?>
-                    <?php
-                    }
-                    ?>
-                </td>
-            </tr>
-        <?php
-        }
-        ?>
-        <?php
-        if ($keperluan <> '') {
-        ?>
-            <tr>
-                <td colspan="6" style="text-align:justify">Surat keterangan ini dibuat untuk <?= $keperluan; ?> </td>
-            </tr>
-        <?php
-        }
-        ?>
         <tr>
-            <td colspan="6" style="text-align:justify">Demikian Surat Keterangan ini, agar dipergunakan sebagaimana mestinya.</td>
+            <td colspan="6" style="text-align:justify">yang bersangkutan benar - benar tercatat sebagai mahasiswa aktif dan memiliki motivasi sangat tinggi di Program Studi <?= $prodi; ?> Fakultas Humaniora Universitas Islam Negeri Maulana Malik Ibrahim Malang, dan kami rekomendasikan yang bersangkutan untuk <?= $keperluan; ?></td>
+        </tr>
+        <tr>
+            <td colspan="6" style="text-align:justify">Demikian Surat Rekomendasi ini, agar dipergunakan sebagaimana mestinya.</td>
         </tr>
     </tbody>
 </table>

@@ -5,7 +5,7 @@ session_start();
 require '../config.php';
 include '../assets/myfunc.php';
 $userid = $_SESSION['userid'];
-$nosurat = mysqli_real_escape_string($conn, $_GET['nodata']);
+$nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
 global $userid;
 $role = $_SESSION['role'];
 if ($role != 'adminprodi') {
@@ -70,7 +70,7 @@ if ($role != 'adminprodi') {
                         <div class="col-lg-12 mb-4">
                             <!-- ambil data -->
                             <?php
-                            $qsurat = mysqli_query($conn, "SELECT * FROM penelitian WHERE nodata='$nosurat'");
+                            $qsurat = mysqli_query($conn, "SELECT * FROM penelitian WHERE nodata='$nodata'");
                             $dsurat = mysqli_fetch_array($qsurat);
                             $nama = $dsurat['nama'];
                             $nim = $dsurat['nim'];
@@ -165,7 +165,7 @@ if ($role != 'adminprodi') {
                                         ?>
                                         <hr />
                                         <input type="hidden" name="jenissurat" value="Izin Penelitian">
-                                        <input type="hidden" name="nosurat" value="<?= $nosurat; ?>">
+                                        <input type="hidden" name="nodata" value="<?= $nodata; ?>">
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-primary btn-block">
@@ -238,7 +238,7 @@ if ($role != 'adminprodi') {
                     <div class="modal-body">
                         Tuliskan Alasan penolakan disini : <br />
                         <textarea class="form-control " name="keterangan" id="keterangan" rows="4"></textarea>
-                        <input type="hidden" name="nosurat" value="<?= $nosurat; ?>">
+                        <input type="hidden" name="nodata" value="<?= $nodata; ?>">
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal"><i class="fas fa-angle-double-left"></i> Batal</button>

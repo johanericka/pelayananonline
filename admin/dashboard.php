@@ -302,7 +302,6 @@ if ($role != 'adminprodi') {
                                                     <th>No</th>
                                                     <th>Program Studi</th>
                                                     <th>Nama</th>
-                                                    <th>NIM</th>
                                                     <th>Surat Ijin</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -331,7 +330,7 @@ if ($role != 'adminprodi') {
                                                         <td><?= $no; ?></td>
                                                         <td><?= $prodi; ?></td>
                                                         <td><?= $nama; ?></td>
-                                                        <td><?= $nim; ?></td>
+
                                                         <td>Surat Izin Observasi</td>
                                                         <td>
                                                             <a class="btn btn-success btn-sm" href="observasiindividu-tampil.php?nodata=<?= $nodata; ?>">
@@ -364,7 +363,7 @@ if ($role != 'adminprodi') {
                                                         <td><?= $no; ?></td>
                                                         <td><?= $prodi; ?></td>
                                                         <td><?= $nama; ?></td>
-                                                        <td><?= $nim; ?></td>
+
                                                         <td>Surat Izin Observasi Kelompok</td>
                                                         <td>
                                                             <a class="btn btn-success btn-sm" href="observasikelompok-tampil.php?nodata=<?= $nodata; ?>">
@@ -396,7 +395,7 @@ if ($role != 'adminprodi') {
                                                         <td><?= $no; ?></td>
                                                         <td><?= $prodi; ?></td>
                                                         <td><?= $nama; ?></td>
-                                                        <td><?= $nim; ?></td>
+
                                                         <td>Surat Izin Penelitian</td>
                                                         <td>
                                                             <a class="btn btn-primary btn-sm" href="penelitian-tampil.php?nodata=<?= $nodata; ?>">
@@ -429,7 +428,7 @@ if ($role != 'adminprodi') {
                                                         <td><?= $no; ?></td>
                                                         <td><?= $prodi; ?></td>
                                                         <td><?= $nama; ?></td>
-                                                        <td><?= $nim; ?></td>
+
                                                         <td>Permohonan Validator</td>
                                                         <td>
                                                             <a class="btn btn-success btn-sm" href="validator-tampil.php?nodata=<?= $nodata; ?>">
@@ -462,7 +461,7 @@ if ($role != 'adminprodi') {
                                                         <td><?= $no; ?></td>
                                                         <td><?= $prodi; ?></td>
                                                         <td><?= $nama; ?></td>
-                                                        <td><?= $nim; ?></td>
+
                                                         <td>Permohonan Transkrip Nilai Sementara</td>
                                                         <td>
                                                             <a class="btn btn-success btn-sm" href="transkripnilai-tampil.php?nodata=<?= $nodata; ?>">
@@ -496,7 +495,7 @@ if ($role != 'adminprodi') {
                                                         <td><?= $no; ?></td>
                                                         <td><?= $prodi; ?></td>
                                                         <td><?= $nama; ?></td>
-                                                        <td><?= $nim; ?></td>
+
                                                         <td>Surat Keterangan <?= $jenissurat; ?></td>
                                                         <td>
                                                             <a class="btn btn-primary btn-sm" href="suket-tampil.php?nodata=<?= $nodata; ?>">
@@ -529,7 +528,7 @@ if ($role != 'adminprodi') {
                                                         <td><?= $no; ?></td>
                                                         <td><?= $prodi; ?></td>
                                                         <td><?= $nama; ?></td>
-                                                        <td><?= $nim; ?></td>
+
                                                         <td>Surat Keterangan Rekomendasi</td>
                                                         <td>
                                                             <a class="btn btn-primary btn-sm" href="rekomendasi-tampil.php?nodata=<?= $nodata; ?>">
@@ -596,7 +595,6 @@ if ($role != 'adminprodi') {
                                                     <tr>
                                                         <td><?= $no; ?></td>
                                                         <td><?= $nama; ?></td>
-                                                        <td><?= $nim; ?></td>
                                                         <td><?= $prodi; ?></td>
                                                         <td><?php
                                                             if ($role == 'adminfakultas') {

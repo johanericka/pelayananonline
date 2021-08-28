@@ -4,34 +4,20 @@ include '../assets/phpmailer/sendmail.php';
 session_start();
 $userid = $_SESSION['userid'];
 date_default_timezone_set("Asia/Jakarta");
-$nodata = mysqli_real_escape_string($conn, $_POST['nosurat']);
+$nodata = mysqli_real_escape_string($conn, $_POST['nodata']);
 $judulpenelitian = mysqli_real_escape_string($conn, $_POST['judulpenelitian']);
 $tujuansurat = mysqli_real_escape_string($conn, $_POST['tujuansurat']);
 $alamatsurat = mysqli_real_escape_string($conn, $_POST['alamatsurat']);
 $tglmulai = mysqli_real_escape_string($conn, $_POST['penelitianmulai']);
 $tglselesai = mysqli_real_escape_string($conn, $_POST['penelitianselesai']);
 $tglverifikasi = date("Y-m-d H:i:s");
-$nosurat = "/Un.03.1/TL.00.1/";
+$nosurat = "/FHm/TL.00/";
 $bulan = date("m");
 $tahun = date("Y");
 
 $keterangan = $nodata . $nosurat . $bulan . "/" . $tahun;
 
-
-echo $nodata . "<br/>";
-echo $tglverifikasi . "<br/>";
-echo $judulpenelitian . "<br/>";
-echo $tujuansurat . "<br/>";
-echo $alamatsurat . "<br/>";
-echo $tglmulai . "<br/>";
-echo $tglselesai . "<br/>";
-echo $tglverifikasi . "<br/>";
-echo $nosurat . "<br/>";
-echo $bulan . "<br/>";
-echo $tahun . "<br/>";
-
-
-$qupdate = mysqli_query($conn, "UPDATE penelitiansurvey
+$qupdate = mysqli_query($conn, "UPDATE penelitian
                                 SET judul='$judulpenelitian',
 									namainstansi='$tujuansurat',
 									alamatinstansi='$alamatsurat',
@@ -40,10 +26,11 @@ $qupdate = mysqli_query($conn, "UPDATE penelitiansurvey
 									verifikator='$userid',
 									verifikasi=1,
                                     tglverifikasi='$tglverifikasi',
-                                    keterangan='$keterangan'
-                                WHERE no='$nodata'");
+                                    keterangan='$keterangan',
+									statussurat=1
+                                WHERE nodata='$nodata'");
 //cari data mahasiswa
-$qmhs = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE no='$nodata'");
+$qmhs = mysqli_query($conn, "SELECT * FROM penelitian WHERE nodata='$nodata'");
 $dmhs = mysqli_fetch_array($qmhs);
 $nim = $dmhs['nim'];
 
@@ -53,14 +40,22 @@ $nama = $dmhs2['nama'];
 $email = $dmhs2['email'];
 
 //kirim email user
-$subject = "Notifikasi Pengajuan Surat Penelitian Survey";
+$surat = "Izin Penelitian";
+$subject = "Notifikasi Pengajuan Surat " . $surat;
 $pesan = "Yth. " . $nama . "
 						<br/>
 						Assalamualaikum Wr. Wb.
 						<br/>
-						Pengajuan <b>Surat Penelitian Survey</b> anda telah disetujui.
+						Pengajuan <b>Surat " . $surat . "</b> anda telah disetujui.
 						<br/>
-						Silahkan akses <a href='https://fitk.uin-malang.ac.id/persuratan' target='_blank'> <b> Sistem Persuratan FITK </b> </a> atau <a href='http://fitk.uin-malang.ac.id/mahasiswa/penelitiansurvey-cetak.php?nodata= $nodata'><b>KLIK DISINI</b></a> untuk mencetak surat anda.
+						Silahkan klik tombol berikut ini untuk mencetak surat anda
+						<br/>
+						<br/>
+						<a href='https://humaniora.uin-malang.ac.id/pelayananonline/mahasiswa/penelitian-cetak.php?nodata=" . $nodata . "' style=' background-color: #0000FF;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Cetak Surat " . $surat . "</a> 
+						<br/>
+						<br/>
+						Atau anda dapat mencetak melalui <a href='https://humaniora.uin-malang.ac.id/pelayananonline/'>Sistem Pelayanan Online Fakultas Humaniora UIN Maulana Malik Ibrahim Malang</a>
+						<br/>
 						<br/>
 						Wassalamualaiakum Wr. Wb.
 						";

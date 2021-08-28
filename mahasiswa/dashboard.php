@@ -212,7 +212,7 @@ require('../assets/myfunc.php');
                                                             <?php
                                                             if ($verifikasi == 1) {
                                                             ?>
-                                                                <a class="btn btn-success btn-sm" href="penelitiansurvey-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                <a class="btn btn-success btn-sm" href="penelitian-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
                                                                     <i class="fas fa-print"></i>
                                                                 </a>
                                                             <?php

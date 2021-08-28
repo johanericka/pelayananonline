@@ -113,7 +113,7 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
 </table>
 
 <!-- isi surat -->
-<table table style="width:70%; margin-left:auto;margin-right:auto;" cellspacing="0" border="0">
+<table table style="width:80%; margin-left:auto;margin-right:auto;" cellspacing="0" border="0">
 	<tbody>
 		<tr>
 			<td colspan="6" style="text-align:justify"><b><i>Assalamu'alaikum wa Rahmatullahi wa Barakatuh.</i></b></td>

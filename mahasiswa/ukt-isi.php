@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 session_start();
 $userid = $_SESSION['userid'];
@@ -10,6 +8,9 @@ if ($role != 'mahasiswa') {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -18,7 +19,7 @@ if ($role != 'mahasiswa') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -58,7 +59,7 @@ if ($role != 'mahasiswa') {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Formulir Pengajuan Transkrip Nilai Sementara</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Formulir Pengajuan Dispensasi UKT</h1>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
@@ -73,72 +74,50 @@ if ($role != 'mahasiswa') {
                             $nohp = $duser['nohp'];
                             $email = $duser['email'];
                             $prodi = $duser['prodi'];
-                            $nohp = $duser['nohp'];
-                            $email = $duser['email'];
-
-                            //cari jenjang
-                            $qjenjang = mysqli_query($conn, "SELECT DISTINCT(jenjang) FROM prodi WHERE namaprodi='$prodi'");
-                            $djenjang = mysqli_fetch_array($qjenjang);
-                            $jenjang = $djenjang['jenjang'];
-
                             ?>
+
                             <!-- Basic Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Keperluan Ujian Kompre / Yudisium / Beasiswa dll</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Keringanan | Penurunan | Perpanjangan Waktu </h6>
                                 </div>
                                 <div class="card-body">
-                                    <?php
-                                    if (isset($_GET['pesan'])) {
-                                        $pesan = $_GET['pesan'];
-                                        if (isset($pesan)) {
-                                            if ($pesan == 'beasiswa') {
-                                    ?>
-                                                <div class="alert alert-danger alert-dismissible">
-                                                    <strong>ERROR!</strong> URL Website beasiswa harus di isi.
-                                                </div>
-                                    <?php
-                                            }
-                                        }
-                                    };
-                                    ?>
-                                    <form class="user" action="transkripnilai-simpan.php" method="POST">
+                                    <form class="user" action="suket-simpan.php" method="POST">
                                         <div class="form-group">
                                             <label>Nama</label>
-                                            <input type="text" class="form-control form-control-user" name="nama" id="nama" value="<?= $nama; ?>" readonly>
+                                            <input type="text" class="form-control" name="nama" value="<?= $nama; ?>" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>NIM</label>
-                                            <input type="text" class="form-control form-control-user" name="nim" id="nim" value="<?= $userid; ?>" readonly>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Jurusan</label>
-                                                <input type="text" class="form-control form-control-user" name="prodi" id="prodi" value="<?= $prodi; ?>" readonly>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label>Jenjang</label>
-                                                <input type="text" class="form-control form-control-user" name="jenjang" id="jenjang" value="<?= $jenjang; ?>" readonly>
-                                            </div>
+                                            <input type="text" class="form-control" name="nim" value="<?= $nim; ?>" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <label>Keperluan</label>
-                                            <select class="browser-default custom-select" name="keperluan" id="keperluan">
-                                                <option value="pendaftaran Ujian Komprehensif" selected>Pendaftaran Ujian Komprehensif</option>
-                                                <option value="pendaftaran Sidang Skripsi">Pendaftaran Sidang Skripsi</option>
-                                                <option value="pengajuan Beasiswa">Pengajuan Beasiswa</option>
+                                            <label>Program Studi</label>
+                                            <input type="text" class="form-control" name="prodi" value="<?= $prodi; ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>No. Telepon</label>
+                                            <input type="text" class="form-control" name="notelepon" value="<?= $nohp; ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" name="email" value="<?= $email; ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Surat Keterangan</label>
+                                            <select class="browser-default custom-select" name="jenissurat">
+                                                <option value="Keringanan UKT" selected>Keringanan UKT</option>
+                                                <option value="Penurunan UKT">Penurunan UKT</option>
+                                                <option value="Perpanjangan Waktu Pembayaran UKT">Perpanjangan Waktu Pembayaran UKT</option>
                                             </select>
+                                            <small style="color: red;">Penurunan UKT khusus untuk mahasiswa yang sedang menempuh skripsi</small>
                                         </div>
                                         <div class="form-group">
-                                            <label>URL Website</label>
-                                            <input type="text" class="form-control form-control-user" name="website" id="website"></input>
-                                            <small style="color:blue"><i>Khusus untuk pengajuan beasiswa, paste URL Website informasi beasiswa dimaksud</i></small>
+                                            <label>Alasan</label>
+                                            <input type="text" class="form-control" name="keperluan"></input>
                                         </div>
                                         <hr>
-                                        <input type="hidden" name="jenissurat" value="Izin Penelitian Instansi">
-                                        <input type="hidden" name="nohp" value="<?= $nohp; ?>">
-                                        <input type="hidden" name="email" value="<?= $email; ?>">
-                                        <button type="submit" onclick="return confirm('Dengan ini saya menyatakan bahwa data tersebut adalah benar')" class="btn btn-success btn-user btn-block"> <i class="fas fa-file-upload"></i><b> Ajukan Surat</b></button>
+                                        <button type="submit" onclick="return confirm('Dengan ini saya menyatakan bahwa data tersebut adalah benar')" class="btn btn-primary btn-block"> <i class="fas fa-file-upload"></i><b> Ajukan Surat</b></button>
                                         <hr>
                                     </form>
                                 </div>

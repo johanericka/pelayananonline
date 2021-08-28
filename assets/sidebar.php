@@ -119,6 +119,15 @@ $role = $_SESSION['role'];
                     };
                     ?>
                     <?php
+                    $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nim='$userid' AND statussurat=0");
+                    $jsuket = mysqli_num_rows($qsuket);
+                    if ($jsuket == 0) {
+                    ?>
+                        <a class="collapse-item" href="ukt-isi.php">Dispensasi UKT</a>
+                    <?php
+                    };
+                    ?>
+                    <?php
                     $qsuket = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE nim='$userid' AND statussurat=0");
                     $jsuket = mysqli_num_rows($qsuket);
                     if ($jsuket == 0) {
@@ -142,16 +151,6 @@ $role = $_SESSION['role'];
                     if ($jpenelitian == 0) {
                     ?>
                         <a class="collapse-item" href="penelitian-isi.php">Izin Penelitian</a>
-                    <?php
-                    }
-                    ?>
-                    <a class="collapse-item" href="validator-isi.php">Permohonan Validator</a>
-                    <?php
-                    $qtranskrip = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE nim='$userid' AND verifikasi=0");
-                    $jtranskrip = mysqli_num_rows($qtranskrip);
-                    if ($jtranskrip == 0) {
-                    ?>
-                        <a class="collapse-item" href="transkripnilai-isi.php">Transkrip Nilai Sementara</a>
                     <?php
                     }
                     ?>

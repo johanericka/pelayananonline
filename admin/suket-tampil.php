@@ -83,7 +83,7 @@ $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
                             <!-- Basic Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Kelakuan Baik | Aktif Kuliah | Lulus</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Data Mahasiswa</h6>
                                 </div>
                                 <div class="card-body">
                                     <?php
@@ -125,18 +125,30 @@ $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
                                         <label>Surat Keterangan</label>
                                         <input type="text" class="form-control" name="jenissurat" value="<?= $jenissurat; ?>" readonly>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Keperluan</label>
-                                        <input type="text" class="form-control" name="keperluan" value="<?= $keperluan; ?>" readonly>
-                                    </div>
                                     <form class="user" action="suket-setujui.php" method="POST">
                                         <div class="form-group">
-                                            <label>Tgl. Lulus</label>
-                                            <input type="date" class="form-control" name="tgllulus" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>No. SK Yudisium</label>
-                                            <input type="text" class="form-control" name="skyudisium">
+                                            <?php
+                                            $ukt = substr($jenissurat, strlen($jenissurat) - 3, 3);
+                                            if ($ukt == 'UKT') {
+                                            ?>
+                                                <label>Alasan</label>
+                                                <input type="text" class="form-control" name="keperluan" value="<?= $keperluan; ?>" readonly>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <label>Keperluan</label>;
+                                                <input type="text" class="form-control" name="keperluan" value="<?= $keperluan; ?>" readonly>
+                                                <div class="form-group">
+                                                    <label>Tgl. Lulus</label>
+                                                    <input type="date" class="form-control" name="tgllulus" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>No. SK Yudisium</label>
+                                                    <input type="text" class="form-control" name="skyudisium">
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
                                         </div>
                                         <hr>
                                         <input type="hidden" name="nodata" value="<?= $nodata; ?>">

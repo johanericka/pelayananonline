@@ -131,29 +131,15 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
                 </td>
             </tr>
         <?php
-        } elseif ($jenissurat == 'Perpanjangan Waktu Pembayaran UKT' or $jenissurat == 'Penurunan UKT' or $jenissurat == 'Keringanan UKT') {
-        ?>
-            <tr>
-                <td colspan="6" style="text-align:justify">yang bersangkutan benar - benar tercatat sebagai mahasiswa aktif di Program Studi <?= $prodi; ?> Fakultas Humaniora Universitas Islam Negeri Maulana Malik Ibrahim Malang.</td>
-            </tr>
-        <?php
         }
         ?>
         <?php
         if ($keperluan <> '') {
-            if ($jenissurat == 'Perpanjangan Waktu Pembayaran UKT' or $jenissurat == 'Penurunan UKT' or $jenissurat == 'Keringanan UKT') {
         ?>
-                <tr>
-                    <td colspan="6" style="text-align:justify">Surat keterangan ini dibuat untuk permohonan <?= $jenissurat; ?> dengan alasan <?= $keperluan; ?> </td>
-                </tr>
-            <?php
-            } else {
-            ?>
-                <tr>
-                    <td colspan="6" style="text-align:justify">Surat keterangan ini dibuat untuk <?= $keperluan; ?> </td>
-                </tr>
+            <tr>
+                <td colspan="6" style="text-align:justify">Surat keterangan ini dibuat untuk <?= $keperluan; ?> </td>
+            </tr>
         <?php
-            }
         }
         ?>
         <tr>

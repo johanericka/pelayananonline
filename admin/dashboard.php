@@ -74,29 +74,21 @@ if ($role != 'adminprodi') {
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
                             $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian");
                             $jpenelitian = mysqli_num_rows($qpenelitian);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket");
                             $jsuket = mysqli_num_rows($qsuket);
                             $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi");
                             $jrekomendasi = mysqli_num_rows($qrekomendasi);
-                            $totalsuratdiajukan = $jobservasiindividu + $jpenelitian + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
+                            $totalsuratdiajukan = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid'");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
                             $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikator='$userid'");
                             $jpenelitian = mysqli_num_rows($qpenelitian);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikator='$userid'");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikator='$userid'");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid'");
                             $jsuket = mysqli_num_rows($qsuket);
                             $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid'");
                             $jrekomendasi = mysqli_num_rows($qrekomendasi);
-                            $totalsuratdiajukan = $jobservasiindividu + $jpenelitian + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
+                            $totalsuratdiajukan = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -123,29 +115,21 @@ if ($role != 'adminprodi') {
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
                             $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikasi=0");
                             $jpenelitian = mysqli_num_rows($qpenelitian);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikasi=0");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikasi=0");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=0");
                             $jsuket = mysqli_num_rows($qsuket);
                             $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=0");
                             $jrekomendasi = mysqli_num_rows($qrekomendasi);
-                            $totalsuratmenunggu = $jobservasiindividu + $jpenelitian + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
+                            $totalsuratmenunggu = $jobservasiindividu + $jpenelitian +  $jsuket + $jrekomendasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=0");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
                             $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikator='$userid' AND verifikasi=0");
                             $jpenelitian = mysqli_num_rows($qpenelitian);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikator='$userid' AND verifikasi=0");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikator='$userid' AND verifikasi=0");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=0");
-                            $jsuket = mysqli_num_rows($qvalidasi);
+                            $jsuket = mysqli_num_rows($suket);
                             $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=0");
                             $jrekomendasi = mysqli_num_rows($qrekomendasi);
-                            $totalsuratmenunggu = $jobservasiindividu + $jpenelitian + $jtranskripnilai + $jvalidasi + $jrekomendasi;
+                            $totalsuratmenunggu = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -172,29 +156,21 @@ if ($role != 'adminprodi') {
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
                             $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikasi=1");
                             $jpenelitian = mysqli_num_rows($qpenelitian);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikasi=1");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikasi=1");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=1");
                             $jsuket = mysqli_num_rows($qsuket);
                             $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=1");
                             $jrekomendasi = mysqli_num_rows($qrekomendasi);
-                            $totalsuratdisetujui = $jobservasiindividu + $jpenelitian + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
+                            $totalsuratdisetujui = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=1");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
                             $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikator='$userid' AND verifikasi=1");
                             $jpenelitian = mysqli_num_rows($qpenelitian);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikator='$userid' AND verifikasi=1");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikator='$userid' AND verifikasi=1");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=1");
                             $jsuket = mysqli_num_rows($qsuket);
                             $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=1");
                             $jrekomendasi = mysqli_num_rows($qrekomendasi);
-                            $totalsuratdisetujui = $jobservasiindividu + $jpenelitian + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
+                            $totalsuratdisetujui = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -225,29 +201,21 @@ if ($role != 'adminprodi') {
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
                             $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikasi=2");
                             $jpenelitian = mysqli_num_rows($qpenelitian);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikasi=2");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikasi=2");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=2");
                             $jsuket = mysqli_num_rows($qsuket);
                             $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=2");
                             $jrekomendasi = mysqli_num_rows($qrekomendasi);
-                            $totalsuratditolak = $jobservasiindividu + $jpenelitian + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
+                            $totalsuratditolak = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=2");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
                             $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikator='$userid' AND verifikasi=2");
                             $jpenelitian = mysqli_num_rows($qpenelitian);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikator='$userid' AND verifikasi=2");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikator='$userid' AND verifikasi=2");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
                             $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=2");
                             $jsuket = mysqli_num_rows($qsuket);
                             $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=2");
                             $jrekomendasi = mysqli_num_rows($qrekomendasi);
-                            $totalsuratditolak = $jobservasiindividu + $jpenelitian + $jtranskripnilai + $jvalidasi + $jsuket + $jrekomendasi;
+                            $totalsuratditolak = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -351,72 +319,6 @@ if ($role != 'adminprodi') {
                                                         <td>Surat Izin Penelitian</td>
                                                         <td>
                                                             <a class="btn btn-primary btn-sm" href="penelitian-tampil.php?nodata=<?= $nodata; ?>">
-                                                                <i class="far fa-eye"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-
-                                                <?php
-                                                    $no++;
-                                                }
-                                                ?>
-
-                                                <!-- Validator-->
-                                                <?php
-                                                if ($role == 'adminfakultas') {
-                                                    $query = "SELECT * FROM validasi WHERE verifikasi=0 ORDER BY prodi";
-                                                } elseif ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM validasi WHERE verifikator = '$userid' AND verifikasi=0 ORDER BY prodi";
-                                                }
-                                                $qpenelitian = mysqli_query($conn, $query);
-                                                while ($dpenelitian = mysqli_fetch_array($qpenelitian)) {
-                                                    $nodata = $dpenelitian['no'];
-                                                    $prodi = $dpenelitian['prodi'];
-                                                    $nama = $dpenelitian['nama'];
-                                                    $nim = $dpenelitian['nim'];
-                                                    $keterangan = $dpenelitian['keterangan'];
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $no; ?></td>
-                                                        <td><?= $prodi; ?></td>
-                                                        <td><?= $nama; ?></td>
-
-                                                        <td>Permohonan Validator</td>
-                                                        <td>
-                                                            <a class="btn btn-success btn-sm" href="validator-tampil.php?nodata=<?= $nodata; ?>">
-                                                                <i class="far fa-eye"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-
-                                                <?php
-                                                    $no++;
-                                                }
-                                                ?>
-
-                                                <!-- Transkrip Nilai-->
-                                                <?php
-                                                if ($role == 'adminfakultas') {
-                                                    $query = "SELECT * FROM transkripnilai WHERE verifikasi=0 ORDER BY prodi";
-                                                } elseif ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM transkripnilai WHERE verifikator = '$userid' AND verifikasi=0 ORDER BY prodi";
-                                                }
-                                                $qpenelitian = mysqli_query($conn, $query);
-                                                while ($dpenelitian = mysqli_fetch_array($qpenelitian)) {
-                                                    $nodata = $dpenelitian['no'];
-                                                    $prodi = $dpenelitian['prodi'];
-                                                    $nama = $dpenelitian['nama'];
-                                                    $nim = $dpenelitian['nim'];
-                                                    $keterangan = $dpenelitian['keterangan'];
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $no; ?></td>
-                                                        <td><?= $prodi; ?></td>
-                                                        <td><?= $nama; ?></td>
-
-                                                        <td>Permohonan Transkrip Nilai Sementara</td>
-                                                        <td>
-                                                            <a class="btn btn-success btn-sm" href="transkripnilai-tampil.php?nodata=<?= $nodata; ?>">
                                                                 <i class="far fa-eye"></i>
                                                             </a>
                                                         </td>

@@ -119,6 +119,15 @@ $role = $_SESSION['role'];
                     };
                     ?>
                     <?php
+                    $qkegiatan = mysqli_query($conn, "SELECT * FROM dispensasi WHERE nim='$userid' AND statussurat=0");
+                    $jkegiatan = mysqli_num_rows($qkegiatan);
+                    if ($jsuket == 0) {
+                    ?>
+                        <a class="collapse-item" href="dispensasi-isi.php">Dispensasi Kegiatan</a>
+                    <?php
+                    };
+                    ?>
+                    <?php
                     $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nim='$userid' AND statussurat=0");
                     $jsuket = mysqli_num_rows($qsuket);
                     if ($jsuket == 0) {

@@ -81,7 +81,7 @@ require('../assets/myfunc.php');
                                             <thead>
                                                 <tr>
                                                     <th width="5%" class="text-center">No</th>
-                                                    <th width="45%" class="text-center">Surat Ijin</th>
+                                                    <th width="45%" class="text-center">Surat</th>
                                                     <th class="text-center">Status</th>
                                                     <th width="5%" class="text-center">Aksi</th>
                                                 </tr>
@@ -100,7 +100,7 @@ require('../assets/myfunc.php');
                                                 ?>
                                                     <tr>
                                                         <td><?= $no; ?></td>
-                                                        <td>Surat Izin Observasi</td>
+                                                        <td>Izin Observasi</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
                                                                 echo "Menunggu verifikasi surat ";
@@ -149,7 +149,7 @@ require('../assets/myfunc.php');
                                                 ?>
                                                     <tr>
                                                         <td><?= $no; ?></td>
-                                                        <td>Surat Izin Penelitian</td>
+                                                        <td>Izin Penelitian</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
                                                                 echo "Menunggu verifikasi surat";
@@ -187,6 +187,55 @@ require('../assets/myfunc.php');
                                                 ?>
                                                 <!-- /penelitian -->
 
+                                                <!-- dispensasi -->
+                                                <?php
+                                                $qpenelitian = mysqli_query($conn, "SELECT * FROM dispensasi WHERE nim='$nim'");
+                                                while ($dpenelitian = mysqli_fetch_array($qpenelitian)) {
+                                                    $nodata = $dpenelitian['nodata'];
+                                                    $verifikasi = $dpenelitian['verifikasi'];
+                                                    $verifikator = $dpenelitian['verifikator'];
+                                                    $keterangan = $dpenelitian['keterangan'];
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $no; ?></td>
+                                                        <td>Dispensasi Kegiatan</td>
+                                                        <td><?php
+                                                            if ($verifikasi == 0) {
+                                                                echo "Menunggu verifikasi surat";
+                                                            } elseif ($verifikasi == 1) {
+                                                                echo "Telah disetujui";
+                                                            } else {
+                                                                echo "Ditolak dengan alasan <b>" . $keterangan . "</b>";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($verifikasi == 1) {
+                                                            ?>
+                                                                <a class="btn btn-primary btn-sm" href="dispensasi-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                    <i class="fas fa-print"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <?php
+                                                            if ($verifikasi == 2 or $verifikasi == 0) {
+                                                            ?>
+                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Surat Dispensasi Kegiatan  ?')" href="dispensasi-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                                    $no++;
+                                                }
+                                                ?>
+                                                <!-- /dispensasi -->
+
                                                 <!-- Surat Keterangan-->
                                                 <?php
                                                 $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nim='$nim'");
@@ -199,7 +248,7 @@ require('../assets/myfunc.php');
                                                 ?>
                                                     <tr>
                                                         <td><?= $no; ?></td>
-                                                        <td>Surat Keterangan <?= $jenissurat; ?></td>
+                                                        <td>Keterangan <?= $jenissurat; ?></td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
                                                                 echo "Menunggu verifikasi surat";
@@ -245,7 +294,7 @@ require('../assets/myfunc.php');
                                                 ?>
                                                     <tr>
                                                         <td><?= $no; ?></td>
-                                                        <td>Surat Keterangan Rekomendasi</td>
+                                                        <td>Keterangan Rekomendasi</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
                                                                 echo "Menunggu verifikasi surat";

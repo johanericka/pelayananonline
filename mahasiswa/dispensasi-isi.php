@@ -57,7 +57,7 @@ if ($role != 'mahasiswa') {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Formulir Pengajuan Surat Izin Penelitian</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Formulir Pengajuan Surat Dispensasi Kegiatan</h1>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
@@ -81,7 +81,7 @@ if ($role != 'mahasiswa') {
                                     <h6 class="m-0 font-weight-bold text-primary">Data Mahasiswa</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form class="user" action="penelitian-simpan.php" method="POST">
+                                    <form class="user" action="dispensasi-simpan.php" method="POST">
                                         <div class="form-group">
                                             <label>Nama</label>
                                             <input type="text" class="form-control" name="nama" id="nama" value="<?= $nama; ?>" readonly>
@@ -105,8 +105,8 @@ if ($role != 'mahasiswa') {
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Judul</label>
-                                            <input type="text" class="form-control " name="judulpenelitian" id="judulpenelitian" required>
+                                            <label>Kegiatan</label>
+                                            <input type="text" class="form-control " name="kegiatan" id="kegiatan" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Tujuan Surat</label>
@@ -116,19 +116,19 @@ if ($role != 'mahasiswa') {
                                             <label>Alamat Tujuan</label>
                                             <input type="text" class="form-control " name="alamatsurat" id="alamatsurat" required>
                                         </div>
-                                        <label>Waktu Penelitian</label>
+                                        <label>Durasi Izin</label>
                                         <!--<small style="color:blue"><i>(maksimal 1 bulan) </i></small>-->
                                         <?php
                                         $tglmulai = date('Y-m-d');
-                                        $tglselesai = date('Y-m-d', strtotime('+1 month', strtotime($tglmulai)));
+                                        $tglselesai = date('Y-m-d');
                                         ?>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Tanggal Mulai Penelitian</label>
+                                                <label>Tanggal Mulai Izin</label>
                                                 <input type="date" class="form-control " name="penelitianmulai" id="penelitianmulai" value="<?= $tglmulai; ?>" required>
                                             </div>
                                             <div class="col-sm-6">
-                                                <label>Tanggal Selesai Penelitian</label>
+                                                <label>Tanggal Selesai Izin</label>
                                                 <input type="date" class="form-control " name="penelitianselesai" id="penelitianselesai" value="<?= $tglselesai; ?>" required>
                                             </div>
                                         </div>

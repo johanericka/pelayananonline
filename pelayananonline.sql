@@ -11,6 +11,36 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Dumping structure for table pelayananonline.dispensasi
+CREATE TABLE IF NOT EXISTS `dispensasi` (
+  `nodata` int(11) NOT NULL AUTO_INCREMENT,
+  `tglpengajuan` varchar(20) DEFAULT NULL,
+  `prodi` varchar(50) DEFAULT NULL,
+  `nim` varchar(20) DEFAULT NULL,
+  `nama` varchar(50) DEFAULT NULL,
+  `nohp` varchar(20) DEFAULT NULL,
+  `email` varchar(20) DEFAULT NULL,
+  `kegiatan` varchar(200) DEFAULT NULL,
+  `namainstansi` varchar(100) DEFAULT NULL,
+  `tglmulai` varchar(20) DEFAULT NULL,
+  `tglselesai` varchar(20) DEFAULT NULL,
+  `alamatinstansi` varchar(200) DEFAULT NULL,
+  `verifikator` varchar(50) DEFAULT NULL,
+  `verifikasi` tinyint(4) DEFAULT '0',
+  `tglverifikasi` datetime DEFAULT NULL,
+  `keterangan` varchar(100) DEFAULT NULL,
+  `statussurat` tinyint(4) DEFAULT '0',
+  KEY `Index 1` (`nodata`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table pelayananonline.dispensasi: ~0 rows (approximately)
+DELETE FROM `dispensasi`;
+/*!40000 ALTER TABLE `dispensasi` DISABLE KEYS */;
+INSERT INTO `dispensasi` (`nodata`, `tglpengajuan`, `prodi`, `nim`, `nama`, `nohp`, `email`, `kegiatan`, `namainstansi`, `tglmulai`, `tglselesai`, `alamatinstansi`, `verifikator`, `verifikasi`, `tglverifikasi`, `keterangan`, `statussurat`) VALUES
+	(11, '2021-08-28 17:57:42', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.co', 'Praktek Kerja Lapangan (PKL) / Magang', 'Pengasuh Pondok Putri', '2021-08-28', '2021-08-30', 'Jl. Merjosari No. 123 Malang', '197411012003121004', 1, '2021-08-28 17:58:06', '11/FHm/KM.01.2/08/2021', 1),
+	(12, '2021-08-28 17:59:51', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.co', 'perkuliahan', 'dosen pengampu perkuliahan', '2021-08-28', '2021-09-04', 'UIN Malang', '197411012003121004', 1, '2021-08-28 18:00:13', '12/FHm/KM.01.2/08/2021', 1);
+/*!40000 ALTER TABLE `dispensasi` ENABLE KEYS */;
+
 -- Dumping structure for table pelayananonline.jenissurat
 CREATE TABLE IF NOT EXISTS `jenissurat` (
   `no` int(11) NOT NULL AUTO_INCREMENT,
@@ -18,17 +48,17 @@ CREATE TABLE IF NOT EXISTS `jenissurat` (
   `formatnosurat` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `pejabat` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   KEY `Index 1` (`no`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table pelayananonline.jenissurat: ~5 rows (approximately)
 DELETE FROM `jenissurat`;
 /*!40000 ALTER TABLE `jenissurat` DISABLE KEYS */;
 INSERT INTO `jenissurat` (`no`, `namasurat`, `formatnosurat`, `pejabat`) VALUES
 	(1, 'Izin Observasi', '/FHm/TL.00/', 'dekan'),
-	(2, 'Izin Penelitian', '/Un.03.1/TL.00.1/', 'dekan'),
-	(5, 'Rekom Beasiswa', '/Un.03/FITK/PP.00.9/', 'wd3'),
+	(2, 'Izin Penelitian', '/FHm/TL.00/', 'dekan'),
 	(13, 'Surat Keterangan', '/FHm/KM.01.3/', 'dekan'),
-	(14, 'Surat Rekomendasi', '/FHm/KM.01.3/', 'dekan');
+	(14, 'Surat Rekomendasi', '/FHm/KM.01.3/', 'dekan'),
+	(15, 'Dispensasi', '/FHm/KM.01.2/', 'dekan');
 /*!40000 ALTER TABLE `jenissurat` ENABLE KEYS */;
 
 -- Dumping structure for table pelayananonline.observasi
@@ -98,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `penelitian` (
   `keterangan` varchar(100) DEFAULT NULL,
   `statussurat` tinyint(4) DEFAULT '0',
   KEY `Index 1` (`nodata`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table pelayananonline.penelitian: ~1 rows (approximately)
 DELETE FROM `penelitian`;
@@ -168,14 +198,15 @@ CREATE TABLE IF NOT EXISTS `rekomendasi` (
   `keterangan` varchar(200) DEFAULT NULL,
   `statussurat` tinyint(4) DEFAULT '0',
   KEY `Index 1` (`nodata`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pelayananonline.rekomendasi: 2 rows
+-- Dumping data for table pelayananonline.rekomendasi: 3 rows
 DELETE FROM `rekomendasi`;
 /*!40000 ALTER TABLE `rekomendasi` DISABLE KEYS */;
 INSERT INTO `rekomendasi` (`nodata`, `tanggal`, `prodi`, `nim`, `nama`, `notelepon`, `email`, `keperluan`, `verifikator`, `verifikasi`, `tglverifikasi`, `keterangan`, `statussurat`) VALUES
 	(2, '2021-08-27 20:15:48', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'mengikuti pendaftaran lomba di Jepang', '197411012003121004', 1, '2021-08-27 20:38:52', 'B-2/FHm/KM.01.3/08/2021', 1),
-	(3, '2021-08-28 14:41:07', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'melanjutkan studi di Al-Azhar University Mesir', '197411012003121004', 1, '2021-08-28 14:41:24', 'B-3/FHm/KM.01.3/08/2021', 1);
+	(3, '2021-08-28 14:41:07', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'melanjutkan studi di Al-Azhar University Mesir', '197411012003121004', 1, '2021-08-28 14:41:24', 'B-3/FHm/KM.01.3/08/2021', 1),
+	(4, '2021-08-28 16:57:59', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'mendaftar beasiswa bantuan belajar kemenag 2021', '197411012003121004', 1, '2021-08-28 16:58:31', 'B-4/FHm/KM.01.3/08/2021', 1);
 /*!40000 ALTER TABLE `rekomendasi` ENABLE KEYS */;
 
 -- Dumping structure for table pelayananonline.suket

@@ -2,11 +2,16 @@
 <html lang="en">
 <?php
 session_start();
+require '../config.php';
+include '../assets/myfunc.php';
 $userid = $_SESSION['userid'];
+$nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
 global $userid;
 $role = $_SESSION['role'];
-if ($role != 'mahasiswa') {
-    header("location:../deauth.php");
+if ($role != 'adminprodi') {
+    if ($role != 'adminfakultas') {
+        header("location:../deauth.php");
+    }
 }
 ?>
 
@@ -57,23 +62,28 @@ if ($role != 'mahasiswa') {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Formulir Pengajuan Surat Izin Penelitian</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Formulir Pengajuan Surat Dispensasi Kegiatan</h1>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Content Column -->
                         <div class="col-lg-12 mb-4">
-                            <!-- cari data user -->
+                            <!-- ambil data -->
                             <?php
-                            $quser = mysqli_query($conn, "SELECT * FROM pengguna WHERE user='$userid'");
-                            $duser = mysqli_fetch_array($quser);
-                            $nim = $duser['nim'];
-                            $nama = $duser['nama'];
-                            $nim = $duser['nim'];
-                            $prodi = $duser['prodi'];
-                            $nohp = $duser['nohp'];
-                            $email = $duser['email'];
-
+                            $qsurat = mysqli_query($conn, "SELECT * FROM dispensasi WHERE nodata='$nodata'");
+                            $dsurat = mysqli_fetch_array($qsurat);
+                            $nama = $dsurat['nama'];
+                            $nim = $dsurat['nim'];
+                            $prodi = $dsurat['prodi'];
+                            $nohp = $dsurat['nohp'];
+                            $email = $dsurat['email'];
+                            $kegiatan = $dsurat['kegiatan'];
+                            $tujuansurat = $dsurat['namainstansi'];
+                            $alamatsurat = $dsurat['alamatinstansi'];
+                            $tglmulai = $dsurat['tglmulai'];
+                            $tglselesai = $dsurat['tglselesai'];
+                            $verifikasi = $dsurat['verifikasi'];
+                            $keterangan = $dsurat['keterangan'];
                             ?>
                             <!-- Basic Card Example -->
                             <div class="card shadow mb-4">
@@ -81,10 +91,10 @@ if ($role != 'mahasiswa') {
                                     <h6 class="m-0 font-weight-bold text-primary">Data Mahasiswa</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form class="user" action="penelitian-simpan.php" method="POST">
+                                    <form class="user" action="dispensasi-setujui.php" method="POST">
                                         <div class="form-group">
                                             <label>Nama</label>
-                                            <input type="text" class="form-control" name="nama" id="nama" value="<?= $nama; ?>" readonly>
+                                            <input type="text" class="form-control " name="nama" id="nama" value="<?= $nama; ?>" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>NIM</label>
@@ -105,36 +115,55 @@ if ($role != 'mahasiswa') {
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Judul</label>
-                                            <input type="text" class="form-control " name="judulpenelitian" id="judulpenelitian" required>
+                                            <label>Kegiatan</label>
+                                            <input type="text" class="form-control " name="kegiatan" id="kegiatan" value="<?= $kegiatan; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Tujuan Surat</label>
-                                            <input type="text" class="form-control " name="tujuansurat" id="tujuansurat" required>
+                                            <input type="text" class="form-control " name="tujuansurat" id="tujuansurat" value="<?= $tujuansurat; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat Tujuan</label>
-                                            <input type="text" class="form-control " name="alamatsurat" id="alamatsurat" required>
+                                            <input type="text" class="form-control " name="alamatsurat" id="alamatsurat" value="<?= $alamatsurat; ?>">
                                         </div>
-                                        <label>Waktu Penelitian</label>
+                                        <label>Lama Penelitian</label>
                                         <!--<small style="color:blue"><i>(maksimal 1 bulan) </i></small>-->
-                                        <?php
-                                        $tglmulai = date('Y-m-d');
-                                        $tglselesai = date('Y-m-d', strtotime('+1 month', strtotime($tglmulai)));
-                                        ?>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Tanggal Mulai Penelitian</label>
-                                                <input type="date" class="form-control " name="penelitianmulai" id="penelitianmulai" value="<?= $tglmulai; ?>" required>
+                                                <input type="date" class="form-control " name="penelitianmulai" id="penelitianmulai" value="<?= $tglmulai; ?>">
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Tanggal Selesai Penelitian</label>
-                                                <input type="date" class="form-control " name="penelitianselesai" id="penelitianselesai" value="<?= $tglselesai; ?>" required>
+                                                <input type="date" class="form-control " name="penelitianselesai" id="penelitianselesai" value="<?= $tglselesai; ?>">
                                             </div>
                                         </div>
-                                        <br />
+                                        <?php
+                                        if ($verifikasi == 2) {
+                                        ?>
+                                            <div class="form-group">
+                                                <label>Alasan Penolakan</label>
+                                                <textarea class="form-control " name="tolak" id="tolak" rows="4"><?= $keterangan; ?>
+                                            </textarea>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                        <hr />
                                         <input type="hidden" name="jenissurat" value="Izin Penelitian">
-                                        <button type="submit" onclick="return confirm('Dengan ini saya menyatakan bahwa data tersebut adalah benar')" class="btn btn-primary btn-block"> <i class="fas fa-file-upload"></i><b> Ajukan Surat</b></button>
+                                        <input type="hidden" name="nodata" value="<?= $nodata; ?>">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-primary btn-block">
+                                                    <i class="fas fa-thumbs-up"></i><b> SETUJUI</b>
+                                                </button>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#tolakModal">
+                                                    <i class="fas fa-times-circle"></i><b> TOLAK</b>
+                                                </a>
+                                            </div>
+                                        </div>
                                         <hr>
                                     </form>
                                 </div>
@@ -181,6 +210,30 @@ if ($role != 'mahasiswa') {
     <script src="../js/demo/chart-area-demo.js"></script>
     <script src="../js/demo/chart-pie-demo.js"></script>
 
+    <!-- Tolak Modal-->
+    <div class="modal fade" id="tolakModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tolak Pengajuan Surat</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="penelitian-tolak.php" method="POST">
+                    <div class="modal-body">
+                        Tuliskan Alasan penolakan disini : <br />
+                        <textarea class="form-control " name="keterangan" id="keterangan" rows="4"></textarea>
+                        <input type="hidden" name="nodata" value="<?= $nodata; ?>">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal"><i class="fas fa-angle-double-left"></i> Batal</button>
+                        <button class="btn btn-danger" type="submit"> <i class="fas fa-times-circle"></i><b> TOLAK</b></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -132,18 +132,9 @@ $role = $_SESSION['role'];
                     $jobservasi = mysqli_num_rows($qobservasi);
                     if ($jobservasi == 0) {
                     ?>
-                        <a class="collapse-item" href="observasiindividu-isi.php">Izin Observasi Individu</a>
+                        <a class="collapse-item" href="observasiindividu-isi.php">Izin Observasi</a>
                     <?php
                     };
-                    ?>
-                    <?php
-                    $qobservasi2 = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE pengusul='$userid' AND verifikasi=0");
-                    $jobservasi2 = mysqli_num_rows($qobservasi2);
-                    if ($jobservasi2 == 0) {
-                    ?>
-                        <a class="collapse-item" href="observasikelompok-isi.php">Izin Observasi Kelompok</a>
-                    <?php
-                    }
                     ?>
                     <?php
                     $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE nim='$userid' AND verifikasi=0");

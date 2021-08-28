@@ -7,13 +7,16 @@
 <link rel="stylesheet" href="../assets/style.css">
 
 <!-- connect to db -->
-<?php require_once('../config.php'); ?>
+<?php
+require('../config.php');
+require('../assets/myfunc.php');
+?>
 <!-- ./db -->
 
 <?php
 //get data observasi
 $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
-$datasurat = mysqli_query($conn, "SELECT * FROM observasi WHERE no='$nodata'");
+$datasurat = mysqli_query($conn, "SELECT * FROM observasi WHERE nodata='$nodata'");
 $rowsurat = mysqli_fetch_array($datasurat);
 $keterangan = $rowsurat['keterangan'];
 $nim = $rowsurat['nim'];
@@ -21,15 +24,10 @@ $nama = $rowsurat['nama'];
 $nohp = $rowsurat['nohp'];
 $email = $rowsurat['email'];
 $prodi = $rowsurat['prodi'];
-$semester = $rowsurat['semester'];
-$tahunakademik = $rowsurat['tahunakademik'];
-$keperluan = $rowsurat['keperluan'];
 $namamk = $rowsurat['namamk'];
-$dosen = $rowsurat['dosen'];
+$judul = $rowsurat['judul'];
 $namainstansi = $rowsurat['namainstansi'];
 $alamatinstansi = $rowsurat['alamatinstansi'];
-$tempatobservasi = $rowsurat['tempatobservasi'];
-$alamatobservasi = $rowsurat['alamatobservasi'];
 $verifikasi = $rowsurat['verifikasi'];
 $tglmulai = date('Y-m-d', strtotime($rowsurat['tglmulai']));
 $tglselesai = date('Y-m-d', strtotime($rowsurat['tglselesai']));
@@ -50,7 +48,7 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
 <table table style="width:80%; margin-left:auto;margin-right:auto;" cellspacing="0" border="0">
 	<tbody>
 		<tr>
-			<td colspan="6" align="center"><img src="../assets/kopsurat.png" /></td>
+			<td colspan="6" align="center"><img src="../assets/kop-humaniora.png" /></td>
 		</tr>
 	</tbody>
 </table>
@@ -74,24 +72,8 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
-			<td>Sifat</td>
-			<td>: Penting</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td>Lampiran</td>
-			<td>: -</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
 			<td>Perihal</td>
-			<td>: Izin Observasi Individu</td>
+			<td>: Izin Observasi</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
@@ -138,10 +120,10 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
 <table table style="width:90%; margin-left:auto;margin-right:auto;" cellspacing="0" border="0">
 	<tbody>
 		<tr>
-			<td colspan="6" style="text-align:justify"><b><i>Assalamu'alaikum Wr. Wb.</i></b></td>
+			<td colspan="6" style="text-align:justify"><b><i>Assalamu'alaikum wa Rahmatullahi wa Barakatuh</i></b></td>
 		</tr>
 		<tr>
-			<td colspan="6" style="text-align:justify">Dengan hormat, dalam rangka menyelesaikan <?= $keperluan; ?> <?= $namamk; ?> pada Jurusan <?= ucwords($prodi); ?> Fakultas Ilmu Tarbiyah dan Keguruan Universitas Islam Negeri Maulana Malik Ibrahim Malang, kami mengharap dengan hormat agar mahasiswa berikut: </td>
+			<td colspan="6" style="text-align:justify">Dalam rangka menyelesaikan tugas mata kuliah <?= $namamk; ?> Program Studi <?= ucwords($prodi); ?> Fakultas Humaniora Universitas Islam Negeri Maulana Malik Ibrahim Malang, kami mohon diberikan izin untuk melakukan Observasi tentang <?= $judul; ?> di instansi yang Bapak / Ibu pimpin kepada mahasiswa di bawah ini : </td>
 		</tr>
 		<tr>
 			<td width="5%"> </td>
@@ -160,28 +142,25 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
 		</tr>
 		<tr>
 			<td> </td>
-			<td>Semester</td>
-			<td colspan="4">: <?= $semester; ?> Tahun Akademik <?= $tahunakademik; ?></td>
+			<td>Waktu Pelaksanaan</td>
+			<td colspan="4">: <?= tgl_indo($tglmulai); ?> sampai dengan <?= tgl_indo($tglselesai); ?></td>
 		</tr>
 		<tr>
-			<td colspan="6" style="text-align:justify">diberikan izin untuk melakukan observasi di lembaga/instansi yang menjadi wewenang Bapak/Ibu.</td>
+			<td colspan="6" style="text-align:justify">Demikian, atas izin dan kerjasamanya kami sampaikan terima kasih. </td>
 		</tr>
 		<tr>
-			<td colspan="6" style="text-align:justify">Demikian, atas perkenan dan kerjasama yang baik disampaikan terima kasih. </td>
-		</tr>
-		<tr>
-			<td colspan="6" style="text-align:justify"><b><i>Wassalamu'alaikum Wr. Wb.</i></b></td>
+			<td colspan="6" style="text-align:justify"><b><i>Wassalamu'alaikum wa Rahmatullahi wa Barakatuh.</i></b></td>
 		</tr>
 	</tbody>
 </table>
 <!-- cari data penandatangan -->
 <?php
-$qpejabat = mysqli_query($conn, "SELECT * FROM jenissurat WHERE namasurat='Izin Penelitian Dinas'");
+$qpejabat = mysqli_query($conn, "SELECT * FROM jenissurat WHERE namasurat='Izin Observasi'");
 $dpejabat = mysqli_fetch_array($qpejabat);
 $pejabat = $dpejabat['pejabat'];
 
 //cari tandatangan pejabat
-$qttd = mysqli_query($conn, "SELECT * FROM pejabat WHERE jab='$pejabat'");
+$qttd = mysqli_query($conn, "SELECT * FROM pejabat WHERE jabatan='$pejabat'");
 $dttd = mysqli_fetch_array($qttd);
 $nama = $dttd['nama'];
 $jabatan = $dttd['jabatan'];
@@ -220,7 +199,7 @@ $ttd = $dttd['ttd'];
 			?>
 				<td>
 					<div class="container">
-						<div class="jabatan">a.n. Dekan <br /><?= $jabatan; ?>,</div>
+						<div class="jabatan"><?= $jabatan; ?>,</div>
 						<img src="<?= $ttd;  ?>" alt="ttd" style="width:300px;">
 						<div class="nama"><?php echo $nama; ?></div>
 					</div>
@@ -230,64 +209,7 @@ $ttd = $dttd['ttd'];
 			?>
 			<td> </td>
 		</tr>
-		<tr>
-			<td> </td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td> </td>
-		</tr>
-		<tr>
-			<td> </td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
-			<td> </td>
-		</tr>
-		<tr>
-			<td colspan="6">&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td colspan="4">Tembusan:</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td colspan="4">1. Ketua Jurusan <?= $prodi; ?>;</td>
-			<td>&nbsp;</td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td colspan="4">2. Arsip.</td>
-			<td>&nbsp;</td>
-		</tr>
 	</tbody>
 </table>
-<?php
-function tgl_indo($tanggal)
-{
-	$bulan = array(
-		1 =>   'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-	);
-	$pecahkan = explode('-', $tanggal);
-
-	return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
-}
-
-?>
 
 </html>

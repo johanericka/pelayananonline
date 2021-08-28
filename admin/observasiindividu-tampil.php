@@ -5,7 +5,7 @@ session_start();
 require '../config.php';
 require '../assets/myfunc.php';
 $userid = $_SESSION['userid'];
-$nosurat = mysqli_real_escape_string($conn, $_GET['nodata']);
+$nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
 global $userid;
 $role = $_SESSION['role'];
 if ($role != 'adminprodi') {
@@ -23,7 +23,7 @@ if ($role != 'adminprodi') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,23 +71,17 @@ if ($role != 'adminprodi') {
                             <!-- ambil data -->
                             <?php
 
-                            $qsurat = mysqli_query($conn, "SELECT * FROM observasi WHERE no='$nosurat'");
+                            $qsurat = mysqli_query($conn, "SELECT * FROM observasi WHERE nodata='$nodata'");
                             $dsurat = mysqli_fetch_array($qsurat);
                             $nama = $dsurat['nama'];
                             $nim = $dsurat['nim'];
                             $prodi = $dsurat['prodi'];
-                            $jenjang = $dsurat['jenjang'];
                             $nohp = $dsurat['nohp'];
                             $email = $dsurat['email'];
-                            $semester = $dsurat['semester'];
-                            $tahunakademik = $dsurat['tahunakademik'];
-                            $keperluan = $dsurat['keperluan'];
                             $namamk = $dsurat['namamk'];
-                            $dosen = $dsurat['dosen'];
+                            $judul = $dsurat['judul'];
                             $namainstansi = $dsurat['namainstansi'];
                             $alamatinstansi = $dsurat['alamatinstansi'];
-                            $tempatobservasi = $dsurat['tempatobservasi'];
-                            $alamatobservasi = $dsurat['alamatobservasi'];
                             $tglmulai = $dsurat['tglmulai'];
                             $tglselesai = $dsurat['tglselesai'];
                             $verifikasi = $dsurat['verifikasi'];
@@ -102,104 +96,51 @@ if ($role != 'adminprodi') {
                                     <form class="user" method="POST" action="observasiindividu-setujui.php">
                                         <div class="form-group">
                                             <label>Nama</label>
-                                            <input type="text" class="form-control form-control-user" name="nama" id="nama" value="<?= $nama; ?>" readonly>
+                                            <input type="text" class="form-control " name="nama" id="nama" value="<?= $nama; ?>" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label>NIM</label>
-                                            <input type="text" class="form-control form-control-user" name="nim" id="nim" value="<?= $nim; ?>" readonly>
+                                            <input type="text" class="form-control " name="nim" id="nim" value="<?= $nim; ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Program Studi</label>
+                                            <input type="text" class="form-control " name="prodi" id="prodi" value="<?= $prodi; ?>" readonly>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Program Studi</label>
-                                                <input type="text" class="form-control form-control-user" name="prodi" id="prodi" value="<?= $prodi; ?>" readonly>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label>Jenjang</label>
-                                                <input type="text" class="form-control form-control-user" name="jenjang" id="jenjang" value="<?= $jenjang; ?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>No. HP Aktif</label>
-                                                <input type="number" class="form-control form-control-user" name="nohp" id="nohp" value="<?= $nohp; ?>" readonly>
+                                                <label>No. Telepon</label>
+                                                <input type="number" class="form-control " name="nohp" id="nohp" value="<?= $nohp; ?>" readonly>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>E-Mail</label>
-                                                <input type="email" class="form-control form-control-user" name="email" id="email" value="<?= $email; ?>" readonly>
+                                                <input type="email" class="form-control " name="email" id="email" value="<?= $email; ?>" readonly>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Semester</label>
-                                                <?php
-                                                if (date('m') > 7) {
-                                                ?>
-                                                    <select class="browser-default custom-select" name="semester" id="semester">
-                                                        <option value="Ganjil" selected>Ganjil</option>
-                                                        <option value="Genap">Genap</option>
-                                                    </select>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <select class="browser-default custom-select" name="semester" id="semester">
-                                                        <option value="Ganjil">Ganjil</option>
-                                                        <option value="Genap" selected>Genap</option>
-                                                    </select>
-                                                <?php
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <?php
-                                                $tahunini = date('Y');
-                                                $tahunlalu = date('Y', strtotime("-1 years"));
-                                                $tahundepan = date('Y', strtotime("+1 years"));
-                                                ?>
-                                                <label>Tahun Akademik</label>
-                                                <select class="browser-default custom-select" name="tahunakademik" id="tahunakademik">
-                                                    <option value="<?= $tahunini . '/' . $tahundepan; ?>"><?= $tahunini . '/' . $tahundepan; ?></option>
-                                                    <option value="<?= $tahunlalu . '/' . $tahunini; ?>" selected><?= $tahunlalu . '/' . $tahunini; ?></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Keperluan</label>
-                                            <input type="text" class="form-control form-control-user" name="keperluan" id="keperluan" value="<?= $keperluan; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Nama Mata Kuliah</label>
-                                            <input type="text" class="form-control form-control-user" name="namamk" id="namamk" value="<?= $namamk; ?>">
+                                            <input type="text" class="form-control " name="namamk" id="namamk" value="<?= $namamk; ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label>Dosen Pengampu Matakuliah</label>
-                                            <input type="text" class="form-control form-control-user" name="dosen" id="dosen" value="<?= $dosen; ?>">
+                                            <label>Judul Penelitian</label>
+                                            <input type="text" class="form-control " name="judul" id="judul" value="<?= $judul; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Nama Instansi Tujuan</label>
-                                            <input type="text" class="form-control form-control-user" name="namainstansi" id="namainstansi" value="<?= $namainstansi; ?>">
+                                            <input type="text" class="form-control " name="namainstansi" id="namainstansi" value="<?= $namainstansi; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat Instansi Tujuan</label>
-                                            <textarea class="form-control form-control-user" name="alamatinstansi" id="alamatinstansi" rows="4"><?= $alamatinstansi; ?></textarea>
-                                        </div>
-                                        <label>Tempat Observasi</label>
-                                        <div class="form-group">
-                                            <label>Nama Tempat Observasi</label>
-                                            <input type="text" class="form-control form-control-user" name="tempatobservasi" id="tempatobservasi" value="<?= $tempatobservasi; ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Alamat Tempat Observasi</label>
-                                            <textarea class="form-control form-control-user" name="alamatobservasi" id="alamatobservasi" rows="4"><?= $alamatobservasi; ?></textarea>
+                                            <input type="text" class="form-control " name="alamatinstansi" id="alamatinstansi" value="<?= $alamatinstansi; ?>">
                                         </div>
                                         <label>Lama Observasi</label>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Tanggal Mulai Observasi</label>
-                                                <input type="date" class="form-control form-control-user" name="tglmulai" id="tglmulai" value="<?= $tglmulai; ?>">
+                                                <input type="date" class="form-control " name="tglmulai" id="tglmulai" value="<?= $tglmulai; ?>">
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Tanggal Selesai Observasi</label>
-                                                <input type="date" class="form-control form-control-user" name="tglselesai" id="tglselesai" value="<?= $tglselesai; ?>">
+                                                <input type="date" class="form-control " name="tglselesai" id="tglselesai" value="<?= $tglselesai; ?>">
                                             </div>
                                         </div>
                                         <?php
@@ -207,36 +148,23 @@ if ($role != 'adminprodi') {
                                         ?>
                                             <div class="form-group">
                                                 <label>Alasan Penolakan</label>
-                                                <textarea class="form-control form-control-user" name="tolak" id="tolak" rows="4" readonly><?= $keterangan; ?></textarea>
+                                                <textarea class="form-control " name="tolak" id="tolak" rows="4" readonly><?= $keterangan; ?></textarea>
                                             </div>
                                         <?php
                                         }
                                         ?>
                                         <hr />
                                         <input type="hidden" name="jenissurat" value="Izin Observasi">
-                                        <input type="hidden" name="nosurat" value="<?= $nosurat; ?>">
+                                        <input type="hidden" name="nodata" value="<?= $nodata; ?>">
                                         <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-primary btn-user btn-block">
+                                            <div class="col-sm-6">
+                                                <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-primary btn-block">
                                                     <i class="fas fa-thumbs-up"></i><b> SETUJUI</b>
                                                 </button>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <a href="#" class="btn btn-danger btn-user btn-block" data-toggle="modal" data-target="#tolakModal">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#tolakModal">
                                                     <i class="fas fa-times-circle"></i><b> TOLAK</b>
-                                                </a>
-                                            </div>
-                                            <?php
-                                            $nowa = hp($nohp);
-                                            ?>
-                                            <div class="col-sm-3">
-                                                <a href="https://api.whatsapp.com/send?phone=<?= $nowa; ?>" class="btn btn-success btn-user btn-block">
-                                                    <i class="fas fa-paper-plane"></i><b> Kirim WhatsAp</b>
-                                                </a>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <a href="mailto:<?= $email; ?>" class="btn btn-info btn-user btn-block">
-                                                    <i class="fas fa-envelope"></i><b> Kirim eMail</b>
                                                 </a>
                                             </div>
                                         </div>
@@ -296,8 +224,8 @@ if ($role != 'adminprodi') {
                 <form action="observasiindividu-tolak.php" method="POST">
                     <div class="modal-body">
                         Tuliskan Alasan penolakan disini : <br />
-                        <textarea class="form-control form-control-user" name="keterangan" id="keterangan" rows="4"></textarea>
-                        <input type="hidden" name="nosurat" value="<?= $nosurat; ?>">
+                        <textarea class="form-control " name="keterangan" id="keterangan" rows="4"></textarea>
+                        <input type="hidden" name="nodata" value="<?= $nodata; ?>">
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal"><i class="fas fa-angle-double-left"></i> Batal</button>

@@ -94,20 +94,20 @@ require('../assets/myfunc.php');
                                                 <?php
                                                 $qobservasi = mysqli_query($conn, "SELECT * FROM observasi WHERE nim='$nim'");
                                                 while ($dobservasi = mysqli_fetch_array($qobservasi)) {
-                                                    $nodata = $dobservasi['no'];
+                                                    $nodata = $dobservasi['nodata'];
                                                     $verifikasi = $dobservasi['verifikasi'];
                                                     $keterangan = $dobservasi['keterangan'];
                                                 ?>
                                                     <tr>
                                                         <td><?= $no; ?></td>
-                                                        <td>Surat Izin Observasi Individu</td>
+                                                        <td>Surat Izin Observasi</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan program studi";
+                                                                echo "Menunggu verifikasi surat ";
                                                             } elseif ($verifikasi == 1) {
-                                                                echo "Telah di verifikasi program studi";
+                                                                echo "Telah di setujui";
                                                             } else {
-                                                                echo "Ditolak oleh Program Studi dengan alasan <b> " . $keterangan . "</b>";
+                                                                echo "Ditolak dengan alasan <b> " . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>
@@ -115,16 +115,16 @@ require('../assets/myfunc.php');
                                                             <?php
                                                             if ($verifikasi == 1) {
                                                             ?>
-                                                                <a class="btn btn-success btn-sm" href="observasiindividu-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                <a class="btn btn-primary btn-sm" href="observasiindividu-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
                                                                     <i class="fas fa-print"></i>
                                                                 </a>
                                                             <?php
                                                             }
                                                             ?>
                                                             <?php
-                                                            if ($verifikasi == 2) {
+                                                            if ($verifikasi == 2 or $verifikasi == 0) {
                                                             ?>
-                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Surat Izin Observasi Individu ?')" href="observasiindividu-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
+                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Surat Izin Observasi ?')" href="observasiindividu-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
                                                                     <i class="fas fa-trash-alt"></i>
                                                                 </a>
                                                             <?php
@@ -137,54 +137,6 @@ require('../assets/myfunc.php');
                                                 }
                                                 ?>
                                                 <!-- /observasi individu -->
-
-                                                <!-- observasi kelompok -->
-                                                <?php
-                                                $qobservasi2 = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE pengusul='$nim'");
-                                                while ($dobservasi2 = mysqli_fetch_array($qobservasi2)) {
-                                                    $nodata = $dobservasi2['no'];
-                                                    $verifikasi = $dobservasi2['verifikasi'];
-                                                    $keterangan = $dobservasi2['keterangan'];
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $no; ?></td>
-                                                        <td>Surat Izin Observasi Kelompok</td>
-                                                        <td><?php
-                                                            if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan program studi";
-                                                            } elseif ($verifikasi == 1) {
-                                                                echo "Telah di verifikasi program studi";
-                                                            } else {
-                                                                echo "Ditolak oleh Program Studi dengan alasan <b>" . $keterangan . "</b>";
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                            if ($verifikasi == 1) {
-                                                            ?>
-                                                                <a class="btn btn-success btn-sm" href="observasikelompok-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
-                                                                    <i class="fas fa-print"></i>
-                                                                </a>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            <?php
-                                                            if ($verifikasi == 2) {
-                                                            ?>
-                                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Yakin menghapus data Surat Izin Penelitian Instansi?')" href="observasikelompok-hapus.php?nodata=<?= $nodata; ?>&nim=<?= $nim; ?>">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                </a>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                                    $no++;
-                                                }
-                                                ?>
-                                                <!-- /observasi kelompok-->
 
                                                 <!-- penelitian -->
                                                 <?php
@@ -200,11 +152,11 @@ require('../assets/myfunc.php');
                                                         <td>Surat Izin Penelitian</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan Dekan " . caripejabat($conn, $verifikator);
+                                                                echo "Menunggu verifikasi surat";
                                                             } elseif ($verifikasi == 1) {
-                                                                echo "Telah disetujui oleh Dekan " . caripejabat($conn, $verifikator);
+                                                                echo "Telah disetujui";
                                                             } else {
-                                                                echo "Ditolak oleh Dekan " . caripejabat($conn, $verifikator) . " dengan alasan <b>" . $keterangan . "</b>";
+                                                                echo "Ditolak dengan alasan <b>" . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>
@@ -248,11 +200,11 @@ require('../assets/myfunc.php');
                                                         <td>Surat Permohonan Validator</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan program studi";
+                                                                echo "Menunggu verifikasi surat";
                                                             } elseif ($verifikasi == 1) {
-                                                                echo "Telah di verifikasi program studi";
+                                                                echo "Telah di setujui";
                                                             } else {
-                                                                echo "Ditolak oleh Program Studi dengan alasan <b>" . $keterangan . "</b>";
+                                                                echo "Ditolak dengan alasan <b>" . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>
@@ -296,11 +248,11 @@ require('../assets/myfunc.php');
                                                         <td>Pengajuan Transkrip Nilai Sementara</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan program studi";
+                                                                echo "Menunggu verifikasi surat";
                                                             } elseif ($verifikasi == 1) {
-                                                                echo "Telah di verifikasi program studi";
+                                                                echo "Telah di setujui";
                                                             } else {
-                                                                echo "Ditolak oleh Program Studi dengan alasan <b>" . $keterangan . "</b>";
+                                                                echo "Ditolak dengan alasan <b>" . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>
@@ -346,11 +298,11 @@ require('../assets/myfunc.php');
                                                         <td>Surat Keterangan <?= $jenissurat; ?></td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan Dekan " . caripejabat($conn, $verifikator);
+                                                                echo "Menunggu verifikasi surat";
                                                             } elseif ($verifikasi == 1) {
-                                                                echo "Telah disetujui oleh Dekan " . caripejabat($conn, $verifikator);
+                                                                echo "Telah disetujui";
                                                             } else {
-                                                                echo "Ditolak oleh Dekan " . caripejabat($conn, $verifikator) . " dengan alasan <b>" . $keterangan . "</b>";
+                                                                echo "Ditolak dengan alasan <b>" . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>
@@ -392,11 +344,11 @@ require('../assets/myfunc.php');
                                                         <td>Surat Keterangan Rekomendasi</td>
                                                         <td><?php
                                                             if ($verifikasi == 0) {
-                                                                echo "Menunggu persetujuan Dekan " . caripejabat($conn, $verifikator);
+                                                                echo "Menunggu verifikasi surat";
                                                             } elseif ($verifikasi == 1) {
-                                                                echo "Telah disetujui oleh Dekan " . caripejabat($conn, $verifikator);
+                                                                echo "Telah disetujui";
                                                             } else {
-                                                                echo "Ditolak oleh Dekan " . caripejabat($conn, $verifikator) . " dengan alasan <b>" . $keterangan . "</b>";
+                                                                echo "Ditolak dengan alasan <b>" . $keterangan . "</b>";
                                                             }
                                                             ?>
                                                         </td>

@@ -138,14 +138,20 @@ $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
                                             ?>
                                                 <label>Keperluan</label>;
                                                 <input type="text" class="form-control" name="keperluan" value="<?= $keperluan; ?>" readonly>
-                                                <div class="form-group">
-                                                    <label>Tgl. Lulus</label>
-                                                    <input type="date" class="form-control" name="tgllulus" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>No. SK Yudisium</label>
-                                                    <input type="text" class="form-control" name="skyudisium">
-                                                </div>
+                                                <?php
+                                                if ($jenissurat == 'Lulus') {
+                                                ?>
+                                                    <div class="form-group">
+                                                        <label>Tgl. Lulus</label>
+                                                        <input type="date" class="form-control" name="tgllulus" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>No. SK Yudisium</label>
+                                                        <input type="text" class="form-control" name="skyudisium">
+                                                    </div>
+                                                <?php
+                                                }
+                                                ?>
                                             <?php
                                             }
                                             ?>

@@ -123,6 +123,7 @@ if ($role != 'mahasiswa') {
                                                 <option value="Kelakuan Baik" selected>Kelakuan Baik</option>
                                                 <option value="Aktif">Aktif Kuliah</option>
                                                 <option value="Lulus">Lulus</option>
+                                                <option value="Belum Menerima Beasiswa">Belum Menerima Beasiswa</option>
                                             </select>
                                         </div>
                                         <div class="form-group">

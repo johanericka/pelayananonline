@@ -137,6 +137,12 @@ QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
                 <td colspan="6" style="text-align:justify">yang bersangkutan benar - benar tercatat sebagai mahasiswa aktif di Program Studi <?= $prodi; ?> Fakultas Humaniora Universitas Islam Negeri Maulana Malik Ibrahim Malang.</td>
             </tr>
         <?php
+        } elseif ($jenissurat == 'Belum Menerima Beasiswa') {
+        ?>
+            <tr>
+                <td colspan="6" style="text-align:justify">yang bersangkutan benar - benar tercatat sebagai mahasiswa aktif di Program Studi <?= $prodi; ?> Fakultas Humaniora Universitas Islam Negeri Maulana Malik Ibrahim Malang dan saat ini tidak menerima beasiswa dari pihak manapun.</td>
+            </tr>
+        <?php
         }
         ?>
         <?php

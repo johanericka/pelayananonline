@@ -168,13 +168,14 @@ CREATE TABLE IF NOT EXISTS `rekomendasi` (
   `keterangan` varchar(200) DEFAULT NULL,
   `statussurat` tinyint(4) DEFAULT '0',
   KEY `Index 1` (`nodata`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pelayananonline.rekomendasi: 1 rows
+-- Dumping data for table pelayananonline.rekomendasi: 2 rows
 DELETE FROM `rekomendasi`;
 /*!40000 ALTER TABLE `rekomendasi` DISABLE KEYS */;
 INSERT INTO `rekomendasi` (`nodata`, `tanggal`, `prodi`, `nim`, `nama`, `notelepon`, `email`, `keperluan`, `verifikator`, `verifikasi`, `tglverifikasi`, `keterangan`, `statussurat`) VALUES
-	(2, '2021-08-27 20:15:48', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'mengikuti pendaftaran lomba di Jepang', '197411012003121004', 1, '2021-08-27 20:38:52', 'B-2/FHm/KM.01.3/08/2021', 1);
+	(2, '2021-08-27 20:15:48', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'mengikuti pendaftaran lomba di Jepang', '197411012003121004', 1, '2021-08-27 20:38:52', 'B-2/FHm/KM.01.3/08/2021', 1),
+	(3, '2021-08-28 14:41:07', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'melanjutkan studi di Al-Azhar University Mesir', '197411012003121004', 1, '2021-08-28 14:41:24', 'B-3/FHm/KM.01.3/08/2021', 1);
 /*!40000 ALTER TABLE `rekomendasi` ENABLE KEYS */;
 
 -- Dumping structure for table pelayananonline.suket
@@ -196,9 +197,9 @@ CREATE TABLE IF NOT EXISTS `suket` (
   `keterangan` varchar(200) DEFAULT NULL,
   `statussurat` tinyint(4) DEFAULT '0',
   KEY `Index 1` (`nodata`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pelayananonline.suket: 6 rows
+-- Dumping data for table pelayananonline.suket: 7 rows
 DELETE FROM `suket`;
 /*!40000 ALTER TABLE `suket` DISABLE KEYS */;
 INSERT INTO `suket` (`nodata`, `tanggal`, `prodi`, `nim`, `nama`, `notelepon`, `email`, `jenissurat`, `keperluan`, `tgllulus`, `skyudisium`, `verifikator`, `verifikasi`, `tglverifikasi`, `keterangan`, `statussurat`) VALUES
@@ -207,7 +208,8 @@ INSERT INTO `suket` (`nodata`, `tanggal`, `prodi`, `nim`, `nama`, `notelepon`, `
 	(4, '2021-08-26 21:07:16', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Lulus', 'melamar pekerjaan', '2021-08-24', 'B-234/FHM/PP.01.1/08/2021', '197411012003121004', 1, '2021-08-26 21:26:56', 'B-4/FHm/KM.01.3/08/2021', 1),
 	(6, '2021-08-28 13:53:50', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Perpanjangan Waktu Pembayaran UKT', 'usaha orang tua terdampak COVID-19', '', '', '197411012003121004', 1, '2021-08-28 14:13:23', 'B-6/FHm/KM.01.3/08/2021', 1),
 	(7, '2021-08-28 14:24:21', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Keringanan UKT', 'orang tua sudah pensiun', '', '', '197411012003121004', 1, '2021-08-28 14:31:44', 'B-7/FHm/KM.01.3/08/2021', 1),
-	(8, '2021-08-28 14:24:46', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Penurunan UKT', 'sedang menempuh skripsi', '', '', '197411012003121004', 1, '2021-08-28 14:32:02', 'B-8/FHm/KM.01.3/08/2021', 1);
+	(8, '2021-08-28 14:24:46', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Penurunan UKT', 'sedang menempuh skripsi', '', '', '197411012003121004', 1, '2021-08-28 14:32:02', 'B-8/FHm/KM.01.3/08/2021', 1),
+	(9, '2021-08-28 16:49:54', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Belum Menerima Beasiswa', 'mendaftar beasiswa bantuan belajar kemenag 2021', '', '', '197411012003121004', 1, '2021-08-28 16:52:45', 'B-9/FHm/KM.01.3/08/2021', 1);
 /*!40000 ALTER TABLE `suket` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

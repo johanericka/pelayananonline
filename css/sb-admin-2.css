@@ -10868,6 +10868,7 @@ a:focus {
   padding: 0 1rem;
   font-weight: 800;
   font-size: 0.65rem;
+  color: rgb(0, 17, 255);
 }
 
 .sidebar .sidebar-card {
@@ -11028,7 +11029,7 @@ a:focus {
 }
 
 .sidebar-light .sidebar-heading {
-  color: #b7b9cc;
+  color: rgb(0, 17, 255);
 }
 
 .sidebar-light .nav-item .nav-link {
@@ -11084,7 +11085,7 @@ a:focus {
 }
 
 .sidebar-dark .sidebar-heading {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgb(0, 17, 255);
 }
 
 .sidebar-dark .nav-item .nav-link {

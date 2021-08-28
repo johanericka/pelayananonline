@@ -107,3 +107,24 @@ function multibaris($pesan)
         });
     });
 </script>
+
+<?php
+function hp($nohp)
+{
+    $nohp = str_replace(" ", "", $nohp);
+    $nohp = str_replace("(", "", $nohp);
+    $nohp = str_replace(")", "", $nohp);
+    $nohp = str_replace(".", "", $nohp);
+    $nohp = str_replace("-", "", $nohp);
+
+    if (!preg_match('/[^+0-9]/', trim($nohp))) {
+        if (substr(trim($nohp), 0, 2) == '+6') {
+            $hp = substr(trim($nohp), 1);
+        } elseif (substr(trim($nohp), 0, 1) == '0') {
+            $hp = '62' . substr(trim($nohp), 1);
+        } elseif (substr(trim($nohp), 0, 1) == '6') {
+            $hp = trim($nohp);
+        }
+    }
+    return $hp;
+}

@@ -196,9 +196,16 @@ $role = $_SESSION['role'];
             <i class="fas fa-fw fa-question"></i>
             <span>Bantuan / Pertanyaan</span>
         </a>
+        <?php
+        $qadmin = mysqli_query($conn, "SELECT * FROM pengguna WHERE role='adminfakultas'");
+        $dadmin = mysqli_fetch_array($qadmin);
+        $notelepon = $dadmin['nohp'];
+        $email = $dadmin['email'];
+        ?>
         <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="https://wa.me/+6285755566256" target="_blank">Hubungi Kami</a>
+                <a class="collapse-item" href="https://wa.me/<?= ($notelepon); ?>" target="_blank">WhatsApp</a>
+                <a class="collapse-item" href="mailto:<?= $email; ?>" target="_blank">Email</a>
             </div>
         </div>
     </li>

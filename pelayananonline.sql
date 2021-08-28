@@ -265,13 +265,13 @@ CREATE TABLE IF NOT EXISTS `penelitian` (
   `keterangan` varchar(100) DEFAULT NULL,
   `statussurat` tinyint(4) DEFAULT '0',
   KEY `Index 1` (`nodata`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pelayananonline.penelitian: ~1 rows (approximately)
+-- Dumping data for table pelayananonline.penelitian: ~0 rows (approximately)
 DELETE FROM `penelitian`;
 /*!40000 ALTER TABLE `penelitian` DISABLE KEYS */;
 INSERT INTO `penelitian` (`nodata`, `tglpengajuan`, `prodi`, `nim`, `nama`, `nohp`, `email`, `judul`, `namainstansi`, `tglmulai`, `tglselesai`, `alamatinstansi`, `verifikator`, `verifikasi`, `tglverifikasi`, `keterangan`, `statussurat`) VALUES
-	(8, '2021-08-28 06:39:44', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.co', 'ÙˆÙŽØ§ÙØ°ÙŽØ§ Ù‚ÙÙŠÙ’Ù„ÙŽ Ù„ÙŽÙ‡ÙÙ…Ù’ Ø§Ù°Ù…ÙÙ†ÙÙˆÙ’Ø§ ÙƒÙŽÙ…ÙŽØ§Ù“ Ø§Ù°Ù…ÙŽÙ†ÙŽ Ø§Ù„Ù†Ù‘ÙŽØ§Ø³Ù Ù‚ÙŽØ§Ù„ÙÙˆÙ’Ù“Ø§ Ø§ÙŽÙ†ÙØ¤Ù’Ù…ÙÙ†Ù ÙƒÙŽÙ…ÙŽØ§Ù“ Ø§Ù°Ù…ÙŽÙ†ÙŽ Ø§Ù„Ø³Ù‘ÙÙÙŽÙ‡ÙŽØ§Û¤Ø¡Ù Û— Ø', 'MIN 1 Kota Malang', '2021-08-28', '2021-09-28', 'Jl. Veteran No. 70 Malang', '197411012003121004', 0, NULL, NULL, 0);
+	(9, '2021-08-28 07:54:29', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.co', 'ÙˆÙŽØ§ÙØ°ÙŽØ§ Ù‚ÙÙŠÙ’Ù„ÙŽ Ù„ÙŽÙ‡ÙÙ…Ù’ Ø§Ù°Ù…ÙÙ†ÙÙˆÙ’Ø§ ÙƒÙŽÙ…ÙŽØ§Ù“ Ø§Ù°Ù…ÙŽÙ†ÙŽ Ø§Ù„Ù†Ù‘ÙŽØ§Ø³Ù Ù‚ÙŽØ§Ù„ÙÙˆÙ’Ù“Ø§ Ø§ÙŽÙ†ÙØ¤Ù’Ù…ÙÙ†Ù ÙƒÙŽÙ…ÙŽØ§Ù“ Ø§Ù°Ù…ÙŽÙ†ÙŽ Ø§Ù„Ø³Ù‘ÙÙÙŽÙ‡ÙŽØ§Û¤Ø¡Ù Û—', 'MIN 1 Kota Malang', '2021-08-30', '2021-09-30', 'Jl. Veteran No. 70 Malang', 'admin-fakultas', 1, '2021-08-28 07:55:20', '9/FHm/TL.00/08/2021', 1);
 /*!40000 ALTER TABLE `penelitian` ENABLE KEYS */;
 
 -- Dumping structure for table pelayananonline.pengguna

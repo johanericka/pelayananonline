@@ -59,7 +59,7 @@ while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 						";
 	sendmail($emailfak, $namaadmin, $subject, $pesan);
 }
-
+/*
 //kirim email user
 $subject = "Notifikasi Pengajuan Surat " . $surat;
 $pesan = "Yth. " . $nama . "
@@ -73,5 +73,5 @@ $pesan = "Yth. " . $nama . "
 						Wassalamualaiakum Wr. Wb.
 						";
 sendmail($email, $nama, $subject, $pesan);
-
+*/
 header("location:dashboard.php");

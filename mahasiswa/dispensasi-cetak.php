@@ -1,7 +1,7 @@
 <html>
 
 <script>
-	//window.print();
+	window.print();
 </script>
 
 <link rel="stylesheet" href="../assets/style.css">

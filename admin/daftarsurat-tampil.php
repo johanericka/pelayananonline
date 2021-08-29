@@ -10,6 +10,7 @@ if ($role != 'adminprodi') {
         header("location:../deauth.php");
     }
 }
+require('../assets/myfunc.php');
 ?>
 
 <head>
@@ -20,7 +21,7 @@ if ($role != 'adminprodi') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -73,35 +74,27 @@ if ($role != 'adminprodi') {
                         if ($role == 'adminfakultas') {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
-                            $qobservasikelompok = mysqli_query($conn, "SELECT * FROM observasikelompok");
-                            $jobservasikelompok = mysqli_num_rows($qobservasikelompok);
-                            $qpenelitiandinas = mysqli_query($conn, "SELECT * FROM penelitiandinas");
-                            $jpenelitiandinas = mysqli_num_rows($qpenelitiandinas);
-                            $qpenelitianinstansi = mysqli_query($conn, "SELECT * FROM penelitianinstansi");
-                            $jpenelitianinstansi = mysqli_num_rows($qpenelitianinstansi);
-                            $qpenelitiansurvey = mysqli_query($conn, "SELECT * FROM penelitiansurvey");
-                            $jpenelitiansurvey = mysqli_num_rows($qpenelitiansurvey);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
-                            $totalsuratdiajukan = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian");
+                            $jpenelitian = mysqli_num_rows($qpenelitian);
+                            $qsuket = mysqli_query($conn, "SELECT * FROM suket");
+                            $jsuket = mysqli_num_rows($qsuket);
+                            $qdispensasi = mysqli_query($conn, "SELECT * FROM dispensasi");
+                            $jdispensasi = mysqli_num_rows($qdispensasi);
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratdiajukan = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi + $jdispensasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid'");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
-                            $qobservasikelompok = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE verifikator='$userid'");
-                            $jobservasikelompok = mysqli_num_rows($qobservasikelompok);
-                            $qpenelitiandinas = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE verifikator='$userid'");
-                            $jpenelitiandinas = mysqli_num_rows($qpenelitiandinas);
-                            $qpenelitianinstansi = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE verifikator='$userid'");
-                            $jpenelitianinstansi = mysqli_num_rows($qpenelitianinstansi);
-                            $qpenelitiansurvey = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE verifikator='$userid'");
-                            $jpenelitiansurvey = mysqli_num_rows($qpenelitiansurvey);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikator='$userid'");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikator='$userid'");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
-                            $totalsuratdiajukan = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikator='$userid'");
+                            $jpenelitian = mysqli_num_rows($qpenelitian);
+                            $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid'");
+                            $jsuket = mysqli_num_rows($qsuket);
+                            $qdispensasi = mysqli_query($conn, "SELECT * FROM dispensasi WHERE verifikator='$userid'");
+                            $jdispensasi = mysqli_num_rows($qdispensasi);
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid'");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratdiajukan = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi + $jdispensasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -126,35 +119,27 @@ if ($role != 'adminprodi') {
                         if ($role == 'adminfakultas') {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikasi=0");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
-                            $qobservasikelompok = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE verifikasi=0");
-                            $jobservasikelompok = mysqli_num_rows($qobservasikelompok);
-                            $qpenelitiandinas = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE verifikasi=0");
-                            $jpenelitiandinas = mysqli_num_rows($qpenelitiandinas);
-                            $qpenelitianinstansi = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE verifikasi=0");
-                            $jpenelitianinstansi = mysqli_num_rows($qpenelitianinstansi);
-                            $qpenelitiansurvey = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE verifikasi=0");
-                            $jpenelitiansurvey = mysqli_num_rows($qpenelitiansurvey);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikasi=0");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikasi=0");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
-                            $totalsuratmenunggu = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikasi=0");
+                            $jpenelitian = mysqli_num_rows($qpenelitian);
+                            $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=0");
+                            $jsuket = mysqli_num_rows($qsuket);
+                            $qdispensasi = mysqli_query($conn, "SELECT * FROM dispensasi WHERE verifikasi=0");
+                            $jdispensasi = mysqli_num_rows($qdispensasi);
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=0");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratmenunggu = $jobservasiindividu + $jpenelitian +  $jsuket + $jrekomendasi + $jdispensasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=0");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
-                            $qobservasikelompok = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE verifikator='$userid' AND verifikasi=0");
-                            $jobservasikelompok = mysqli_num_rows($qobservasikelompok);
-                            $qpenelitiandinas = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE verifikator='$userid' AND verifikasi=0");
-                            $jpenelitiandinas = mysqli_num_rows($qpenelitiandinas);
-                            $qpenelitianinstansi = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE verifikator='$userid' AND verifikasi=0");
-                            $jpenelitianinstansi = mysqli_num_rows($qpenelitianinstansi);
-                            $qpenelitiansurvey = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE verifikator='$userid' AND verifikasi=0");
-                            $jpenelitiansurvey = mysqli_num_rows($qpenelitiansurvey);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikator='$userid' AND verifikasi=0");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikator='$userid' AND verifikasi=0");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
-                            $totalsuratmenunggu = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikator='$userid' AND verifikasi=0");
+                            $jpenelitian = mysqli_num_rows($qpenelitian);
+                            $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=0");
+                            $jsuket = mysqli_num_rows($suket);
+                            $qdispensasi = mysqli_query($conn, "SELECT * FROM dispensasi WHERE verifikator='$userid' AND verifikasi=0");
+                            $jdispensasi = mysqli_num_rows($suket);
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=0");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratmenunggu = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi + $jdispensasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -179,35 +164,27 @@ if ($role != 'adminprodi') {
                         if ($role == 'adminfakultas') {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikasi=1");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
-                            $qobservasikelompok = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE verifikasi=1");
-                            $jobservasikelompok = mysqli_num_rows($qobservasikelompok);
-                            $qpenelitiandinas = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE verifikasi=1");
-                            $jpenelitiandinas = mysqli_num_rows($qpenelitiandinas);
-                            $qpenelitianinstansi = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE verifikasi=1");
-                            $jpenelitianinstansi = mysqli_num_rows($qpenelitianinstansi);
-                            $qpenelitiansurvey = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE verifikasi=1");
-                            $jpenelitiansurvey = mysqli_num_rows($qpenelitiansurvey);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikasi=1");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikasi=1");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
-                            $totalsuratdisetujui = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikasi=1");
+                            $jpenelitian = mysqli_num_rows($qpenelitian);
+                            $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=1");
+                            $jsuket = mysqli_num_rows($qsuket);
+                            $qdispensasi = mysqli_query($conn, "SELECT * FROM dispensasi WHERE verifikasi=1");
+                            $jdispensasi = mysqli_num_rows($qdispensasi);
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=1");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratdisetujui = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi + $jdispensasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=1");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
-                            $qobservasikelompok = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE verifikator='$userid' AND verifikasi=1");
-                            $jobservasikelompok = mysqli_num_rows($qobservasikelompok);
-                            $qpenelitiandinas = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE verifikator='$userid' AND verifikasi=1");
-                            $jpenelitiandinas = mysqli_num_rows($qpenelitiandinas);
-                            $qpenelitianinstansi = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE verifikator='$userid' AND verifikasi=1");
-                            $jpenelitianinstansi = mysqli_num_rows($qpenelitianinstansi);
-                            $qpenelitiansurvey = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE verifikator='$userid' AND verifikasi=1");
-                            $jpenelitiansurvey = mysqli_num_rows($qpenelitiansurvey);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikator='$userid' AND verifikasi=1");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikator='$userid' AND verifikasi=1");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
-                            $totalsuratdisetujui = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikator='$userid' AND verifikasi=1");
+                            $jpenelitian = mysqli_num_rows($qpenelitian);
+                            $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=1");
+                            $jsuket = mysqli_num_rows($qsuket);
+                            $qdispensasi = mysqli_query($conn, "SELECT * FROM dispensasi WHERE verifikator='$userid' AND verifikasi=1");
+                            $jdispensasi = mysqli_num_rows($qdispensasi);
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=1");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratdisetujui = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi + $jdispensasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -236,35 +213,27 @@ if ($role != 'adminprodi') {
                         if ($role == 'adminfakultas') {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikasi=2");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
-                            $qobservasikelompok = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE verifikasi=2");
-                            $jobservasikelompok = mysqli_num_rows($qobservasikelompok);
-                            $qpenelitiandinas = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE verifikasi=2");
-                            $jpenelitiandinas = mysqli_num_rows($qpenelitiandinas);
-                            $qpenelitianinstansi = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE verifikasi=2");
-                            $jpenelitianinstansi = mysqli_num_rows($qpenelitianinstansi);
-                            $qpenelitiansurvey = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE verifikasi=2");
-                            $jpenelitiansurvey = mysqli_num_rows($qpenelitiansurvey);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikasi=2");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikasi=2");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
-                            $totalsuratditolak = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikasi=2");
+                            $jpenelitian = mysqli_num_rows($qpenelitian);
+                            $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikasi=2");
+                            $jsuket = mysqli_num_rows($qsuket);
+                            $qdispensasi = mysqli_query($conn, "SELECT * FROM dispensasi WHERE verifikasi=2");
+                            $jdispensasi = mysqli_num_rows($qdispensasi);
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikasi=2");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratditolak = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi + $jdispensasi;
                         } else {
                             $qobservasiindividu = mysqli_query($conn, "SELECT * FROM observasi WHERE verifikator='$userid' AND verifikasi=2");
                             $jobservasiindividu = mysqli_num_rows($qobservasiindividu);
-                            $qobservasikelompok = mysqli_query($conn, "SELECT * FROM observasikelompok WHERE verifikator='$userid' AND verifikasi=2");
-                            $jobservasikelompok = mysqli_num_rows($qobservasikelompok);
-                            $qpenelitiandinas = mysqli_query($conn, "SELECT * FROM penelitiandinas WHERE verifikator='$userid' AND verifikasi=2");
-                            $jpenelitiandinas = mysqli_num_rows($qpenelitiandinas);
-                            $qpenelitianinstansi = mysqli_query($conn, "SELECT * FROM penelitianinstansi WHERE verifikator='$userid' AND verifikasi=2");
-                            $jpenelitianinstansi = mysqli_num_rows($qpenelitianinstansi);
-                            $qpenelitiansurvey = mysqli_query($conn, "SELECT * FROM penelitiansurvey WHERE verifikator='$userid' AND verifikasi=2");
-                            $jpenelitiansurvey = mysqli_num_rows($qpenelitiansurvey);
-                            $qtranskripnilai = mysqli_query($conn, "SELECT * FROM transkripnilai WHERE verifikator='$userid' AND verifikasi=2");
-                            $jtranskripnilai = mysqli_num_rows($qtranskripnilai);
-                            $qvalidasi = mysqli_query($conn, "SELECT * FROM validasi WHERE verifikator='$userid' AND verifikasi=2");
-                            $jvalidasi = mysqli_num_rows($qvalidasi);
-                            $totalsuratditolak = $jobservasiindividu + $jobservasikelompok + $jpenelitiandinas + $jpenelitianinstansi + $jpenelitiansurvey + $jtranskripnilai + $jvalidasi;
+                            $qpenelitian = mysqli_query($conn, "SELECT * FROM penelitian WHERE verifikator='$userid' AND verifikasi=2");
+                            $jpenelitian = mysqli_num_rows($qpenelitian);
+                            $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE verifikator='$userid' AND verifikasi=2");
+                            $jsuket = mysqli_num_rows($qsuket);
+                            $qdispensasi = mysqli_query($conn, "SELECT * FROM dispensasi WHERE verifikator='$userid' AND verifikasi=2");
+                            $jdispensasi = mysqli_num_rows($qdispensasi);
+                            $qrekomendasi = mysqli_query($conn, "SELECT * FROM rekomendasi WHERE verifikator='$userid' AND verifikasi=2");
+                            $jrekomendasi = mysqli_num_rows($qrekomendasi);
+                            $totalsuratditolak = $jobservasiindividu + $jpenelitian + $jsuket + $jrekomendasi + $jdispensasi;
                         }
                         ?>
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -301,51 +270,63 @@ if ($role != 'adminprodi') {
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
-                                                    <th width="30%">Program Studi</th>
-                                                    <th width="30%">Surat</th>
+                                                    <th>No</th>
+                                                    <th>Program Studi</th>
                                                     <th>Nama</th>
-                                                    <th>Status</th>
+                                                    <th>Surat</th>
+                                                    <th>Tanggal Pengajuan</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- observasi individu -->
                                                 <?php
                                                 $no = 1;
-                                                if ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM observasi WHERE verifikator='$userid' ORDER BY verifikasi";
-                                                } else {
-                                                    $query = "SELECT * FROM observasi ORDER BY verifikasi";
-                                                };
+                                                ?>
 
+                                                <!-- Izin Observasi -->
+                                                <?php
+                                                if ($role == 'adminfakultas') {
+                                                    $query = "SELECT * FROM observasi ORDER BY prodi";
+                                                } elseif ($role == 'adminprodi') {
+                                                    $query = "SELECT * FROM observasi WHERE verifikator = '$userid' ORDER BY prodi";
+                                                }
                                                 $qobservasi = mysqli_query($conn, $query);
                                                 while ($dobservasi = mysqli_fetch_array($qobservasi)) {
-                                                    $nodata = $dobservasi['no'];
-                                                    $nama = $dobservasi['nama'];
-                                                    $prodi = $dobservasi['prodi'];
-                                                    $surat = 'Observasi Individu';
+                                                    $nodata = $dobservasi['nodata'];
                                                     $tglpengajuan = $dobservasi['tglpengajuan'];
-                                                    $verifikasi = $dobservasi['verifikasi'];
+                                                    $prodi = $dobservasi['prodi'];
+                                                    $nama = $dobservasi['nama'];
+                                                    $nim = $dobservasi['nim'];
+                                                    $statussurat = $dobservasi['statussurat'];
+                                                    $keterangan = $dobservasi['keterangan'];
                                                 ?>
                                                     <tr>
-                                                        <td width="5%"><?= $no; ?></td>
-                                                        <td width="25%"><?= $prodi; ?></td>
-                                                        <td width="20%"><?= $surat; ?></td>
-                                                        <td width="20%"><?= $nama; ?></td>
-                                                        <td width="15%"><?php
-                                                                        if ($verifikasi == 0) {
-                                                                        ?>
-                                                                <a class="btn btn-warning btn-sm" href="observasiindividu-tampil.php?nodata=<?= $nodata; ?>">Menunggu Validasi</a>
+                                                        <td><?= $no; ?></td>
+                                                        <td><?= $prodi; ?></td>
+                                                        <td><?= $nama; ?></td>
+                                                        <td>Izin Observasi</td>
+                                                        <td><?= tgljam_indo($tglpengajuan); ?> </td>
+                                                        <td>
                                                             <?php
-                                                                        } elseif ($verifikasi == 1) {
+                                                            if ($statussurat == 0) {
                                                             ?>
-                                                                <a class="btn btn-success btn-sm" href="../mahasiswa/observasiindividu-cetak.php?nodata=<?= $nodata; ?>"><i class="fas fa-print"></i></a>
+                                                                <a class="btn btn-secondary btn-sm" onclick="return alert('Menunggu Persetujuan');">
+                                                                    <i class="fa fa-spinner"></i>
+                                                                </a>
                                                             <?php
-                                                                        } else {
+                                                            } elseif ($statussurat == 1) {
                                                             ?>
-                                                                <a class="btn btn-danger btn-sm" href="observasiindividu-tampil.php?nodata=<?= $nodata; ?>">Ditolak</a>
+                                                                <a class="btn btn-primary btn-sm" href="../mahasiswa/observasiindividu-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                    <i class="fa fa-print"></i>
+                                                                </a>
                                                             <?php
-                                                                        }
+                                                            } elseif ($statussurat == 2) {
+                                                            ?>
+                                                                <a class="btn btn-danger btn-sm" onclick="return alert('Ditolak dengan alasan <?= $keterangan; ?>')">
+                                                                    <i class="fa fa-ban"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
                                                             ?>
                                                         </td>
                                                     </tr>
@@ -355,260 +336,214 @@ if ($role != 'adminprodi') {
                                                 }
                                                 ?>
 
-                                                <!-- observasi kelompok -->
+                                                <!-- Izin Penelitian-->
                                                 <?php
-                                                if ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM observasikelompok WHERE verifikator='$userid' ORDER BY verifikasi";
-                                                } else {
-                                                    $query = "SELECT * FROM observasikelompok ORDER BY verifikasi";
-                                                };
-                                                $qobservasikelompok = mysqli_query($conn, $query);
-                                                while ($dobservasikelompok = mysqli_fetch_array($qobservasikelompok)) {
-                                                    $nodata = $dobservasikelompok['no'];
-                                                    $nama = $dobservasikelompok['nama'];
-                                                    $prodi = $dobservasikelompok['prodi'];
-                                                    $surat = 'Observasi Kelompok';
-                                                    $tglpengajuan = $dobservasikelompok['tglpengajuan'];
-                                                    $verifikasi = $dobservasikelompok['verifikasi'];
+                                                if ($role == 'adminfakultas') {
+                                                    $query = "SELECT * FROM penelitian ORDER BY prodi";
+                                                } elseif ($role == 'adminprodi') {
+                                                    $query = "SELECT * FROM penelitian WHERE verifikator = '$userid' ORDER BY prodi";
+                                                }
+                                                $qpenelitian = mysqli_query($conn, $query);
+                                                while ($dpenelitian = mysqli_fetch_array($qpenelitian)) {
+                                                    $nodata = $dpenelitian['nodata'];
+                                                    $tglpengajuan = $dpenelitian['tglpengajuan'];
+                                                    $prodi = $dpenelitian['prodi'];
+                                                    $nama = $dpenelitian['nama'];
+                                                    $nim = $dpenelitian['nim'];
+                                                    $keterangan = $dpenelitian['keterangan'];
+                                                    $statussurat = $dpenelitian['statussurat'];
                                                 ?>
                                                     <tr>
-                                                        <td width="5%"><?= $no; ?></td>
-                                                        <td width="25%"><?= $prodi; ?></td>
-                                                        <td width="20%"><?= $surat; ?></td>
-                                                        <td width="20%"><?= $nama; ?></td>
-                                                        <td width="15%"><?php
-                                                                        if ($verifikasi == 0) {
-                                                                        ?>
-                                                                <a class="btn btn-warning btn-sm" href="observasikelompok-tampil.php?nodata=<?= $nodata; ?>">Menunggu Validasi</a>
+                                                        <td><?= $no; ?></td>
+                                                        <td><?= $prodi; ?></td>
+                                                        <td><?= $nama; ?></td>
+                                                        <td>Izin Penelitian</td>
+                                                        <td><?= tgljam_indo($tglpengajuan); ?></td>
+                                                        <td>
                                                             <?php
-                                                                        } elseif ($verifikasi == 1) {
+                                                            if ($statussurat == 0) {
                                                             ?>
-                                                                <a class="btn btn-success btn-sm" href="../mahasiswa/observasikelompok-cetak.php?nodata=<?= $nodata; ?>"><i class="fas fa-print"></i></a>
+                                                                <a class="btn btn-secondary btn-sm" onclick="return alert('Menunggu Persetujuan');">
+                                                                    <i class="fa fa-spinner"></i>
+                                                                </a>
                                                             <?php
-                                                                        } else {
+                                                            } elseif ($statussurat == 1) {
                                                             ?>
-                                                                <a class="btn btn-danger btn-sm" href="observasikelompok-tampil.php?nodata=<?= $nodata; ?>">Ditolak</a>
+                                                                <a class="btn btn-primary btn-sm" href="../mahasiswa/penelitian-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                    <i class="fa fa-print"></i>
+                                                                </a>
                                                             <?php
-                                                                        }
+                                                            } elseif ($statussurat == 2) {
+                                                            ?>
+                                                                <a class="btn btn-danger btn-sm" onclick="return alert('Ditolak dengan alasan <?= $keterangan; ?>')">
+                                                                    <i class="fa fa-ban"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
                                                             ?>
                                                         </td>
                                                     </tr>
+
                                                 <?php
                                                     $no++;
                                                 }
                                                 ?>
 
-                                                <!-- penelitian dinas -->
+                                                <!-- Dispensasi-->
                                                 <?php
-                                                if ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM penelitiandinas WHERE verifikator='$userid' ORDER BY verifikasi";
-                                                } else {
-                                                    $query = "SELECT * FROM penelitiandinas ORDER BY verifikasi";
+                                                if ($role == 'adminfakultas') {
+                                                    $query = "SELECT * FROM dispensasi ORDER BY prodi";
+                                                } elseif ($role == 'adminprodi') {
+                                                    $query = "SELECT * FROM dispensasi WHERE verifikator = '$userid' ORDER BY prodi";
                                                 }
-                                                $qpenelitiandinas = mysqli_query($conn, $query);
-                                                while ($dpenelitiandinas = mysqli_fetch_array($qpenelitiandinas)) {
-                                                    $nodata = $dpenelitiandinas['no'];
-                                                    $nama = $dpenelitiandinas['nama'];
-                                                    $prodi = $dpenelitiandinas['prodi'];
-                                                    $surat = 'Penelitian Dinas';
-                                                    $tglpengajuan = $dpenelitiandinas['tglpengajuan'];
-                                                    $verifikasi = $dpenelitiandinas['verifikasi'];
+                                                $qpenelitian = mysqli_query($conn, $query);
+                                                while ($dpenelitian = mysqli_fetch_array($qpenelitian)) {
+                                                    $nodata = $dpenelitian['nodata'];
+                                                    $tglpengajuan = $dpenelitian['tglpengajuan'];
+                                                    $prodi = $dpenelitian['prodi'];
+                                                    $nama = $dpenelitian['nama'];
+                                                    $nim = $dpenelitian['nim'];
+                                                    $keterangan = $dpenelitian['keterangan'];
+                                                    $statussurat = $dpenelitian['statussurat'];
                                                 ?>
                                                     <tr>
-                                                        <td width="5%"><?= $no; ?></td>
-                                                        <td width="25%"><?= $prodi; ?></td>
-                                                        <td width="20%"><?= $surat; ?></td>
-                                                        <td width="20%"><?= $nama; ?></td>
-                                                        <td width="15%"><?php
-                                                                        if ($verifikasi == 0) {
-                                                                        ?>
-                                                                <a class="btn btn-warning btn-sm" href="penelitiandinas-tampil.php?nodata=<?= $nodata; ?>">Menunggu Validasi</a>
+                                                        <td><?= $no; ?></td>
+                                                        <td><?= $prodi; ?></td>
+                                                        <td><?= $nama; ?></td>
+                                                        <td>Dispensasi Kegiatan</td>
+                                                        <td><?= tgljam_indo($tglpengajuan); ?></td>
+                                                        <td>
                                                             <?php
-                                                                        } elseif ($verifikasi == 1) {
+                                                            if ($statussurat == 0) {
                                                             ?>
-                                                                <a class="btn btn-success btn-sm" href="../mahasiswa/penelitiandinas-cetak.php?nodata=<?= $nodata; ?>"><i class="fas fa-print"></i></a>
+                                                                <a class="btn btn-secondary btn-sm" onclick="return alert('Menunggu Persetujuan');">
+                                                                    <i class="fa fa-spinner"></i>
+                                                                </a>
                                                             <?php
-                                                                        } else {
+                                                            } elseif ($statussurat == 1) {
                                                             ?>
-                                                                <a class="btn btn-danger btn-sm" href="penelitiandinas-tampil.php?nodata=<?= $nodata; ?>">Ditolak</a>
+                                                                <a class="btn btn-primary btn-sm" href="../mahasiswa/dispensasi-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                    <i class="fa fa-print"></i>
+                                                                </a>
                                                             <?php
-                                                                        }
+                                                            } elseif ($statussurat == 2) {
+                                                            ?>
+                                                                <a class="btn btn-danger btn-sm" onclick="return alert('Ditolak dengan alasan <?= $keterangan; ?>')">
+                                                                    <i class="fa fa-ban"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
                                                             ?>
                                                         </td>
                                                     </tr>
+
                                                 <?php
                                                     $no++;
                                                 }
                                                 ?>
 
-                                                <!-- penelitian instansi -->
+                                                <!-- Surat Keterangan-->
                                                 <?php
-                                                if ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM penelitianinstansi WHERE verifikator='$userid' ORDER BY verifikasi";
-                                                } else {
-                                                    $query = "SELECT * FROM penelitianinstansi ORDER BY verifikasi";
+                                                if ($role == 'adminfakultas') {
+                                                    $query = "SELECT * FROM suket ORDER BY prodi";
+                                                } elseif ($role == 'adminprodi') {
+                                                    $query = "SELECT * FROM suket WHERE verifikator = '$userid' ORDER BY prodi";
                                                 }
-
-                                                $qpenelitianinstansi = mysqli_query($conn, $query);
-                                                while ($dpenelitianinstansi = mysqli_fetch_array($qpenelitianinstansi)) {
-                                                    $nodata = $dpenelitianinstansi['no'];
-                                                    $nama = $dpenelitianinstansi['nama'];
-                                                    $prodi = $dpenelitianinstansi['prodi'];
-                                                    $surat = 'Penelitian Instansi';
-                                                    $tglpengajuan = $dpenelitianinstansi['tglpengajuan'];
-                                                    $verifikasi = $dpenelitianinstansi['verifikasi'];
+                                                $qsuket = mysqli_query($conn, $query);
+                                                while ($dsuket = mysqli_fetch_array($qsuket)) {
+                                                    $nodata = $dsuket['nodata'];
+                                                    $tglpengajuan = $dsuket['tanggal'];
+                                                    $prodi = $dsuket['prodi'];
+                                                    $nama = $dsuket['nama'];
+                                                    $nim = $dsuket['nim'];
+                                                    $keterangan = $dsuket['keterangan'];
+                                                    $jenissurat = $dsuket['jenissurat'];
+                                                    $statussurat = $dsuket['statussurat'];
                                                 ?>
                                                     <tr>
-                                                        <td width="5%"><?= $no; ?></td>
-                                                        <td width="25%"><?= $prodi; ?></td>
-                                                        <td width="20%"><?= $surat; ?></td>
-                                                        <td width="20%"><?= $nama; ?></td>
-                                                        <td width="15%"><?php
-                                                                        if ($verifikasi == 0) {
-                                                                        ?>
-                                                                <a class="btn btn-warning btn-sm" href="penelitianinstansi-tampil.php?nodata=<?= $nodata; ?>">Menunggu Validasi</a>
+                                                        <td><?= $no; ?></td>
+                                                        <td><?= $prodi; ?></td>
+                                                        <td><?= $nama; ?></td>
+                                                        <td>Keterangan <?= $jenissurat; ?></td>
+                                                        <td><?= tgljam_indo($tglpengajuan); ?></td>
+                                                        <td>
                                                             <?php
-                                                                        } elseif ($verifikasi == 1) {
+                                                            if ($statussurat == 0) {
                                                             ?>
-                                                                <a class="btn btn-success btn-sm" href="../mahasiswa/penelitianinstansi-cetak.php?nodata=<?= $nodata; ?>"><i class="fas fa-print"></i></a>
+                                                                <a class="btn btn-secondary btn-sm" onclick="return alert('Menunggu Persetujuan');">
+                                                                    <i class="fa fa-spinner"></i>
+                                                                </a>
                                                             <?php
-                                                                        } else {
+                                                            } elseif ($statussurat == 1) {
                                                             ?>
-                                                                <a class="btn btn-danger btn-sm" href="penelitianinstansi-tampil.php?nodata=<?= $nodata; ?>">Ditolak</a>
+                                                                <a class="btn btn-primary btn-sm" href="../mahasiswa/suket-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                    <i class="fa fa-print"></i>
+                                                                </a>
                                                             <?php
-                                                                        }
+                                                            } elseif ($statussurat == 2) {
+                                                            ?>
+                                                                <a class="btn btn-danger btn-sm" onclick="return alert('Ditolak dengan alasan <?= $keterangan; ?>')">
+                                                                    <i class="fa fa-ban"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
                                                             ?>
                                                         </td>
                                                     </tr>
+
                                                 <?php
                                                     $no++;
                                                 }
                                                 ?>
 
-                                                <!-- penelitian survey -->
+                                                <!-- Surat Rekomendasi-->
                                                 <?php
-                                                if ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM penelitiansurvey WHERE verifikator='$userid' ORDER BY verifikasi";
-                                                } else {
-                                                    $query = "SELECT * FROM penelitiansurvey ORDER BY verifikasi";
+                                                if ($role == 'adminfakultas') {
+                                                    $query = "SELECT * FROM rekomendasi ORDER BY prodi";
+                                                } elseif ($role == 'adminprodi') {
+                                                    $query = "SELECT * FROM rekomendasi WHERE verifikator = '$userid' ORDER BY prodi";
                                                 }
-                                                $qpenelitiansurvey = mysqli_query($conn, $query);
-                                                while ($dpenelitiansurvey = mysqli_fetch_array($qpenelitiansurvey)) {
-                                                    $nodata = $dpenelitiansurvey['no'];
-                                                    $nama = $dpenelitiansurvey['nama'];
-                                                    $prodi = $dpenelitiansurvey['prodi'];
-                                                    $surat = 'Penelitian Survey';
-                                                    $tglpengajuan = $dpenelitiansurvey['tglpengajuan'];
-                                                    $verifikasi = $dpenelitiansurvey['verifikasi'];
+                                                $qsuket = mysqli_query($conn, $query);
+                                                while ($dsuket = mysqli_fetch_array($qsuket)) {
+                                                    $nodata = $dsuket['nodata'];
+                                                    $tglpengajuan = $dsuket['tanggal'];
+                                                    $prodi = $dsuket['prodi'];
+                                                    $nama = $dsuket['nama'];
+                                                    $nim = $dsuket['nim'];
+                                                    $keterangan = $dsuket['keterangan'];
+                                                    $statussurat = $dsuket['statussurat'];
                                                 ?>
                                                     <tr>
-                                                        <td width="5%"><?= $no; ?></td>
-                                                        <td width="25%"><?= $prodi; ?></td>
-                                                        <td width="20%"><?= $surat; ?></td>
-                                                        <td width="20%"><?= $nama; ?></td>
-                                                        <td width="15%"><?php
-                                                                        if ($verifikasi == 0) {
-                                                                        ?>
-                                                                <a class="btn btn-warning btn-sm" href="penelitiansurvey-tampil.php?nodata=<?= $nodata; ?>">Menunggu Validasi</a>
+                                                        <td><?= $no; ?></td>
+                                                        <td><?= $prodi; ?></td>
+                                                        <td><?= $nama; ?></td>
+                                                        <td>Keterangan Rekomendasi</td>
+                                                        <td><?= tgljam_indo($tglpengajuan); ?></td>
+                                                        <td>
                                                             <?php
-                                                                        } elseif ($verifikasi == 1) {
+                                                            if ($statussurat == 0) {
                                                             ?>
-                                                                <a class="btn btn-success btn-sm" href="../mahasiswa/penelitiansurvey-cetak.php?nodata=<?= $nodata; ?>"><i class="fas fa-print"></i></a>
+                                                                <a class="btn btn-secondary btn-sm" onclick="return alert('Menunggu Persetujuan');">
+                                                                    <i class="fa fa-spinner"></i>
+                                                                </a>
                                                             <?php
-                                                                        } else {
+                                                            } elseif ($statussurat == 1) {
                                                             ?>
-                                                                <a class="btn btn-danger btn-sm" href="penelitiansurvey-tampil.php?nodata=<?= $nodata; ?>">Ditolak</a>
+                                                                <a class="btn btn-primary btn-sm" href="../mahasiswa/rekomendasi-cetak.php?nodata=<?= $nodata; ?>" target="_blank">
+                                                                    <i class="fa fa-print"></i>
+                                                                </a>
                                                             <?php
-                                                                        }
+                                                            } elseif ($statussurat == 2) {
+                                                            ?>
+                                                                <a class="btn btn-danger btn-sm" onclick="return alert('Ditolak dengan alasan <?= $keterangan; ?>')">
+                                                                    <i class="fa fa-ban"></i>
+                                                                </a>
+                                                            <?php
+                                                            }
                                                             ?>
                                                         </td>
                                                     </tr>
-                                                <?php
-                                                    $no++;
-                                                }
-                                                ?>
 
-                                                <!-- transkrip nilai -->
-                                                <?php
-                                                if ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM transkripnilai WHERE verifikator='$userid' ORDER BY verifikasi";
-                                                } else {
-                                                    $query = "SELECT * FROM transkripnilai ORDER BY verifikasi";
-                                                }
-                                                $qtranskripnilai = mysqli_query($conn, $query);
-                                                while ($dtranskripnilai = mysqli_fetch_array($qtranskripnilai)) {
-                                                    $nodata = $dtranskripnilai['no'];
-                                                    $nama = $dtranskripnilai['nama'];
-                                                    $prodi = $dtranskripnilai['prodi'];
-                                                    $surat = 'Transkrip Nilai Sementara';
-                                                    $tglpengajuan = $dtranskripnilai['tglpengajuan'];
-                                                    $verifikasi = $dtranskripnilai['verifikasi'];
-                                                ?>
-                                                    <tr>
-                                                        <td width="5%"><?= $no; ?></td>
-                                                        <td width="25%"><?= $prodi; ?></td>
-                                                        <td width="20%"><?= $surat; ?></td>
-                                                        <td width="20%"><?= $nama; ?></td>
-                                                        <td width="15%"><?php
-                                                                        if ($verifikasi == 0) {
-                                                                        ?>
-                                                                <a class="btn btn-warning btn-sm" href="transkripnilai-tampil.php?nodata=<?= $nodata; ?>">Menunggu Validasi</a>
-                                                            <?php
-                                                                        } elseif ($verifikasi == 1) {
-                                                            ?>
-                                                                <a class="btn btn-success btn-sm" href="../mahasiswa/transkripnilai-cetak.php?nodata=<?= $nodata; ?>"><i class="fas fa-print"></i></a>
-                                                            <?php
-                                                                        } else {
-                                                            ?>
-                                                                <a class="btn btn-danger btn-sm" href="transkripnilai-tampil.php?nodata=<?= $nodata; ?>">Ditolak</a>
-                                                            <?php
-                                                                        }
-                                                            ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                                    $no++;
-                                                }
-                                                ?>
-
-                                                <!-- validasi -->
-                                                <?php
-                                                if ($role == 'adminprodi') {
-                                                    $query = "SELECT * FROM validasi WHERE verifikator='$userid' ORDER BY verifikasi";
-                                                } else {
-                                                    $query = "SELECT * FROM validasi ORDER BY verifikasi";
-                                                }
-                                                $qvalidasi = mysqli_query($conn, $query);
-                                                while ($dvalidasi = mysqli_fetch_array($qvalidasi)) {
-                                                    $nodata = $dvalidasi['no'];
-                                                    $nama = $dvalidasi['nama'];
-                                                    $prodi = $dvalidasi['prodi'];
-                                                    $surat = 'Permohonan Validasi';
-                                                    $tglpengajuan = $dvalidasi['tglpengajuan'];
-                                                    $verifikasi = $dvalidasi['verifikasi'];
-                                                ?>
-                                                    <tr>
-                                                        <td width="5%"><?= $no; ?></td>
-                                                        <td width="25%"><?= $prodi; ?></td>
-                                                        <td width="20%"><?= $surat; ?></td>
-                                                        <td width="20%"><?= $nama; ?></td>
-                                                        <td width="15%"><?php
-                                                                        if ($verifikasi == 0) {
-                                                                        ?>
-                                                                <a class="btn btn-warning btn-sm" href="validator-tampil.php?nodata=<?= $nodata; ?>">Menunggu Validasi</a>
-                                                            <?php
-                                                                        } elseif ($verifikasi == 1) {
-                                                            ?>
-                                                                <a class="btn btn-success btn-sm" href="../mahasiswa/validator-cetak.php?nodata=<?= $nodata; ?>"><i class="fas fa-print"></i></a>
-                                                            <?php
-                                                                        } else {
-                                                            ?>
-                                                                <a class="btn btn-danger btn-sm" href="validator-tampil.php?nodata=<?= $nodata; ?>">Ditolak</a>
-                                                            <?php
-                                                                        }
-                                                            ?>
-                                                        </td>
-                                                    </tr>
                                                 <?php
                                                     $no++;
                                                 }
@@ -622,7 +557,6 @@ if ($role != 'adminprodi') {
                     </div>
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 

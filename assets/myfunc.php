@@ -17,7 +17,7 @@ function tgljam_indo($tanggal)
             1 =>   'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
         );
         $pecahkan = explode('-', substr($tanggal, 0, 10));
-        return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0] . ' pukul ' . (substr($tanggal, 11, 8)) . ' WIB';
+        return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0] . ' jam ' . (substr($tanggal, 11, 8)) . ' WIB';
     }
 }
 
@@ -111,12 +111,17 @@ function multibaris($pesan)
 <?php
 function hp($nohp)
 {
+    /*
     $nohp = str_replace(" ", "", $nohp);
     $nohp = str_replace("(", "", $nohp);
     $nohp = str_replace(")", "", $nohp);
     $nohp = str_replace(".", "", $nohp);
     $nohp = str_replace("-", "", $nohp);
-
+    */
+    if (substr($nohp, 0, 1) == '0') {
+        $hp = '62' . substr($nohp, 1);
+    }
+    /*
     if (!preg_match('/[^+0-9]/', trim($nohp))) {
         if (substr(trim($nohp), 0, 2) == '+6') {
             $hp = substr(trim($nohp), 1);
@@ -126,5 +131,6 @@ function hp($nohp)
             $hp = trim($nohp);
         }
     }
+    */
     return $hp;
 }

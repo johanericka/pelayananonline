@@ -33,6 +33,7 @@ $nama = $dmhs2['nama'];
 $email = $dmhs2['email'];
 
 //kirim email user
+$actual_link = "https://$_SERVER[HTTP_HOST]";
 $subject = "Notifikasi Pengajuan Surat Keterangan " . $jenissurat;
 $pesan = "Yth. " . $nama . "
             <br/>
@@ -43,10 +44,10 @@ $pesan = "Yth. " . $nama . "
             Silahkan klik tombol berikut ini untuk mencetak Surat Keterangan " . $jenissurat . " anda
             <br/>
             <br/>
-            <a href='https://humaniora.uin-malang.ac.id/pelayananonline/mahasiswa/suket-cetak.php?nodata=" . $nodata . "' style=' background-color: #0000FF;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Cetak Surat Keterangan " . $jenissurat . "</a> 
+            <a href='" . $actual_link . "/mahasiswa/suket-cetak.php?nodata=" . $nodata . "' style=' background-color: #0000FF;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Cetak Surat Keterangan " . $jenissurat . "</a> 
             <br/>
             <br/>
-            Atau anda dapat mencetak melalui <a href='https://humaniora.uin-malang.ac.id/pelayananonline/'>Sistem Pelayanan Online Fakultas Humaniora UIN Maulana Malik Ibrahim Malang</a>
+            Atau anda dapat mencetak melalui <a href='" . $actual_link . "'>Sistem Pelayanan Online Fakultas Humaniora UIN Maulana Malik Ibrahim Malang</a>
             <br/>
             <br/>		
             Wassalamualaiakum Wr. Wb.

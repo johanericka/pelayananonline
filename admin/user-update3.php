@@ -11,16 +11,6 @@ $password = mysqli_real_escape_string($conn, $_POST['password']);
 $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
 $passmd5 = md5($password);
 
-/*
-echo $userid . "<br/>";
-echo $nama . "<br/>";
-echo $nohp . "<br/>";
-echo $email . "<br/>";
-echo $userid . "<br/>";
-echo $password . "<br/>";
-echo $passmd5 . "<br/>";
-*/
-
 if ($password == $password2) {
 	$qsimpan = mysqli_query($conn, "UPDATE pengguna 
 									SET nama = '$nama',

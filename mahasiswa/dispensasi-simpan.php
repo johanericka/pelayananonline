@@ -41,6 +41,7 @@ $qadminfak = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminfaku
 while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 	$emailfak = $dadminfak['email'];
 	$namaadmin = $dadminfak['nama'];
+	$actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	$surat = "Dispensasi";
 	$subject = "Notifikasi Pengajuan Surat " . $surat;
 	$pesan = "Yth. " . $namaadmin . "
@@ -52,7 +53,7 @@ while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 						Silahkan klik tombol dibawah ini untuk melakukan verifikasi surat.
 						<br/>
 						<br/>
-                        <a href='https://humaniora.uin-malang.ac.id/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+                        <a href='" . $actual_link . "/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
 						<br/>
 						<br/>
 						Wassalamualaikum Wr. Wb.

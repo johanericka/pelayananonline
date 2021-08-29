@@ -33,13 +33,31 @@ CREATE TABLE IF NOT EXISTS `dispensasi` (
   KEY `Index 1` (`nodata`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Dumping data for table pelayananonline.dispensasi: ~0 rows (approximately)
+-- Dumping data for table pelayananonline.dispensasi: ~2 rows (approximately)
 DELETE FROM `dispensasi`;
 /*!40000 ALTER TABLE `dispensasi` DISABLE KEYS */;
 INSERT INTO `dispensasi` (`nodata`, `tglpengajuan`, `prodi`, `nim`, `nama`, `nohp`, `email`, `kegiatan`, `namainstansi`, `tglmulai`, `tglselesai`, `alamatinstansi`, `verifikator`, `verifikasi`, `tglverifikasi`, `keterangan`, `statussurat`) VALUES
 	(11, '2021-08-28 17:57:42', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.co', 'Praktek Kerja Lapangan (PKL) / Magang', 'Pengasuh Pondok Putri', '2021-08-28', '2021-08-30', 'Jl. Merjosari No. 123 Malang', '197411012003121004', 1, '2021-08-28 17:58:06', '11/FHm/KM.01.2/08/2021', 1),
 	(12, '2021-08-28 17:59:51', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.co', 'perkuliahan', 'dosen pengampu perkuliahan', '2021-08-28', '2021-09-04', 'UIN Malang', '197411012003121004', 1, '2021-08-28 18:00:13', '12/FHm/KM.01.2/08/2021', 1);
 /*!40000 ALTER TABLE `dispensasi` ENABLE KEYS */;
+
+-- Dumping structure for table pelayananonline.email
+CREATE TABLE IF NOT EXISTS `email` (
+  `host` varchar(100) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `smtpsecure` varchar(100) DEFAULT NULL,
+  `port` int(11) DEFAULT NULL,
+  `from` varchar(100) DEFAULT NULL,
+  `fromname` varchar(100) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- Dumping data for table pelayananonline.email: 0 rows
+DELETE FROM `email`;
+/*!40000 ALTER TABLE `email` DISABLE KEYS */;
+INSERT INTO `email` (`host`, `username`, `password`, `smtpsecure`, `port`, `from`, `fromname`) VALUES
+	('tls://smtp.gmail.com', 'fhumaniorauinmalang@gmail.com', 'rahasia.123', 'tls', 587, 'humaniora@uin-malang.ac.id', 'Fakultas Humaniora UIN Malang');
+/*!40000 ALTER TABLE `email` ENABLE KEYS */;
 
 -- Dumping structure for table pelayananonline.jenissurat
 CREATE TABLE IF NOT EXISTS `jenissurat` (
@@ -128,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `penelitian` (
   `keterangan` varchar(100) DEFAULT NULL,
   `statussurat` tinyint(4) DEFAULT '0',
   KEY `Index 1` (`nodata`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table pelayananonline.penelitian: ~1 rows (approximately)
 DELETE FROM `penelitian`;
@@ -158,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `pengguna` (
 DELETE FROM `pengguna`;
 /*!40000 ALTER TABLE `pengguna` DISABLE KEYS */;
 INSERT INTO `pengguna` (`no`, `nama`, `nim`, `nohp`, `email`, `prodi`, `user`, `pass`, `plaintext`, `role`, `token`, `status`) VALUES
-	(20, 'Admin Fakultas', '999999', '085643201833', 'saintekonline@gmail.com', 'Humaniora', 'admin-fakultas', '0e30c7af5639b9410da357c13a3509a6', 'admin-fakultas', 'adminfakultas', 'af049aa2c187986eff03ffcd467edc5a', 1),
+	(20, 'Admin Fakultas', '999999', '628123456789', 'saintekonline@gmail.com', 'Humaniora', 'admin-fakultas', '0e30c7af5639b9410da357c13a3509a6', 'admin-fakultas', 'adminfakultas', 'af049aa2c187986eff03ffcd467edc5a', 1),
 	(1004, 'admin-bsa', '1111111111', '08123456789', 'bsa@uin-malang.ac.id', 'Bahasa dan Sastra Arab', 'admin-bsa', 'f8121eb48ac35be2cc82233ece092dbe', 'admin-bsa', 'adminprodi', '0', 1),
 	(1005, 'admin-si', '1111111', '08123456789', 'saintekonline@gmail.com', 'Sastra Inggris', 'admin-si', '0e42ec66429294abb954a7ff554e97d1', 'admin-si', 'adminprodi', 'af049aa2c187986eff03ffcd467edc5a', 1),
 	(1006, 'Johan Ericka Wahyu Prakasa', '11111111', '08123456789', 'johanericka@gmail.com', 'Bahasa dan Sastra Arab', 'johanericka', 'ac43724f16e9241d990427ab7c8f4228', 'rahasia', 'mahasiswa', '6789f26a7fa5f40f93beef04028a175c', 1);
@@ -228,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `suket` (
   `keterangan` varchar(200) DEFAULT NULL,
   `statussurat` tinyint(4) DEFAULT '0',
   KEY `Index 1` (`nodata`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table pelayananonline.suket: 7 rows
 DELETE FROM `suket`;
@@ -240,7 +258,8 @@ INSERT INTO `suket` (`nodata`, `tanggal`, `prodi`, `nim`, `nama`, `notelepon`, `
 	(6, '2021-08-28 13:53:50', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Perpanjangan Waktu Pembayaran UKT', 'usaha orang tua terdampak COVID-19', '', '', '197411012003121004', 1, '2021-08-28 14:13:23', 'B-6/FHm/KM.01.3/08/2021', 1),
 	(7, '2021-08-28 14:24:21', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Keringanan UKT', 'orang tua sudah pensiun', '', '', '197411012003121004', 1, '2021-08-28 14:31:44', 'B-7/FHm/KM.01.3/08/2021', 1),
 	(8, '2021-08-28 14:24:46', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Penurunan UKT', 'sedang menempuh skripsi', '', '', '197411012003121004', 1, '2021-08-28 14:32:02', 'B-8/FHm/KM.01.3/08/2021', 1),
-	(9, '2021-08-28 16:49:54', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Belum Menerima Beasiswa', 'mendaftar beasiswa bantuan belajar kemenag 2021', '', '', '197411012003121004', 1, '2021-08-28 16:52:45', 'B-9/FHm/KM.01.3/08/2021', 1);
+	(9, '2021-08-28 16:49:54', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Belum Menerima Beasiswa', 'mendaftar beasiswa bantuan belajar kemenag 2021', '', '', '197411012003121004', 1, '2021-08-28 16:52:45', 'B-9/FHm/KM.01.3/08/2021', 1),
+	(15, '2021-08-29 14:12:04', 'Bahasa dan Sastra Arab', '11111111', 'Johan Ericka Wahyu Prakasa', '08123456789', 'johanericka@gmail.com', 'Belum Menerima Beasiswa', 'mendaftar beasiswa bantuan belajar kemenag 2021', NULL, NULL, '197411012003121004', 2, '2021-08-29 14:12:31', 'beasiswa sudah tutup', 2);
 /*!40000 ALTER TABLE `suket` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

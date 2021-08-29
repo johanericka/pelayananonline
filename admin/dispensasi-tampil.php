@@ -220,7 +220,7 @@ if ($role != 'adminprodi') {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="penelitian-tolak.php" method="POST">
+                <form action="dispensasi-tolak.php" method="POST">
                     <div class="modal-body">
                         Tuliskan Alasan penolakan disini : <br />
                         <textarea class="form-control " name="keterangan" id="keterangan" rows="4"></textarea>

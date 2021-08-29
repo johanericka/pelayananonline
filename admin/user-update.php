@@ -30,6 +30,7 @@ if ($password == $password2) {
 
 	if ($status == '1') {
 		//kirim email user
+		$actual_link = "https://$_SERVER[HTTP_HOST]";
 		$subject = "Aktivasi Akun Sistem Persuratan FITK";
 		$pesan = "Yth. " . $nama . "
 							<br/>
@@ -39,9 +40,9 @@ if ($password == $password2) {
 							<br/>
 							Silahkan klik tombol berikut ini untuk melakukan pengajuan surat. 
 							<br/>
-							<a href='https://humaniora.uin-malang.ac.id/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+							<a href='" . $actual_link . "' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
 							<br/>
-							atau klik https://humaniora.uin-malang.ac.id/pelayananonline/
+							atau klik <a href='" . $actual_link . "'>" . $actual_link . "</a>
 							Wassalamualaiakum Wr. Wb.
 							";
 		sendmail($email, $nama, $subject, $pesan);

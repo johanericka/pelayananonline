@@ -22,6 +22,7 @@ $nama = $dmhs['nama'];
 $email = $dmhs['email'];
 
 //kirim email user
+$actual_link = "https://$_SERVER[HTTP_HOST]";
 $surat = "Izin Observasi";
 $subject = "Notifikasi Pengajuan Surat " . $surat;
 $pesan = "Yth. " . $nama . "
@@ -33,7 +34,7 @@ $pesan = "Yth. " . $nama . "
 		Silahkan ajukan kembali permohonan surat izin observasi dengan memperhatikan alasan penolakan diatas.
 		<br/>
 		<br/>
-		<a href='https://humaniora.uin-malang.ac.id/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+		<a href='" . $actual_link . "' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
 		<br/>
 		<br/>
 		Wassalamualaiakum Wr. Wb.

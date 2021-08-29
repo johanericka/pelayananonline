@@ -24,7 +24,7 @@ if ($kunci == $hasil) {
 	} else {
 		if ($password == $password2) {
 			$qsimpan = mysqli_query($conn, "INSERT INTO pengguna (nama,nim,nohp,email,prodi,user,pass,plaintext,token)
-													VALUES ('$nama','$nim','$nohp','$email','$prodi','$userid','$passmd5','$password','$token')");
+											VALUES ('$nama','$nim','$nohp','$email','$prodi','$userid','$passmd5','$password','$token')");
 
 			//kirim email notifikasi			
 
@@ -33,7 +33,7 @@ if ($kunci == $hasil) {
 			while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 				$emailfak = $dadminfak['email'];
 				$namaadmin = $dadminfak['nama'];
-
+				$actual_link = "https://$_SERVER[HTTP_HOST]";
 				$subject = "Notifikasi Pendaftaran Pengguna Baru";
 				$pesan = "Yth. " . $namaadmin . "
 									<br/>
@@ -43,7 +43,7 @@ if ($kunci == $hasil) {
 									<br/>
 									Silahkan klik tombol berikut ini untuk melakukan aktivasi pengguna.
 									<br/>
-									<a href='https://humaniora.uin-malang.ac.id/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+									<a href='" . $actual_link . "' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
 									<br/>
 									Wassalamualaikum Wr. Wb.
 									";

@@ -469,9 +469,8 @@ if ($role != 'adminprodi') {
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Nama</th>
-                                                    <th>NIM / NIP / NIDT</th>
                                                     <th>Program Studi</th>
+                                                    <th>Nama</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -497,8 +496,8 @@ if ($role != 'adminprodi') {
                                                 ?>
                                                     <tr>
                                                         <td><?= $no; ?></td>
-                                                        <td><?= $nama; ?></td>
                                                         <td><?= $prodi; ?></td>
+                                                        <td><?= $nama; ?></td>
                                                         <td><?php
                                                             if ($role == 'adminfakultas') {
                                                             ?>

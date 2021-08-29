@@ -41,7 +41,7 @@ $qadminfak = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminfaku
 while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 	$emailfak = $dadminfak['email'];
 	$namaadmin = $dadminfak['nama'];
-	$actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	$actual_link = "https://$_SERVER[HTTP_HOST]";
 	$surat = "Dispensasi";
 	$subject = "Notifikasi Pengajuan Surat " . $surat;
 	$pesan = "Yth. " . $namaadmin . "

@@ -1,0 +1,7 @@
+Nama DB				User DB				Host DB	 	Password
+id17502247_pelayananonline	id17502247_narayaitsolution	localhost	tanyaADM1N@)@!
+
+hosting.uin-malang.ac.d
+db
+username = pelayananonline
+password = vxX7h63*

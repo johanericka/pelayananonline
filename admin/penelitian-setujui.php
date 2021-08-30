@@ -29,7 +29,7 @@ $qupdate = mysqli_query($conn, "UPDATE penelitian
                                     keterangan='$keterangan',
 									statussurat=1
                                 WHERE nodata='$nodata'");
-/*
+
 //cari data mahasiswa
 $qmhs = mysqli_query($conn, "SELECT * FROM penelitian WHERE nodata='$nodata'");
 $dmhs = mysqli_fetch_array($qmhs);
@@ -41,10 +41,10 @@ $nama = $dmhs2['nama'];
 $email = $dmhs2['email'];
 
 //kirim email user
-$actual_link = "https://$_SERVER[HTTP_HOST]";
+$actual_link = "https://$_SERVER[HTTP_HOST]/pelayananonline/";
 $surat = "Izin Penelitian";
 $subject = "Notifikasi Pengajuan Surat " . $surat;
-$pesan = "Yth. " . $nama . "
+$pesan = "Yth. " . stripslashes($nama) . "
 						<br/>
 						Assalamualaikum Wr. Wb.
 						<br/>
@@ -61,6 +61,6 @@ $pesan = "Yth. " . $nama . "
 						<br/>
 						Wassalamualaiakum Wr. Wb.
 						";
-sendmail($email, $nama, $subject, $pesan);
-*/
+sendmail($email, stripslashes($nama), $subject, $pesan);
+
 header("location:dashboard.php");

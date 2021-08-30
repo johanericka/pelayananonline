@@ -15,7 +15,7 @@ if (isset($keterangan) and !empty($keterangan)) {
         keterangan='$keterangan',
         statussurat=2
     WHERE nodata='$nodata'");
-    /*
+
     //cari data mahasiswa
     $qmhs = mysqli_query($conn, "SELECT * FROM dispensasi WHERE nodata='$nodata'");
     $dmhs = mysqli_fetch_array($qmhs);
@@ -28,10 +28,10 @@ if (isset($keterangan) and !empty($keterangan)) {
     $email = $dmhs2['email'];
 
     //kirim email user
-    $actual_link = "https://$_SERVER[HTTP_HOST]";
+    $actual_link = "https://$_SERVER[HTTP_HOST]/pelayananonline/";
     $surat = "Izin Penelitian";
     $subject = "Notifikasi Pengajuan Surat " . $surat;
-    $pesan = "Yth. " . $nama . "
+    $pesan = "Yth. " . stripslashes($nama) . "
 						<br/>
 						Assalamualaikum Wr. Wb.
 						<br/>
@@ -41,8 +41,8 @@ if (isset($keterangan) and !empty($keterangan)) {
 						<br/>
 						Wassalamualaiakum Wr. Wb.
 						";
-    sendmail($email, $nama, $subject, $pesan);
-*/
+    sendmail($email, stripslashes($nama), $subject, $pesan);
+
     header("location:dashboard.php");
 } else {
     header("location:penelitian-tampil.php?nodata=$nodata&pesan=keterangan");

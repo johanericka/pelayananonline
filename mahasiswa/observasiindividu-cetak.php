@@ -20,7 +20,7 @@ $datasurat = mysqli_query($conn, "SELECT * FROM observasi WHERE nodata='$nodata'
 $rowsurat = mysqli_fetch_array($datasurat);
 $keterangan = $rowsurat['keterangan'];
 $nim = $rowsurat['nim'];
-$nama = $rowsurat['nama'];
+$nama = stripslashes($rowsurat['nama']);
 $nohp = $rowsurat['nohp'];
 $email = $rowsurat['email'];
 $prodi = $rowsurat['prodi'];

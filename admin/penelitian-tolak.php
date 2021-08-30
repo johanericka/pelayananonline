@@ -16,7 +16,7 @@ if (isset($keterangan) and !empty($keterangan)) {
         statussurat=2
     WHERE nodata='$nodata'");
 
-    /*
+
     //cari data mahasiswa
     $qmhs = mysqli_query($conn, "SELECT * FROM penelitian WHERE nodata='$nodata'");
     $dmhs = mysqli_fetch_array($qmhs);
@@ -29,21 +29,20 @@ if (isset($keterangan) and !empty($keterangan)) {
     $email = $dmhs2['email'];
 
     //kirim email user
-    $actual_link = "https://$_SERVER[HTTP_HOST]";
+    $actual_link = "https://$_SERVER[HTTP_HOST]/pelayananonline/";
     $surat = "Izin Penelitian";
     $subject = "Notifikasi Pengajuan Surat " . $surat;
-    $pesan = "Yth. " . $nama . "
-						<br/>
-						Assalamualaikum Wr. Wb.
-						<br/>
-						Mohon maaf, pengajuan <b>Surat " . $surat . "</b> anda telah ditolak dengan alasan <b>$keterangan</b>.
-						<br/>
-						Silahkan ajukan ulang di <a href='" . $actual_link . "'>Sistem Pelayanan Online Fakultas Humaniora UIN Maulana Malik Ibrahim Malang</a>
-						<br/>
-						Wassalamualaiakum Wr. Wb.
-						";
-    sendmail($email, $nama, $subject, $pesan);
-    */
+    $pesan = "Yth. " . stripslashes($nama) . "
+                <br/>
+                Assalamualaikum Wr. Wb.
+                <br/>
+                Mohon maaf, pengajuan <b>Surat " . $surat . "</b> anda telah ditolak dengan alasan <b>$keterangan</b>.
+                <br/>
+                Silahkan ajukan ulang di <a href='" . $actual_link . "'>Sistem Pelayanan Online Fakultas Humaniora UIN Maulana Malik Ibrahim Malang</a>
+                <br/>
+                Wassalamualaiakum Wr. Wb.
+                ";
+    sendmail($email, stripslashes($nama), $subject, $pesan);
     header("location:dashboard.php");
 } else {
     header("location:penelitian-tampil.php?nodata=$nodata&pesan=keterangan");

@@ -20,7 +20,7 @@ $qsuket = mysqli_query($conn, "SELECT * FROM suket WHERE nodata='$nodata'");
 $rowsurat = mysqli_fetch_array($qsuket);
 $keterangan = $rowsurat['keterangan'];
 $nim = $rowsurat['nim'];
-$nama = $rowsurat['nama'];
+$nama = stripslashes($rowsurat['nama']);
 $notelepon = $rowsurat['notelepon'];
 $email = $rowsurat['email'];
 $prodi = $rowsurat['prodi'];

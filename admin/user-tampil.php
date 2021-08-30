@@ -81,13 +81,13 @@ if ($role != 'adminprodi') {
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th width="30%">Program Studi</th>
-                                                    <th width="20%">Nama</th>
+                                                    <th width="5%">No</th>
+                                                    <th>Program Studi</th>
+                                                    <th>Nama</th>
                                                     <th>Email</th>
                                                     <th>No. HP</th>
-                                                    <th>Status</th>
-                                                    <th width="10%">Aksi</th>
+                                                    <th width="5%">Status</th>
+                                                    <th width="5%">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

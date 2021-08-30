@@ -2,10 +2,21 @@
 session_start();
 require('../config.php');
 
-$jabatan = $_POST['jabatan'];
-$nama = $_POST['nama'];
-$nip = $_POST['nip'];
+$host = $_POST['host'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$smtpsecure = $_POST['smtpsecure'];
+$port = $_POST['port'];
+$from = $_POST['from'];
+$fromname = $_POST['fromname'];
 
-$sql = mysqli_query($conn, "INSERT INTO pejabat (jabatan, nama, nip) VALUES('$jabatan','$nama','$nip')");
+$sql = mysqli_query($conn, "UPDATE email 
+                            SET host='$host',
+                                username='$username',
+                                password='$password',
+                                smtpsecure='$smtpsecure',
+                                port='$port',
+                                from='$from',
+                                fromname='$fromname'");
 
-header('location:pejabat-isi.php');
+header('location:email-isi.php');

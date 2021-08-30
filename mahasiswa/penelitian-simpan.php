@@ -36,12 +36,13 @@ $verifikator = $dverifikator['nip'];
 $qsimpan = mysqli_query($conn, "INSERT INTO penelitian (tglpengajuan,prodi,nim,nama,nohp,email,judul,namainstansi,alamatinstansi,tglmulai,tglselesai,verifikator,statussurat)
 								VALUES ('$tglpengajuan','$prodi','$nim','$nama','$nohp','$email','$judulpenelitian','$tujuansurat','$alamatsurat','$penelitianmulai','$penelitianselesai','$verifikator','0')");
 
-/*
+
 //cari email admin fakultas
 $qadminfak = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminfakultas'");
 while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 	$emailfak = $dadminfak['email'];
-	$namaadmin = $dadminfak['nama'];
+	$namaadmin = stripslashes($dadminfak['nama']);
+	$actual_link = "https://$_SERVER[HTTP_HOST]/pelayananonline/";
 	$surat = "Izin Penelitian";
 	$subject = "Notifikasi Pengajuan Surat " . $surat;
 	$pesan = "Yth. " . $namaadmin . "
@@ -53,14 +54,14 @@ while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 						Silahkan klik tombol dibawah ini untuk melakukan verifikasi surat.
 						<br/>
 						<br/>
-                        <a href='https://humaniora.uin-malang.ac.id/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+                        <a href='" . $actual_link . "' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
 						<br/>
 						<br/>
 						Wassalamualaikum Wr. Wb.
 						";
 	sendmail($emailfak, $namaadmin, $subject, $pesan);
 }
-
+/*
 //kirim email user
 $subject = "Notifikasi Pengajuan Surat " . $surat;
 $pesan = "Yth. " . $nama . "

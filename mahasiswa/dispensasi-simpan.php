@@ -35,44 +35,44 @@ $verifikator = $dverifikator['nip'];
 
 $qsimpan = mysqli_query($conn, "INSERT INTO dispensasi (tglpengajuan,prodi,nim,nama,nohp,email,kegiatan,namainstansi,alamatinstansi,tglmulai,tglselesai,verifikator,statussurat)
 								VALUES ('$tglpengajuan','$prodi','$nim','$nama','$nohp','$email','$kegiatan','$tujuansurat','$alamatsurat','$penelitianmulai','$penelitianselesai','$verifikator','0')");
-/*
+
 //cari email admin fakultas
 $qadminfak = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminfakultas'");
 while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 	$emailfak = $dadminfak['email'];
-	$namaadmin = $dadminfak['nama'];
-	$actual_link = "https://$_SERVER[HTTP_HOST]";
+	$namaadmin = stripslashes($dadminfak['nama']);
+	$actual_link = "https://$_SERVER[HTTP_HOST]/pelayananonline/";
 	$surat = "Dispensasi";
 	$subject = "Notifikasi Pengajuan Surat " . $surat;
 	$pesan = "Yth. " . $namaadmin . "
-						<br/>
-						Assalamualaikum Wr. Wb.
-						<br/>
-						Terdapat Pengajuan <b>Surat " . $surat . " </b> atas nama " . $nama . ".
-						<br/>
-						Silahkan klik tombol dibawah ini untuk melakukan verifikasi surat.
-						<br/>
-						<br/>
-                        <a href='" . $actual_link . "/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
-						<br/>
-						<br/>
-						Wassalamualaikum Wr. Wb.
-						";
+				<br/>
+				Assalamualaikum Wr. Wb.
+				<br/>
+				Terdapat Pengajuan <b>Surat " . $surat . " </b> atas nama " . $nama . ".
+				<br/>
+				Silahkan klik tombol dibawah ini untuk melakukan verifikasi surat.
+				<br/>
+				<br/>
+				<a href='" . $actual_link . "/pelayananonline/' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+				<br/>
+				<br/>
+				Wassalamualaikum Wr. Wb.
+				";
 	sendmail($emailfak, $namaadmin, $subject, $pesan);
 }
-
+/*
 //kirim email user
 $subject = "Notifikasi Pengajuan Surat " . $surat;
-$pesan = "Yth. " . $nama . "
-						<br/>
-						Assalamualaikum Wr. Wb.
-						<br/>
-						Pengajuan <b>Surat " . $surat . "</b> anda sedang menunggu verifikasi dari Bagian Administrasi.
-						<br/>
-						Akan ada email pemberitahuan selanjutnya apabila pengajuan <b>Surat " . $surat . "</b> anda telah di verifikasi.
-						<br/>
-						Wassalamualaiakum Wr. Wb.
-						";
-sendmail($email, $nama, $subject, $pesan);
+$pesan = "Yth. " . stripslashes($nama) . "
+			<br/>
+			Assalamualaikum Wr. Wb.
+			<br/>
+			Pengajuan <b>Surat " . $surat . "</b> anda sedang menunggu verifikasi dari Bagian Administrasi.
+			<br/>
+			Akan ada email pemberitahuan selanjutnya apabila pengajuan <b>Surat " . $surat . "</b> anda telah di verifikasi.
+			<br/>
+			Wassalamualaiakum Wr. Wb.
+			";
+sendmail($email, stripslashes($nama), $subject, $pesan);
 */
 header("location:dashboard.php");

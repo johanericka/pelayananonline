@@ -126,15 +126,15 @@ if ($role != 'adminprodi') {
                                             <label>Alamat Tujuan</label>
                                             <input type="text" class="form-control " name="alamatsurat" id="alamatsurat" value="<?= $alamatsurat; ?>">
                                         </div>
-                                        <label>Lama Penelitian</label>
+                                        <label>Lama Dispensasi</label>
                                         <!--<small style="color:blue"><i>(maksimal 1 bulan) </i></small>-->
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <label>Tanggal Mulai Penelitian</label>
+                                                <label>Tanggal Mulai Dispensasi</label>
                                                 <input type="date" class="form-control " name="penelitianmulai" id="penelitianmulai" value="<?= $tglmulai; ?>">
                                             </div>
                                             <div class="col-sm-6">
-                                                <label>Tanggal Selesai Penelitian</label>
+                                                <label>Tanggal Selesai Dispensasi</label>
                                                 <input type="date" class="form-control " name="penelitianselesai" id="penelitianselesai" value="<?= $tglselesai; ?>">
                                             </div>
                                         </div>

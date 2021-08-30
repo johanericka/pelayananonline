@@ -18,7 +18,7 @@ require('../assets/myfunc.php');
 $nodata = mysqli_real_escape_string($conn, $_GET['nodata']);
 $qsurat = mysqli_query($conn, "SELECT * FROM penelitian WHERE nodata='$nodata'");
 $dsurat = mysqli_fetch_array($qsurat);
-$nama = $dsurat['nama'];
+$nama = stripslashes($dsurat['nama']);
 $nim = $dsurat['nim'];
 $prodi = $dsurat['prodi'];
 $judulpenelitian = $dsurat['judul'];

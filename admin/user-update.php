@@ -28,27 +28,23 @@ if ($password == $password2) {
 										status = '$status'
 									WHERE no='$nodata'");
 
-	if ($status == '1') {
-		/*
-		//kirim email user
-		$actual_link = "https://$_SERVER[HTTP_HOST]";
-		$subject = "Aktivasi Akun Sistem Persuratan FITK";
-		$pesan = "Yth. " . $nama . "
-							<br/>
-							Assalamualaikum Wr. Wb.
-							<br/>
-							Akun anda di sistem Pelayanan Online Fakultas Humaniora UIN Maulana Malik Ibrahim Malang telah di aktifkan.
-							<br/>
-							Silahkan klik tombol berikut ini untuk melakukan pengajuan surat. 
-							<br/>
-							<a href='" . $actual_link . "' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
-							<br/>
-							atau klik <a href='" . $actual_link . "'>" . $actual_link . "</a>
-							Wassalamualaiakum Wr. Wb.
-							";
-		sendmail($email, $nama, $subject, $pesan);
-		*/
-	}
+	//kirim email user
+	$actual_link = "https://$_SERVER[HTTP_HOST]/pelayananonline/";
+	$subject = "Aktivasi Akun Pelayanan Online Fakultas Humaniora UIN Malang";
+	$pesan = "Yth. " . stripslashes($nama) . "
+				<br/>
+				Assalamualaikum Wr. Wb.
+				<br/>
+				Akun anda di sistem Pelayanan Online Fakultas Humaniora UIN Maulana Malik Ibrahim Malang telah di aktifkan.
+				<br/>
+				Silahkan klik tombol berikut ini untuk melakukan pengajuan surat. 
+				<br/>
+				<a href='" . $actual_link . "' style=' background-color: #0000FF;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a> 
+				<br/>
+				atau klik <a href='" . $actual_link . "'>" . $actual_link . "</a>
+				Wassalamualaiakum Wr. Wb.
+				";
+	sendmail($email, stripslashes($nama), $subject, $pesan);
 	header('location:dashboard.php');
 } else {
 	header('location:daftar.php?pesan=passsalah');

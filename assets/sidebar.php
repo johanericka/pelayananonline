@@ -64,7 +64,6 @@ $role = $_SESSION['role'];
                     <h6 class="collapse-header">System Admin Menu</h6>
                     <a class="collapse-item" href="pejabat-isi.php">Pejabat Fakultas</a>
                     <a class="collapse-item" href="prodi-isi.php">Program Studi</a>
-                    <a class="collapse-item" href="email-isi.php">Email Notifikasi</a>
                 </div>
             </div>
         </li>

@@ -30,6 +30,7 @@ $qupdate = mysqli_query($conn, "UPDATE observasi
 									statussurat = 1
                                 WHERE nodata='$nodata'");
 
+/*
 //cari data mahasiswa
 $qmhs = mysqli_query($conn, "SELECT * FROM observasi WHERE nodata='$nodata'");
 $dmhs = mysqli_fetch_array($qmhs);
@@ -58,4 +59,5 @@ $pesan = "Yth. " . $nama . "
 		Wassalamualaiakum Wr. Wb.
 		";
 sendmail($email, $nama, $subject, $pesan);
+*/
 header("location:dashboard.php");

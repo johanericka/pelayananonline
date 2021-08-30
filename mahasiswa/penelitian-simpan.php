@@ -36,6 +36,7 @@ $verifikator = $dverifikator['nip'];
 $qsimpan = mysqli_query($conn, "INSERT INTO penelitian (tglpengajuan,prodi,nim,nama,nohp,email,judul,namainstansi,alamatinstansi,tglmulai,tglselesai,verifikator,statussurat)
 								VALUES ('$tglpengajuan','$prodi','$nim','$nama','$nohp','$email','$judulpenelitian','$tujuansurat','$alamatsurat','$penelitianmulai','$penelitianselesai','$verifikator','0')");
 
+/*
 //cari email admin fakultas
 $qadminfak = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminfakultas'");
 while ($dadminfak = mysqli_fetch_array($qadminfak)) {
@@ -59,7 +60,7 @@ while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 						";
 	sendmail($emailfak, $namaadmin, $subject, $pesan);
 }
-/*
+
 //kirim email user
 $subject = "Notifikasi Pengajuan Surat " . $surat;
 $pesan = "Yth. " . $nama . "

@@ -23,7 +23,7 @@ $verifikator = $dverifikator['nip'];
 $qsimpan = mysqli_query($conn, "INSERT INTO rekomendasi (tanggal,prodi,nim,nama,notelepon,email,keperluan,verifikator,verifikasi,statussurat)
 								VALUES ('$tanggal','$prodi','$nim','$nama','$notelepon','$email','$keperluan','$verifikator','0','0')");
 if ($qsimpan) {
-    echo "ok";
+    /*
     //cari email admin fakultas
     $qadminfak = mysqli_query($conn, "SELECT * FROM pengguna WHERE role = 'adminfakultas'");
     while ($dadminfak = mysqli_fetch_array($qadminfak)) {
@@ -47,7 +47,7 @@ if ($qsimpan) {
 						";
         sendmail($emailfak, $namaadmin, $subject, $pesan);
     }
-
+*/
     header("location:dashboard.php");
 } else {
     echo "simpan gagal";

@@ -29,6 +29,7 @@ if ($password == $password2) {
 									WHERE no='$nodata'");
 
 	if ($status == '1') {
+		/*
 		//kirim email user
 		$actual_link = "https://$_SERVER[HTTP_HOST]";
 		$subject = "Aktivasi Akun Sistem Persuratan FITK";
@@ -46,6 +47,7 @@ if ($password == $password2) {
 							Wassalamualaiakum Wr. Wb.
 							";
 		sendmail($email, $nama, $subject, $pesan);
+		*/
 	}
 	header('location:dashboard.php');
 } else {

@@ -15,7 +15,7 @@ if (isset($keterangan) and !empty($keterangan)) {
         keterangan='$keterangan',
         statussurat=2
     WHERE nodata='$nodata'");
-
+    /*
     //cari data mahasiswa
     $qmhs = mysqli_query($conn, "SELECT * FROM dispensasi WHERE nodata='$nodata'");
     $dmhs = mysqli_fetch_array($qmhs);
@@ -42,6 +42,7 @@ if (isset($keterangan) and !empty($keterangan)) {
 						Wassalamualaiakum Wr. Wb.
 						";
     sendmail($email, $nama, $subject, $pesan);
+*/
     header("location:dashboard.php");
 } else {
     header("location:penelitian-tampil.php?nodata=$nodata&pesan=keterangan");

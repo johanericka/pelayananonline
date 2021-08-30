@@ -40,7 +40,7 @@ include "../assets/phpqrcode/qrlib.php";
 $actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 //echo $actual_link;
 $codeContents = $actual_link;
-$namafile = $nim . "_" . $tgl . "_" . $jam;
+$namafile = $nim . "-observasi-" . $nodata;
 QRcode::png($codeContents, "../qrcode/$namafile.png", QR_ECLEVEL_L, 4, 4);
 ?>
 

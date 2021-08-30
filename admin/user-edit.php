@@ -140,8 +140,6 @@ if ($role != 'adminfakultas') {
                                 <?php
                                 } else {
                                 ?>
-                                    <option value="dosen">Dosen</option>
-                                    <option value="adminprodi">Admin Program Studi</option>
                                     <option value="adminfakultas">Admin Fakultas</option>
                                     <option value="mahasiswa" selected>Mahasiswa</option>
                                 <?php

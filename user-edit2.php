@@ -14,7 +14,7 @@ $userid = $_SESSION['userid'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FITK UIN Malang</title>
+    <title>Pelayanan Online</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -25,7 +25,7 @@ $userid = $_SESSION['userid'];
 
 </head>
 
-<body class="bg-gradient-success">
+<body class="bg-gradient-warning">
 
     <div class="container">
 
@@ -34,7 +34,7 @@ $userid = $_SESSION['userid'];
                 <div class="col-lg-5 d-none d-lg-block"></div>
                 <div class="p-5">
                     <div class="text-center">
-                        <img src="img/fitk.png"></img>
+                        <img src="img/kop-humaniora.png"></img>
                         <h1 class="h4 text-gray-900 mb-4">Daftar Akun Pengguna</h1>
                     </div>
                     <?php
@@ -53,11 +53,11 @@ $userid = $_SESSION['userid'];
                     <form class="user" action="user-update2.php" method="POST">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" class="form-control form-control-user" name="nama" id="nama" value="<?= $nama; ?>" required>
+                            <input type="text" class="form-control " name="nama" id="nama" value="<?= $nama; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>NIM / NIP / NIDT</label>
-                            <input type="number" class="form-control form-control-user" name="nim" id="nim" value="<?= $nim; ?>" required>
+                            <input type="number" class="form-control " name="nim" id="nim" value="<?= $nim; ?>" required>
                         </div>
                         <div class="row no-gutters align-items-center">
                             <label>Program Studi</label>
@@ -68,16 +68,16 @@ $userid = $_SESSION['userid'];
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>No. HP Aktif</label>
-                                <input type="number" class="form-control form-control-user" name="nohp" id="nohp" value="<?= $nohp; ?>" required>
+                                <input type="number" class="form-control " name="nohp" id="nohp" value="<?= $nohp; ?>" required>
                             </div>
                             <div class="col-sm-6">
                                 <label>E-Mail</label>
-                                <input type="email" class="form-control form-control-user" name="email" id="email" value="<?= $email; ?>" required>
+                                <input type="email" class="form-control " name="email" id="email" value="<?= $email; ?>" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>User ID</label>
-                            <input type="text" class="form-control form-control-user" name="userid" id="userid" value="<?= $username; ?>" readonly>
+                            <input type="text" class="form-control " name="userid" id="userid" value="<?= $username; ?>" readonly>
                             <?php
                             if (isset($_GET['pesan']) == 'passsalah') {
                             ?>
@@ -91,11 +91,11 @@ $userid = $_SESSION['userid'];
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Password</label>
-                                <input type="password" class="form-control form-control-user" name="password" id="password" value="<?= $password; ?>" required>
+                                <input type="password" class="form-control " name="password" id="password" value="<?= $password; ?>" required>
                             </div>
                             <div class="col-sm-6">
                                 <label>Ulangi Password</label>
-                                <input type="password" class="form-control form-control-user" name="password2" id="password2" value="<?= $password; ?>" required>
+                                <input type="password" class="form-control " name="password2" id="password2" value="<?= $password; ?>" required>
                             </div>
                         </div>
 
@@ -103,21 +103,25 @@ $userid = $_SESSION['userid'];
                         <br />
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <button type="submit" class="btn btn-success btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     <i class="fas fa-user-edit"></i><b> Update Data </b>
                                 </button>
 
                             </div>
                             <div class="col-sm-6">
-                                <a href="index.php" class="btn btn-secondary btn-user btn-block">
+                                <a href="index.php" class="btn btn-secondary btn-block">
                                     <i class="fas fa-times-circle"></i><b> BATAL</b>
                                 </a>
                             </div>
                         </div>
-
                         <hr>
+                        <?php
+                        $qadmin = mysqli_query($conn, "SELECT * FROM pengguna WHERE role='adminfakultas'");
+                        $dadmin = mysqli_fetch_array($qadmin);
+                        $emailadmin = $dadmin['email'];
+                        ?>
                         <div class="text-center">
-                            <a href="#">Mengubah User ID / Program Studi ? klik disini</a>
+                            <a href="mailto:<?= $emailadmin; ?>">Mengubah User ID / Program Studi ? laporkan ke Admin</a>
                         </div>
                     </form>
                     <hr>

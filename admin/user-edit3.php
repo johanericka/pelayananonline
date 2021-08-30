@@ -31,7 +31,7 @@ if ($role != 'adminprodi') {
 
 </head>
 
-<body class="bg-gradient-success">
+<body class="bg-gradient-warning">
 
     <div class="container">
 
@@ -59,11 +59,11 @@ if ($role != 'adminprodi') {
                     <form class="user" action="user-update3.php" method="POST">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" class="form-control form-control-user" name="nama" id="nama" value="<?= $nama; ?>" required>
+                            <input type="text" class="form-control " name="nama" id="nama" value="<?= $nama; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>NIM / NIP / NIDT</label>
-                            <input type="number" class="form-control form-control-user" name="nim" id="nim" value="<?= $nim; ?>" required>
+                            <input type="number" class="form-control " name="nim" id="nim" value="<?= $nim; ?>" required>
                         </div>
                         <div class="row no-gutters align-items-center">
                             <label>Program Studi</label>
@@ -74,16 +74,16 @@ if ($role != 'adminprodi') {
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>No. HP Aktif</label><small style="color: red;"> Ganti 0 dengan 62</small>
-                                <input type="number" class="form-control form-control-user" name="nohp" id="nohp" value="<?= $nohp; ?>" required>
+                                <input type="number" class="form-control " name="nohp" id="nohp" value="<?= $nohp; ?>" required>
                             </div>
                             <div class="col-sm-6">
                                 <label>E-Mail</label>
-                                <input type="email" class="form-control form-control-user" name="email" id="email" value="<?= $email; ?>" required>
+                                <input type="email" class="form-control " name="email" id="email" value="<?= $email; ?>" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>User ID</label>
-                            <input type="text" class="form-control form-control-user" name="userid" id="userid" value="<?= $username; ?>" readonly>
+                            <input type="text" class="form-control " name="userid" id="userid" value="<?= $username; ?>" readonly>
                             <?php
                             if (isset($_GET['pesan']) == 'passsalah') {
                             ?>
@@ -97,11 +97,11 @@ if ($role != 'adminprodi') {
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Password</label>
-                                <input type="password" class="form-control form-control-user" name="password" id="password" value="<?= $password; ?>" required>
+                                <input type="password" class="form-control " name="password" id="password" value="<?= $password; ?>" required>
                             </div>
                             <div class="col-sm-6">
                                 <label>Ulangi Password</label>
-                                <input type="password" class="form-control form-control-user" name="password2" id="password2" value="<?= $password; ?>" required>
+                                <input type="password" class="form-control " name="password2" id="password2" value="<?= $password; ?>" required>
                             </div>
                         </div>
 
@@ -109,13 +109,13 @@ if ($role != 'adminprodi') {
                         <br />
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-success btn-user btn-block">
+                                <button type="submit" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-success btn-block">
                                     <i class="fas fa-user-edit"></i><b> Update Data </b>
                                 </button>
 
                             </div>
                             <div class="col-sm-6">
-                                <a href="dashboard.php" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-secondary btn-user btn-block">
+                                <a href="dashboard.php" onclick="return confirm('Apakah anda yakin ?')" class="btn btn-secondary btn-block">
                                     <i class="fas fa-times-circle"></i><b> BATAL</b>
                                 </a>
                             </div>

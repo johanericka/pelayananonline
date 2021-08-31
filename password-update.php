@@ -14,7 +14,7 @@ if ($hasil == $kunci) {
     if ($password1 == $password2) {
         $token2 = md5(microtime());
         $qupdate = mysqli_query($conn, "UPDATE pengguna SET pass='$password3', plaintext='$password1',token='$token2' WHERE token='$token'");
-
+        $actual_link = "https://$_SERVER[HTTP_HOST]/pelayananonline";
         //kirim email user
         $subject = "Lupa Password Pelayanan Online Fakultas Humaniora UIN Malang";
         $pesan = "Yth. " . $nama . "
@@ -26,12 +26,12 @@ if ($hasil == $kunci) {
                             Silahkan klik tombol berikut ini untuk masuk kedalam sistem pelayanan online Fakultas Humaniora UIN Malang.
                             <br/>
                             <br/>
-                            <a href='https://humaniora.uin-malang.ac.id/pelayananonline' style=' background-color: #0000FF;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a>
+                            <a href='" . $actual_link . "' style=' background-color: #0000FF;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Pelayanan Online</a>
                             <br/>
                             <br/>
                             Atau copy & paste link berikut ini ke web-browser anda apabila tombol diatas tidak berfungsi
                             <br/>
-                            https://humaniora.uin-malang.ac.id/pelayananonline
+                            " . $actual_link . "
                             <br/>
                             <br/>
                             Wassalamualaiakum Wr. Wb.

@@ -33,7 +33,7 @@ if ($kunci == $hasil) {
 			while ($dadminfak = mysqli_fetch_array($qadminfak)) {
 				$emailfak = $dadminfak['email'];
 				$namaadmin = $dadminfak['nama'];
-				$actual_link = "https://$_SERVER[HTTP_HOST]";
+				$actual_link = "https://$_SERVER[HTTP_HOST]/pelayananonline";
 				$subject = "Notifikasi Pendaftaran Pengguna Baru";
 				$pesan = "Yth. " . $namaadmin . "
 									<br/>
